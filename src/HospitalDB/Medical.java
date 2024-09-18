@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 /**
  * Class for Medical Report
  */
-class Medical {
+public class Medical {
 
     /**
      * chief_complaint the chief complaint of the patient. Example: "difficulty
