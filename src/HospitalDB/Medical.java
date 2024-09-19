@@ -8,47 +8,46 @@ import java.time.LocalDateTime;
 public class Medical {
 
     /**
-     * chief_complaint the chief complaint of the patient. Example: "difficulty
-     * breathing"
+     * the chief complaint of the patient. Example: "difficulty breathing"
      */
     private final String chief_complaint;
 
     /**
-     * reason_for_admission the reason for admission of the patient, the
-     * possible diagoses from the chief complaint. Example: "Asthma, Allergy"
+     * the reason for admission of the patient, the possible diagoses from the
+     * chief complaint. Example: "Asthma, Allergy"
      */
     private final String reason_for_admission;
 
     /**
-     * medical_diagnosis the final diagnosis of the patient given by the doctor.
-     * Example: "Allergic Asthma"
+     * the final diagnosis of the patient given by the doctor. Example:
+     * "Allergic Asthma"
      */
     private String medical_diagnosis;
 
     /**
-     * temperature the patients temperature.
+     * the patients temperature.
      */
     private int temperature;
 
     /**
-     * pulse the patients pulse or heart beats per minute
+     * the patients pulse or heart beats per minute
      */
     private int pulse;
 
     /**
-     * BP_systolic the patient's systolic pressure. This is the numerator in the
-     * blood pressure reading. Example: "130/80", 130 is the BP_systolic
+     * the patient's systolic pressure. This is the numerator in the blood
+     * pressure reading. Example: "130/80", 130 is the BP_systolic
      */
     private int BP_systolic;
 
     /**
-     * BP_diastolic the patient's diastolic pressure. This is the denominator in
-     * the blood pressure reading. Example: "130/80", 80 is the BP_diastolic
+     * the patient's diastolic pressure. This is the denominator in the blood
+     * pressure reading. Example: "130/80", 80 is the BP_diastolic
      */
     private int BP_diastolic;
 
     /**
-     * spo2 amount of oxygen in the patient's blood. From 0 to 100
+     * the amount of oxygen in the patient's blood. From 0 to 100
      */
     private int spo2;
 
@@ -226,5 +225,54 @@ public class Medical {
      */
     public void setDateTime(LocalDateTime date_time) {
         this.date_time = date_time;
+    }
+
+    /**
+     * MedicalRecord_create creates a medical record
+     *
+     * FIXME: This might need to be a static method
+     */
+    public void create() {
+
+    }
+
+    /**
+     * updates an already existing medical record
+     *
+     * FIXME: This might need to be a static method
+     */
+    public void update() {
+
+    }
+
+    /**
+     * deletes a medical record
+     *
+     * FIXME: This might need to be a static method
+     */
+    public void delete() {
+
+    }
+
+    /**
+     * to view the medical record for a specific patient.
+     */
+    public void viewPatientRecord() {
+
+    }
+
+    /**
+     * to view the names of all patients for a specific diagnosis
+     */
+    public void viewPatientsForDiagnosis() {
+
+    }
+
+    /**
+     * to view the summary medical record for all patients. Example the number
+     * of patients diagnosed with the "Common Cold"
+     */
+    public void viewSummary() {
+
     }
 }
