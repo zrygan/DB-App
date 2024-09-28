@@ -280,6 +280,7 @@ public class Medical {
             pstmt.setObject(9, date_time);
 
             pstmt.executeUpdate();
+            System.out.println("Successfully Added new MEDICAL RECORD");
         } catch (SQLException e) {
             System.out.println(e);
         }
