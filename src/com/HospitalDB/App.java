@@ -21,11 +21,13 @@ public class App {
         try (Connection connection = DriverManager.getConnection(DURL, USER, PASS)) {
             System.out.println("Connected.");
             
-            System.out.print("Query << ");
-
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-            
+            ResultSet resultSet = statement.executeQuery("SELECT * from doctors");
+
+            while(resultSet.next()) {
+                System.out.println(resultSet.getString("doctor_name") + " : " + resultSet.getString("doctor_specialization"));
+            }
+
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
