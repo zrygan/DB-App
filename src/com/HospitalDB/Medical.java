@@ -149,7 +149,7 @@ public class Medical {
      *
      * @return the temperature
      */
-    public int getTemperature() {
+    public float getTemperature() {
         return temperature;
     }
 
@@ -272,7 +272,7 @@ public class Medical {
             pstmt.setString(1, chief_complaint);
             pstmt.setString(2, reason_for_admission);
             pstmt.setString(3, medical_diagnosis);
-            pstmt.setInt(4, temperature);
+            pstmt.setFloat(4, temperature);
             pstmt.setInt(5, pulse);
             pstmt.setInt(6, BP_systolic);
             pstmt.setInt(7, BP_diastolic);

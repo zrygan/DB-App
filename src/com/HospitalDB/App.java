@@ -16,24 +16,16 @@ public class App {
     
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        String query = "";
 
         try (Connection connection = DriverManager.getConnection(DURL, USER, PASS)) {
             System.out.println("Connected.");
             
-            String query;
-
             System.out.print("Query << ");
-            query = sc.nextLine();
-            
+
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
             
-            while(resultSet.next()){
-                System.out.println(query + " << " + resultSet.getString("doctor_name") + " : " + resultSet.getString("doctor_specialization"));
-            }
-
-            sc.close();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
