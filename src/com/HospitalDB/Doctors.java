@@ -1,4 +1,4 @@
-package HospitalDB;
+package com.HospitalDB;
 
 public class Doctors {
 

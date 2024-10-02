@@ -1,4 +1,4 @@
-package HospitalDB;
+package com.HospitalDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,7 +33,7 @@ public class Medical {
     /**
      * the patients temperature.
      */
-    private int temperature;
+    private float temperature;
 
     /**
      * the patients pulse or heart beats per minute
