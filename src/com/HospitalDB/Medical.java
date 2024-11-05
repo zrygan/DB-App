@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class Medical {
 
     private final App DATABASE;
-    private final Patient PATIENT;
+    private final Patient PATIENT; //FIXME: Use Patient ID instead of Patient Object, you can't access Patient Object using SQL
     /**
      * the chief complaint of the patient. Example: "difficulty breathing"
      */
@@ -60,7 +60,7 @@ public class Medical {
     /**
      * date_time the date and time the Medical Record is recorded.
      */
-    private LocalDateTime date_time;
+    private LocalDateTime date_time; // FIXME: USE java.sql.Timestamp instead to be able to use SQL methods
 
     /**
      * Constructor for Medical class. This is also the record creating method.

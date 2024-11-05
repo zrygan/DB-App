@@ -1,6 +1,6 @@
 package com.HospitalDB;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 /*
 Medication Record
@@ -17,6 +17,11 @@ Assigned to Jaztin Jimenez
 public class Medication{
     
     /**
+     * the id of the medication
+     */
+    private int med_ID;
+
+    /**
      * the generic name of the medication
      */
     private String generic;
@@ -29,14 +34,12 @@ public class Medication{
     /**
      * the date and time the medication record is recorded
      */
-    private LocalDateTime date_time;
+    private Timestamp date_time;
 
     /**
      * the intake frequency of the medication
-     * 
-     * FIXME: check how it would be called if its gonna be a "Per Day" or "Per Week"
      */
-    private int frequency;
+    private String frequency;
     
     /**
      * the dosage of the medication per intake
@@ -46,16 +49,17 @@ public class Medication{
     /**
      * the prescribing doctor of the medication
      */
-    private String pres_doc;
+    private int pres_doc;
     
     /**
      * the patient of the prescribing doctor
      */
-    private String patient;
+    private int patient;
 
     /**
      * Constructor for Medication class
      * 
+     * @param database the database instance
      * @param generic the generic name of the medication
      * @param brand the brand name of the medication
      * @param date_time the date and time the medication record is recorded
@@ -64,7 +68,8 @@ public class Medication{
      * @param pres_doc the prescribing doctor of the medication
      * @param patient the patient of the prescribing doctor
      */
-    public Medication(String generic, String brand, LocalDateTime date_time, int frequency, float dosage, String pres_doc, String patient) {
+    public Medication(int med_ID, String generic, String brand, Timestamp date_time, String frequency, float dosage, int pres_doc, int patient) {
+        this.med_ID = med_ID;
         this.generic = generic;
         this.brand = brand;
         this.date_time = date_time;
@@ -76,6 +81,25 @@ public class Medication{
 
     
     // Getters and Setters
+
+    /**
+     * Gets the medication ID
+     * 
+     * @return the medication ID
+     */
+    public int getMed_ID() {
+        return med_ID;
+    }
+
+    /**
+     * Sets the medication ID
+     * 
+     * @param med_ID the medication ID
+     */
+    public void setMed_ID(int med_ID) {
+        this.med_ID = med_ID;
+    }
+
     /**
      * Gets the generic name of the medication
      * 
@@ -117,7 +141,7 @@ public class Medication{
      * 
      * @return the date and time of the medication record
      */
-    public LocalDateTime getDate_time() {
+    public Timestamp getDate_time() {
         return date_time;
     }
 
@@ -126,7 +150,7 @@ public class Medication{
      * 
      * @param date_time the date and time of the medication record
      */
-    public void setDate_time(LocalDateTime date_time) {
+    public void setDate_time(Timestamp date_time) {
         this.date_time = date_time;
     }
     
@@ -135,7 +159,7 @@ public class Medication{
      * 
      * @return the intake frequency of the medication
      */
-    public int getFrequency() {
+    public String getFrequency() {
         return frequency;
     }
 
@@ -144,7 +168,7 @@ public class Medication{
      * 
      * @param frequency the intake frequency of the medication
      */
-    public void setFrequency(int frequency) {
+    public void setFrequency(String frequency) {
         this.frequency = frequency;
     }
 
@@ -171,7 +195,7 @@ public class Medication{
      * 
      * @return the name of the prescribing doctor of the medication record
      */
-    public String getPres_doc() {
+    public int getPres_doc() {
         return pres_doc;
     }
 
@@ -180,7 +204,7 @@ public class Medication{
      * 
      * @param pres_doc the name of the prescribing doctor of the medication record
      */
-    public void setPres_doc(String pres_doc) {
+    public void setPres_doc(int pres_doc) {
         this.pres_doc = pres_doc;
     }
 
@@ -189,7 +213,7 @@ public class Medication{
      * 
      * @return the name of the patient of the medication record
      */
-    public String getPatient() {
+    public int getPatient() {
         return patient;
     }
 
@@ -198,7 +222,7 @@ public class Medication{
      * 
      * @param patient the name of the patient of the medication record
      */
-    public void setPatient(String patient) {
+    public void setPatient(int patient) {
         this.patient = patient;
     }
 
