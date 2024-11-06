@@ -17,6 +17,7 @@ public class Patient {
     private Doctors DOCTOR;
     private String status;
 
+    //FIXME: add patient ID
     public Patient(App database, String name, int age, LocalDate birthDate, String sex, double height, double weight, String religion, Doctors DOCTOR, String status) {
         this.DATABASE = database;
         this.MEDICAL = new ArrayList<>();

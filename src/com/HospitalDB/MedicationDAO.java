@@ -52,21 +52,22 @@ public class MedicationDAO {
 
     // Update Medication
     public void updateMedication(Medication medication) throws SQLException {
-        String query = "UPDATE medication_record SET medication_ID = ?, generic_name = ?, brand_name = ?, date_time = ?, frequency = ?, dosage = ?, doctor_ID = ?, doctorId = ?, patient_ID = ?";
+        String query = "UPDATE medication_record SET generic_name = ?, brand_name = ?, date_time = ?, frequency = ?, dosage = ?, doctor_ID = ?, patient_ID = ? WHERE medication_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
-
-            pstmt.setInt(1, medication.getMed_ID());
-            pstmt.setString(2, medication.getGeneric());
-            pstmt.setString(3, medication.getBrand());
-            pstmt.setObject(4, medication.getDate_time());
-            pstmt.setString(5, medication.getFrequency());
-            pstmt.setFloat(6, medication.getDosage());
-            pstmt.setInt(7, medication.getPres_doc());
-            pstmt.setInt(8, medication.getPatient());
+    
+            pstmt.setString(1, medication.getGeneric());
+            pstmt.setString(2, medication.getBrand());
+            pstmt.setObject(3, medication.getDate_time());
+            pstmt.setString(4, medication.getFrequency());
+            pstmt.setFloat(5, medication.getDosage());
+            pstmt.setInt(6, medication.getPres_doc());
+            pstmt.setInt(7, medication.getPatient());
+            pstmt.setInt(8, medication.getMed_ID()); // Primary key to identify the record
             pstmt.executeUpdate();
         }
     }
+    
 
     // Delete Medication by ID
     public void deletePatient(int id) throws SQLException {
@@ -78,15 +79,15 @@ public class MedicationDAO {
         }
     }
 
-    // Viewing all medications in the Medication Record with the same generic name
+    // Viewing all medications with the same generic name
     public List<Medication> getMedGenericList(String generic_name) throws SQLException {
         List<Medication> meds = new ArrayList<>();
         String query = "SELECT * FROM medication_record WHERE generic_name = ?";
         try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query);  
-            ResultSet rs = pstmt.executeQuery()) {
-                pstmt.setString(1, generic_name); //FIXME: NOT SURE KUNG IF THIS IS HOW IT WORKS LETS TEST IT OUT FIRST
-                pstmt.executeUpdate();
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, generic_name); // Setting the parameter
+            try (ResultSet rs = pstmt.executeQuery()) { 
                 while (rs.next()) {
                     Medication medication = new Medication(
                         rs.getInt("medication_ID"),
@@ -101,18 +102,19 @@ public class MedicationDAO {
                     meds.add(medication);
                 }
             }
+        }
         return meds;
     }
 
-    // Viewing all medications in the Medication Record with the same brand name (e.g., Tylenol, Biogesic, Nizoral).
+    // Viewing all medications with the same brand name
     public List<Medication> getMedBrandList(String brand_name) throws SQLException {
         List<Medication> meds = new ArrayList<>();
-        String query = "SELECT * FROM medication_record WHERE generic_name = ?";
+        String query = "SELECT * FROM medication_record WHERE brand_name = ?"; // Corrected field
         try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query);  
-            ResultSet rs = pstmt.executeQuery()) {
-                pstmt.setString(1, brand_name); //FIXME: NOT SURE KUNG IF THIS IS HOW IT WORKS LETS TEST IT OUT FIRST
-                pstmt.executeUpdate();
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, brand_name); // Setting the parameter
+            try (ResultSet rs = pstmt.executeQuery()) { 
                 while (rs.next()) {
                     Medication medication = new Medication(
                         rs.getInt("medication_ID"),
@@ -127,6 +129,8 @@ public class MedicationDAO {
                     meds.add(medication);
                 }
             }
+        }
         return meds;
     }
+
 }
