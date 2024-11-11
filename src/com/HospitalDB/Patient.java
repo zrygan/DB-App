@@ -1,12 +1,10 @@
 package com.HospitalDB;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Patient {
 
-    private final App DATABASE;
-    private ArrayList<Medical> MEDICAL;
+    // private ArrayList<Medical> MEDICAL;
     private final String name;
     private int age;
     private final LocalDate birthDate;
@@ -18,9 +16,7 @@ public class Patient {
     private String status;
 
     //FIXME: add patient ID
-    public Patient(App database, String name, int age, LocalDate birthDate, String sex, double height, double weight, String religion, Doctors DOCTOR, String status) {
-        this.DATABASE = database;
-        this.MEDICAL = new ArrayList<>();
+    public Patient(String name, int age, LocalDate birthDate, String sex, double height, double weight, String religion, Doctors DOCTOR, String status) {
         this.name = name;
         this.age = age;
         this.birthDate = birthDate;
@@ -69,10 +65,6 @@ public class Patient {
         return status;
     }
 
-    public ArrayList<Medical> getMEDICAL() {
-        return MEDICAL;
-    }
-
     // Setters
     public void setAge(int age) {
         this.age = age;
@@ -92,10 +84,6 @@ public class Patient {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public void setMEDICAL(ArrayList<Medical> medicalRecords) {
-        this.MEDICAL = medicalRecords;
     }
 
 }

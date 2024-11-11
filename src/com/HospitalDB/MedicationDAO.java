@@ -13,7 +13,7 @@ public class MedicationDAO {
     public void addMedication(Medication medication) throws SQLException {
         String query = "INSERT INTO medication_record (medication_ID, generic_name, brand_name, date_time, frequency, dosage, doctor_ID, patient_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, medication.getMed_ID());
             pstmt.setString(2, medication.getGeneric());
@@ -54,7 +54,7 @@ public class MedicationDAO {
     public void updateMedication(Medication medication) throws SQLException {
         String query = "UPDATE medication_record SET generic_name = ?, brand_name = ?, date_time = ?, frequency = ?, dosage = ?, doctor_ID = ?, patient_ID = ? WHERE medication_ID = ?";
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
     
             pstmt.setString(1, medication.getGeneric());
             pstmt.setString(2, medication.getBrand());

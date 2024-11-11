@@ -1,18 +1,22 @@
 package com.HospitalDB;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 /**
  * Class for Medical Report By Zhean Ganituen
  */
 public class Medical {
 
-    private final App DATABASE;
-    private final Patient PATIENT; //FIXME: Use Patient ID instead of Patient Object, you can't access Patient Object using SQL
+    /**
+     * the record id
+     */
+    private final int record_id;
+
+    /**
+     * the patient id
+     */
+    private final int patient_id; 
+
     /**
      * the chief complaint of the patient. Example: "difficulty breathing"
      */
@@ -77,17 +81,15 @@ public class Medical {
      * @param spo2 the amount of oxygen in the patient's blood
      * @param date_time the date and time the Medical Record is recorded
      */
-    public Medical(App DATABASE, Patient PATIENT, String chief_complaint, String reason_for_admission, String medical_diagnosis, int temperature, int pulse, int BP_systolic, int BP_diastolic, int spo2, LocalDateTime date_time) {
-        this.DATABASE = DATABASE;
-        this.PATIENT = PATIENT;
+    public Medical(int record_id, int patient_id, String chief_complaint, String reason_for_admission, String medical_diagnosis, float temperature, int pulse, int BP_systolic, int BP_diastolic, int spo2, LocalDateTime date_time) {
+        
+        // FIXME: removed checker if the patient does exist (zry)
 
-        // verify if the patient record is admitted
-        // if not change it to admitted
-        if (!(PATIENT.getStatus().equals("admitted"))) {
-            PATIENT.setStatus("admitted");
-        }
-
-        this.chief_complaint = chief_complaint;
+        this.record_id = record_id;
+        this.patient_id = patient_id;
+        this.chief_complaint = (chief_complaint != null) ? chief_complaint : "Not Provided"; 
+        this.reason_for_admission = (reason_for_admission != null) ? reason_for_admission : "Not Provided";
+        this.medical_diagnosis = (medical_diagnosis != null) ? medical_diagnosis : "Not Provided";
         this.temperature = temperature;
         this.pulse = pulse;
         this.BP_systolic = BP_systolic;
@@ -95,28 +97,40 @@ public class Medical {
         this.spo2 = spo2;
         this.date_time = date_time;
 
+
+        // FIXME: Removed this for now
         // check if the reason for admission and diagnosis is NULL
         // if it is then set it to the previous RFA and Diagnosis of the patient
         // otherwise, set a different one
-        if (reason_for_admission == null) {
-            // the most recent (or previous medical record of the patient) is the last one
-            // scary single liner
-            this.reason_for_admission = PATIENT.getMEDICAL().get(PATIENT.getMEDICAL().size() - 1).getReasonForAdmission();
-        } else {
-            this.reason_for_admission = reason_for_admission;
-        }
+        // if (reason_for_admission == null) {
+        //     the most recent (or previous medical record of the patient) is the last one
+        //     scary single liner
+        //     this.reason_for_admission = PATIENT.getMEDICAL().get(PATIENT.getMEDICAL().size() - 1).getReasonForAdmission();
+        // } else {
+        //     this.reason_for_admission = reason_for_admission;
+        // }
 
-        if (medical_diagnosis == null) {
-            this.medical_diagnosis = PATIENT.getMEDICAL().get(PATIENT.getMEDICAL().size() - 1).getMedicalDiagnosis();
-        } else {
-            this.medical_diagnosis = medical_diagnosis;
-        }
+        // if (medical_diagnosis == null) {
+        //     this.medical_diagnosis = PATIENT.getMEDICAL().get(PATIENT.getMEDICAL().size() - 1).getMedicalDiagnosis();
+        // } else {
+        //     this.medical_diagnosis = medical_diagnosis;
+        // }
 
-        // add this new medical record to the array of medical records assigned to the patient
-        addMEDICAL();
+        //FIXME: removed adding this medicaal record to the list of records of the patient
+        // is this even necessary tho? doesnt SQL verify that already?
     }
 
     // Getters
+    
+    public int getRecord_id(){
+        return record_id;
+
+    }
+
+    public int getPatient_id(){
+        return patient_id;
+    }
+
     /**
      * Gets chief complaint.
      *
@@ -213,7 +227,7 @@ public class Medical {
      *
      * @param temperature the temperature to set
      */
-    public void setTemperature(int temperature) {
+    public void setTemperature(float temperature) {
         this.temperature = temperature;
     }
 
@@ -260,85 +274,5 @@ public class Medical {
      */
     public void setDateTime(LocalDateTime date_time) {
         this.date_time = date_time;
-    }
-
-    /** 
-     * Creating a medical record in  the SQL database
-     */
-    public void create(Connection conn) {
-        String sql = "INSERT INTO MedicalRecords (chief_complaint, reason_for_admission, medical_diagnosis, temperature, pulse, BP_systolic, BP_diastolic, spo2, date_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, chief_complaint);
-            pstmt.setString(2, reason_for_admission);
-            pstmt.setString(3, medical_diagnosis);
-            pstmt.setFloat(4, temperature);
-            pstmt.setInt(5, pulse);
-            pstmt.setInt(6, BP_systolic);
-            pstmt.setInt(7, BP_diastolic);
-            pstmt.setInt(8, spo2);
-            pstmt.setObject(9, date_time);
-
-            pstmt.executeUpdate();
-            System.out.println("Successfully Added new MEDICAL RECORD");
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-    }
-
-    /**
-     * Updating an already existing medical record For updating vital signs,
-     *
-     * FIXME: This might need to be a static method
-     */
-    public void update() {
-        /*
-
-         */
-
-    }
-
-    /**
-     * deletes a medical record
-     *
-     * FIXME: This might need to be a static method
-     */
-    public void delete() {
-        /*
-         
-         */
-
-    }
-
-    /**
-     * to view the medical record for a specific patient.
-     */
-    public void viewPatientRecord() {
-
-    }
-
-    /**
-     * to view the names of all patients for a specific diagnosis
-     */
-    public void viewPatientsForDiagnosis() {
-
-    }
-
-    /**
-     * to view the summary medical record for all patients. Example the number
-     * of patients diagnosed with the "Common Cold"
-     */
-    public void viewSummary() {
-
-    }
-
-    // Helper functions
-    /**
-     * Adds this medical record to the list of medical records of the patient
-     */
-    private void addMEDICAL() {
-        ArrayList<Medical> medicalRecords = PATIENT.getMEDICAL();
-        medicalRecords.add(this);
-        PATIENT.setMEDICAL(medicalRecords);
     }
 }
