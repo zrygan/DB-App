@@ -3,7 +3,19 @@ CREATE DATABASE IF NOT EXISTS hospital_DB;
 USE hospital_DB;
 
 CREATE TABLE IF NOT EXISTS patients_record(
-	patient_ID INT PRIMARY KEY
+    patient_ID INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100) NOT NULL,
+    age INT,
+    birth_date DATE,
+    sex ENUM('Male', 'Female', 'Other'),
+    height DECIMAL(5, 2),         -- Height in centimeters or inches
+    weight DECIMAL(5, 2),         -- Weight in kilograms or pounds
+    religion VARCHAR(50),
+    doctor VARCHAR(100),
+    status ENUM('Admitted', 'Discharged', 'Under Observation', 'Deceased'),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+
 );
 
 CREATE TABLE IF NOT EXISTS doctors_record(
