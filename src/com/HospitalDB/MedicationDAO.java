@@ -109,7 +109,7 @@ public class MedicationDAO {
     // Viewing all medications with the same brand name
     public List<Medication> getMedBrandList(String brand_name) throws SQLException {
         List<Medication> meds = new ArrayList<>();
-        String query = "SELECT * FROM medication_record WHERE brand_name = ?"; // Corrected field
+        String query = "SELECT * FROM medication_record WHERE brand_name = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
 
