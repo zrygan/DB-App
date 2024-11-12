@@ -28,7 +28,7 @@ public class DoctorsDAO {
     }
 
         // Read Doctor by ID
-    public Doctors getDoctors(string doctorId) throws SQLException {
+    public Doctors getDoctors(string doctor_ID) throws SQLException {
         String query = "SELECT * FROM doctors_record WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
