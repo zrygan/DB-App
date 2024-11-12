@@ -19,7 +19,12 @@ CREATE TABLE IF NOT EXISTS patients_record(
 );
 
 CREATE TABLE IF NOT EXISTS doctors_record(
-	doctor_ID INT PRIMARY KEY
+	doctor_ID VARCHAR(100) PRIMARY KEY,
+    name VARCHAR(100),
+    specialization VARCHAR(100)
+    phoneNumber VARCHAR(100),
+    email VARCHAR(100),
+    medicalHierarchy VARCHAR(100),
 );
 
 CREATE TABLE IF NOT EXISTS medication_record(
