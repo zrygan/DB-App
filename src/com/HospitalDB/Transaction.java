@@ -137,4 +137,12 @@ public class Transaction {
     // Creating a Medication Record
     
 
+
+
+
+    // ******************************    
+    // ****** [BARLAAN] TRANSACTIONS
+    // ******************************
+
+    
 }
