@@ -12,7 +12,7 @@ import java.util.List;
 public class DoctorsDAO {
 
     public void addDoctors(Doctors doctors) throws SQLException {
-        String query = "INSERT INTO doctors_record (name, specialization, doctorId, status, phoneNumber, email, medicalHierarchy) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO doctors_record (name, specialization, doctor_ID, status, phoneNumber, email, medicalHierarchy) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
 
@@ -29,7 +29,7 @@ public class DoctorsDAO {
 
         // Read Doctor by ID
     public Doctors getDoctors(string doctorId) throws SQLException {
-        String query = "SELECT * FROM doctors_record WHERE doctorId = ?";
+        String query = "SELECT * FROM doctors_record WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, doctorId);
@@ -38,7 +38,7 @@ public class DoctorsDAO {
                 return new Doctors(
                     rs.getString("name"),
                     rs.getString("specialization"),
-                    rs.getString("doctorId"),
+                    rs.getString("doctor_ID"),
                     rs.getString("status"), 
                     rs.getString("phoneNumber"),
                     rs.getString("email"),
