@@ -69,8 +69,8 @@ public class MedicationDAO {
     }
     
 
-    // Delete Medication by ID FIXME: TAKE NOTE IF THIS SHOULD BE UNDER medicationDAO.java
-    public void deletePatient(int id) throws SQLException {
+    // Delete Medication by ID
+    public void deleteMedication(int id) throws SQLException {
         String query = "DELETE FROM medication_record WHERE medication_ID = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -109,7 +109,7 @@ public class MedicationDAO {
     // Viewing all medications with the same brand name
     public List<Medication> getMedBrandList(String brand_name) throws SQLException {
         List<Medication> meds = new ArrayList<>();
-        String query = "SELECT * FROM medication_record WHERE brand_name = ?"; // Corrected field
+        String query = "SELECT * FROM medication_record WHERE brand_name = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
 
