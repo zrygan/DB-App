@@ -13,7 +13,7 @@ public class Doctors {
     public Doctors(String name, String specialization, String doctorId, String status, String phoneNumber, String email, String medicalHierarchy) {
         this.name = name;
         this.specialization = specialization;
-        this.doctorId = doctorId;
+        this.doctorId = doctor_ID;
         this.status = status;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -30,7 +30,7 @@ public class Doctors {
     }
 
     public String getDoctorId() {
-        return doctorId;
+        return doctor_ID;
     }
 
     public String getStatus() {
