@@ -54,7 +54,7 @@ public class DoctorsDAO {
 
         // Update Doctors
     public void updateDoctors(Doctors doctors) throws SQLException {
-        String query = "UPDATE doctors_record SET name = ?, specialization = ?, status = ?, phoneNumber = ?, email = ?, medicalHierarchy = ? WHERE doctorId = ?";
+        String query = "UPDATE doctors_record SET name = ?, specialization = ?, status = ?, phoneNumber = ?, email = ?, medicalHierarchy = ? WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
     
@@ -71,7 +71,7 @@ public class DoctorsDAO {
 
         // Delete Medication by ID
     public void deleteMedication(int id) throws SQLException {
-        String query = "DELETE FROM medication_record WHERE doctorId = ?";
+        String query = "DELETE FROM medication_record WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, id);
@@ -92,7 +92,7 @@ public class DoctorsDAO {
                     Doctors doctors = new Doctors(
                     rs.getString("name"),
                     rs.getString("specialization"),
-                    rs.getString("doctorId"),
+                    rs.getString("doctor_ID"),
                     rs.getString("status"), 
                     rs.getString("phoneNumber"),
                     rs.getString("email"),
@@ -118,7 +118,7 @@ public class DoctorsDAO {
                     Doctors doctors = new Doctors(
                     rs.getString("name"),
                     rs.getString("specialization"),
-                    rs.getString("doctorId"),
+                    rs.getString("doctor_ID"),
                     rs.getString("status"), 
                     rs.getString("phoneNumber"),
                     rs.getString("email"),
@@ -144,7 +144,7 @@ public class DoctorsDAO {
                     Doctors doctors = new Doctors(
                     rs.getString("name"),
                     rs.getString("specialization"),
-                    rs.getString("doctorId"),
+                    rs.getString("doctor_ID"),
                     rs.getString("status"), 
                     rs.getString("phoneNumber"),
                     rs.getString("email"),
