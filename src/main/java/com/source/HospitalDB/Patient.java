@@ -1,10 +1,12 @@
 package com.source.HospitalDB;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Patient {
 
     // private ArrayList<Medical> MEDICAL;
+    private final int patient_ID;
     private final String name;
     private int age;
     private final LocalDate birthDate;
@@ -14,9 +16,12 @@ public class Patient {
     private final String religion;
     private Doctors DOCTOR;
     private String status;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     //FIXME: add patient ID
-    public Patient(String name, int age, LocalDate birthDate, String sex, double height, double weight, String religion, Doctors DOCTOR, String status) {
+    public Patient(int patient_ID, String name, int age, LocalDate birthDate, String sex, double height, double weight, String religion, Doctors DOCTOR, String status, LocalDateTime createdAt, LocalDateTime updatedAt) {
+        this.patient_ID = patient_ID;
         this.name = name;
         this.age = age;
         this.birthDate = birthDate;
@@ -26,9 +31,15 @@ public class Patient {
         this.religion = religion;
         this.DOCTOR = DOCTOR;
         this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     // Getters
+    public int getPatientId(){
+        return patient_ID;
+    }
+
     public String getName() {
         return name;
     }
@@ -65,6 +76,15 @@ public class Patient {
         return status;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+
     // Setters
     public void setAge(int age) {
         this.age = age;
@@ -86,4 +106,11 @@ public class Patient {
         this.status = status;
     }
 
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 }
