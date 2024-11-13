@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PatientJAO {
+public class PatientDAO {
     // Create a new Patient record
     public void createPatient(Patient patient, Connection conn) throws SQLException {
         String query = "INSERT INTO patient_record (patient_ID, name, age, birth_date, sex, height"
@@ -128,6 +128,58 @@ public class PatientJAO {
         } 
     }
 
+    // Method to get a comprehensive summary of all medical records and return it as a string
+    public String getPatientRecordSummary() throws SQLException {
+        StringBuilder summary = new StringBuilder();
+        
+        // Query for each summary
 
+        // 1. Total number of patients grouped by sex and status.
+        String genderGroupQuery = "SELECT sex, status COUNT(*) AS patient_count "
+                                   + "FROM patient_record "
+                                   + "GROUP BY sex, status "
+                                   + "ORDER BY patient_count DESC";
+
+        // 2. Total number of patients grouped by their respecive age group.
+        String ageGroupQuery = "SELECT CASE" 
+                                + "WHEN Age < 18 THEN '0-18'"
+                                + "WHEN Age BETWEEN 18 AND 29 THEN '19-29'"
+                                + "WHEN Age BETWEEN 30 AND 39 THEN '30-39'"
+                                + "WHEN Age BETWEEN 40 AND 49 THEN '40-49'"
+                                + "WHEN Age BETWEEN 50 AND 59 THEN '50-59'"
+                                + "WHEN Age >= 60 THEN '60 and above'"
+                                + "END AS age_group, COUNT(*) AS total_patients"
+                                + "FROM patient_record"
+                                + "GROUP BY age_group";
+
+
+        try (Connection conn = DBConnection.getConnection()) {
+            // Gender Group
+            summary.append("Total patients per sex and status:\n");
+            try (PreparedStatement pstmt = conn.prepareStatement(genderGroupQuery);
+                 ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    String sex = rs.getString("sex");
+                    int patientCount = rs.getInt("patient_count");
+                    summary.append(String.format("%s - Number of Patients: %d\n", sex, patientCount));
+                }
+            }
+        }
+
+        try (Connection conn = DBConnection.getConnection()) {
+            // Age Group
+            summary.append("Total patients per age group:\n");
+            try (PreparedStatement pstmt = conn.prepareStatement(ageGroupQuery);
+                 ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    String ageGroup = rs.getString("age_group");
+                    int patientCount = rs.getInt("patient_count");
+                    summary.append(String.format("Age Group: %s - Number of Patients: %d\n", ageGroup, patientCount));
+                }
+            }
+        }
+
+        return summary.toString();
+    }
 }
 
