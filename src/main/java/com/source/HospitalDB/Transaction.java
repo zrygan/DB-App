@@ -217,10 +217,9 @@ public class Transaction {
             insertStmt.setString(1, doctor.getName());
             insertStmt.setString(2, doctor.getSpecialization());
             insertStmt.setString(3, doctor.getDoctorId());
-            insertStmt.setString(4, doctor.getStatus());
-            insertStmt.setString(5, doctor.getPhoneNumber());
-            insertStmt.setString(6, doctor.getEmail());
-            insertStmt.setString(7, doctor.getMedicalHierarchy());
+            insertStmt.setString(4, doctor.getPhoneNumber());
+            insertStmt.setString(5, doctor.getEmail());
+            insertStmt.setString(6, doctor.getMedicalHierarchy());
 
             int rowsInserted = insertStmt.executeUpdate();
             return rowsInserted > 0;

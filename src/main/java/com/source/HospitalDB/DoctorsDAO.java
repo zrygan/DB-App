@@ -11,19 +11,25 @@ import java.util.List;
 
 public class DoctorsDAO {
 
-    public void addDoctors(Doctors doctors) throws SQLException {
-        String query = "INSERT INTO doctors_record (name, specialization, doctor_ID, status, phoneNumber, email, medicalHierarchy) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public static void addDoctors(Doctors doctors) throws SQLException {
+        String query = "INSERT INTO doctors_record (name, specialization, doctor_ID, phoneNumber, email, medicalHierarchy) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, doctors.getName());
             pstmt.setString(2, doctors.getSpecialization());
             pstmt.setString(3, doctors.getDoctorId());
-            pstmt.setString(4, doctors.getStatus());
-            pstmt.setString(5, doctors.getPhoneNumber());
-            pstmt.setString(6, doctors.getEmail());
-            pstmt.setString(7, doctors.getMedicalHierarchy());
+            pstmt.setString(4, doctors.getPhoneNumber());
+            pstmt.setString(5, doctors.getEmail());
+            pstmt.setString(6, doctors.getMedicalHierarchy());
             pstmt.executeUpdate();
+            
+            // FIXME: maybe we need to close pstmt and conn
+            // conn.close();
+            // pstmt.close();
+        } catch (SQLException e){
+            System.err.println("Error adding doctor " + e.getMessage());
+            throw e;
         }
     }
 
@@ -39,7 +45,6 @@ public class DoctorsDAO {
                     rs.getString("name"),
                     rs.getString("specialization"),
                     rs.getString("doctor_ID"),
-                    rs.getString("status"), 
                     rs.getString("phoneNumber"),
                     rs.getString("email"),
                     rs.getString("medicalHierarchy")
@@ -53,17 +58,17 @@ public class DoctorsDAO {
 
         // Update Doctors
     public void updateDoctors(Doctors doctors) throws SQLException {
-        String query = "UPDATE doctors_record SET name = ?, specialization = ?, status = ?, phoneNumber = ?, email = ?, medicalHierarchy = ? WHERE doctor_ID = ?";
+        String query = "UPDATE doctors_record SET name = ?, specialization = ?, phoneNumber = ?, email = ?, medicalHierarchy = ? WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
     
             pstmt.setString(1, doctors.getName());
             pstmt.setString(2, doctors.getSpecialization());
-            pstmt.setString(7, doctors.getMedicalHierarchy());
-            pstmt.setString(4, doctors.getStatus());
-            pstmt.setString(5, doctors.getPhoneNumber());
-            pstmt.setString(6, doctors.getEmail());
             pstmt.setString(3, doctors.getDoctorId());// Primary key to identify the record
+            pstmt.setString(4, doctors.getPhoneNumber());
+            pstmt.setString(5, doctors.getEmail());
+            pstmt.setString(6, doctors.getMedicalHierarchy());
+
             pstmt.executeUpdate();
         }
     }
@@ -92,7 +97,6 @@ public class DoctorsDAO {
                     rs.getString("name"),
                     rs.getString("specialization"),
                     rs.getString("doctor_ID"),
-                    rs.getString("status"), 
                     rs.getString("phoneNumber"),
                     rs.getString("email"),
                     rs.getString("medicalHierarchy")
@@ -118,7 +122,6 @@ public class DoctorsDAO {
                     rs.getString("name"),
                     rs.getString("specialization"),
                     rs.getString("doctor_ID"),
-                    rs.getString("status"), 
                     rs.getString("phoneNumber"),
                     rs.getString("email"),
                     rs.getString("medicalHierarchy")
@@ -144,7 +147,6 @@ public class DoctorsDAO {
                     rs.getString("name"),
                     rs.getString("specialization"),
                     rs.getString("doctor_ID"),
-                    rs.getString("status"), 
                     rs.getString("phoneNumber"),
                     rs.getString("email"),
                     rs.getString("medicalHierarchy")
