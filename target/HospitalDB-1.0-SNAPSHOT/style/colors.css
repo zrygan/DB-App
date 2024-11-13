@@ -1,0 +1,50 @@
+/* Color Theme Swatches in Hex */
+.Illustration-for-The-Blueprint-1-hex {
+  color: #401520;
+}
+.Illustration-for-The-Blueprint-2-hex {
+  color: #4b93bf;
+}
+.Illustration-for-The-Blueprint-3-hex {
+  color: #f2ebd5;
+}
+.Illustration-for-The-Blueprint-4-hex {
+  color: #f28322;
+}
+.Illustration-for-The-Blueprint-5-hex {
+  color: #d92525;
+}
+
+/* Color Theme Swatches in RGBA */
+.Illustration-for-The-Blueprint-1-rgba {
+  color: rgba(63, 21, 32, 1);
+}
+.Illustration-for-The-Blueprint-2-rgba {
+  color: rgba(74, 146, 191, 1);
+}
+.Illustration-for-The-Blueprint-3-rgba {
+  color: rgba(242, 234, 213, 1);
+}
+.Illustration-for-The-Blueprint-4-rgba {
+  color: rgba(242, 131, 33, 1);
+}
+.Illustration-for-The-Blueprint-5-rgba {
+  color: rgba(216, 36, 36, 1);
+}
+
+/* Color Theme Swatches in HSLA */
+.Illustration-for-The-Blueprint-1-hsla {
+  color: hsla(343, 50, 16, 1);
+}
+.Illustration-for-The-Blueprint-2-hsla {
+  color: hsla(202, 47, 52, 1);
+}
+.Illustration-for-The-Blueprint-3-hsla {
+  color: hsla(45, 53, 89, 1);
+}
+.Illustration-for-The-Blueprint-4-hsla {
+  color: hsla(28, 89, 54, 1);
+}
+.Illustration-for-The-Blueprint-5-hsla {
+  color: hsla(0, 70, 49, 1);
+}
