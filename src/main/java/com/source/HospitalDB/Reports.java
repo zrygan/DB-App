@@ -130,26 +130,25 @@ public class Reports {
     // report as a string 
     private static String generateReport(Patient patient, float currentTemperature, int currentPulse, int currentRespiratoryRate,
                                      double avgTemperature, double avgPulse, double avgRespiratoryRate, DecimalFormat df) {
-    StringBuilder report = new StringBuilder();
+        StringBuilder report = new StringBuilder();
 
-    // Header: Patient Information and Current TPR
-    report.append("Daily TPR Monitoring Sheet\n")
-          .append("Date: ").append(LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d, yyyy"))).append("\n")
-          .append("Patient: ").append(patient.getName()).append("\n")
-          .append("Age: ").append(patient.getAge()).append(", Sex: ").append(patient.getSex()).append("\n")
-          .append("Height: ").append(patient.getHeight()).append(" cm, Weight: ").append(patient.getWeight()).append(" kg\n")
-          .append("\n")
-          .append("Current Data—\n")
-          .append("Temperature: ").append(currentTemperature).append(" °C, ")
-          .append("Pulse: ").append(currentPulse).append(", ")
-          .append("Respiratory Rate: ").append(currentRespiratoryRate).append("\n")
-          .append("\n")
-          .append("Average for the past 7 days—\n")
-          .append("Temperature: ").append(df.format(avgTemperature)).append(" °C, ")
-          .append("Pulse: ").append(df.format(avgPulse)).append(", ")
-          .append("Respiratory Rate: ").append(df.format(avgRespiratoryRate)).append("\n");
+        // Header: Patient Information and Current TPR
+        report.append("Daily TPR Monitoring Sheet\n")
+            .append("Date: ").append(LocalDate.now().format(DateTimeFormatter.ofPattern("MMMM d, yyyy"))).append("\n")
+            .append("Patient: ").append(patient.getName()).append("\n")
+            .append("Age: ").append(patient.getAge()).append(", Sex: ").append(patient.getSex()).append("\n")
+            .append("Height: ").append(patient.getHeight()).append(" cm, Weight: ").append(patient.getWeight()).append(" kg\n")
+            .append("\n")
+            .append("Current Data—\n")
+            .append("Temperature: ").append(currentTemperature).append(" °C, ")
+            .append("Pulse: ").append(currentPulse).append(", ")
+            .append("Respiratory Rate: ").append(currentRespiratoryRate).append("\n")
+            .append("\n")
+            .append("Average for the past 7 days—\n")
+            .append("Temperature: ").append(df.format(avgTemperature)).append(" °C, ")
+            .append("Pulse: ").append(df.format(avgPulse)).append(", ")
+            .append("Respiratory Rate: ").append(df.format(avgRespiratoryRate)).append("\n");
 
-    return report.toString();
-}
-
+        return report.toString();
+    }
 }

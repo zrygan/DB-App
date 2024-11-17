@@ -1,14 +1,1247 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Hospital Management Database</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Create a new Doctor Record</h1>
-        <form action="doctor_create.jsp">
-            Doctor Name:<input type="text" id="doctor" name="doctor"><br>
-            <input type="submit" value="Submit">
-        </form>
-    </body>
+  <head>
+    <title>Hospital Management Database</title>
+    <link rel="stylesheet" href="style/index.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <body>
+    <!-- frame: Index -->
+    <div class="frame index-41b27f24dbab">
+      <!-- group: footer -->
+      <div class="group footer-44487356cf17">
+        <!-- text: Hospital Database Management System
+        By: Barlaan, Ganituen, Jaime, Jimenez -->
+        <div class="shape text hospital-d-44415627f9fc">
+          <div
+            class="text-node-html"
+            id="html-text-node-a19c5e35-ca12-808b-8005-44415627f9fc"
+            data-x="199"
+            data-y="826.9999999999999"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <span
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 14px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-noto-sans;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Noto Sans';
+                      font-style: italic;
+                      font-weight: 400;
+                    "
+                    >Hospital Database Management System</span
+                  >
+                </p>
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-1"
+                  dir="ltr"
+                >
+                  <span
+                    class="text-node root-0-paragraph-set-0-paragraph-1-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 14px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-noto-sans;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Noto Sans';
+                      font-style: italic;
+                      font-weight: 400;
+                    "
+                    >By: Barlaan, Ganituen, Jaime, Jimenez</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- text: MediBASE © 2024
+        https://github.com/zrygan/DB-App -->
+        <div class="shape text medi-base-4443c1edbf46">
+          <div
+            class="text-node-html"
+            id="html-text-node-a19c5e35-ca12-808b-8005-4443c1edbf46"
+            data-x="1148"
+            data-y="826.9999999999999"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <span
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 14px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-noto-sans;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Noto Sans';
+                      font-style: normal;
+                      font-weight: 400;
+                    "
+                    >MediBASE © 2024</span
+                  >
+                </p>
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-1"
+                  dir="ltr"
+                >
+                  <span
+                    class="text-node root-0-paragraph-set-0-paragraph-1-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 14px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-noto-sans;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Noto Sans';
+                      font-style: normal;
+                      font-weight: 400;
+                    "
+                    >https://github.com/zrygan/DB-App</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- group: Group -->
+      <div class="group group-494ce5b36719">
+        <!-- path: Rectangle -->
+        <div class="shape path rectangle-444574ce558c">
+          <svg
+            width="1280"
+            xmlns="http://www.w3.org/2000/svg"
+            height="246"
+            id="screenshot-a19c5e35-ca12-808b-8005-444574ce558c"
+            viewBox="159 240 1280 246"
+            style="-webkit-print-color-adjust::exact"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            fill="none"
+            version="1.1"
+          >
+            <g id="shape-a19c5e35-ca12-808b-8005-444574ce558c">
+              <defs></defs>
+              <g class="fills" id="fills-a19c5e35-ca12-808b-8005-444574ce558c">
+                <path
+                  d="M159.000,240.000L1439.000,240.000L1439.000,486.000L159.000,486.000L159.000,240.000Z"
+                  style="fill: #4b93bf; fill-opacity: 1"
+                ></path>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <!-- path: heart -->
+        <div class="shape path heart-44482616d41b">
+          <svg
+            width="318"
+            xmlns="http://www.w3.org/2000/svg"
+            height="409"
+            id="screenshot-a19c5e35-ca12-808b-8005-44482616d41b"
+            viewBox="1017 216 318 409"
+            style="-webkit-print-color-adjust::exact"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            fill="none"
+            version="1.1"
+          >
+            <g id="shape-a19c5e35-ca12-808b-8005-44482616d41b">
+              <defs></defs>
+              <g class="fills" id="fills-a19c5e35-ca12-808b-8005-44482616d41b">
+                <path
+                  d="M1199.654,218.336C1191.118,223.154,1190.824,224.091,1194.650,233.728C1199.066,244.970,1200.537,257.552,1198.183,266.251C1196.416,272.943,1190.530,287.265,1188.911,288.737C1187.733,289.808,1179.492,279.100,1175.960,271.873C1170.956,261.834,1168.748,253.135,1167.865,238.680C1166.688,223.288,1166.835,223.556,1154.620,221.013C1144.024,218.737,1132.692,220.477,1127.099,225.028C1122.831,228.508,1122.390,229.578,1121.948,238.814C1121.507,245.372,1122.095,251.261,1123.714,256.213C1126.805,265.850,1126.658,266.519,1122.390,266.519C1119.152,266.519,1117.975,265.181,1114.295,258.087C1105.612,241.089,1093.986,233.058,1077.944,233.058C1068.820,233.058,1062.344,236.003,1056.604,242.829C1052.484,247.513,1053.367,249.922,1061.019,253.804C1068.378,257.685,1076.914,264.377,1079.121,268.125C1080.299,270.133,1079.857,270.267,1076.031,269.196C1063.963,266.117,1049.393,265.047,1038.208,266.519C1021.431,268.660,1017.163,270.133,1017.163,273.613C1017.163,276.825,1021.283,295.830,1022.314,297.437C1022.755,297.838,1031.585,297.972,1042.034,297.570C1052.484,297.303,1062.786,297.303,1064.846,297.838L1068.820,298.775L1066.023,302.389C1061.019,309.081,1054.397,320.591,1051.159,328.622C1047.774,337.054,1043.653,354.320,1043.653,360.476C1043.653,363.153,1041.446,366.232,1035.559,371.719C1020.548,385.371,1016.721,396.212,1017.015,424.453C1017.310,460.189,1021.578,473.172,1037.767,488.563C1042.623,493.114,1046.597,497.932,1046.597,499.271C1046.597,501.814,1054.102,522.426,1057.929,530.188C1069.703,554.146,1074.706,560.838,1089.571,571.813C1094.574,575.561,1108.850,587.875,1120.918,598.983C1142.405,618.792,1143.288,619.461,1152.560,621.870C1166.541,625.484,1184.348,626.020,1194.209,623.209C1209.515,618.926,1227.175,601.928,1238.213,581.049C1242.334,573.420,1253.519,563.515,1262.349,559.366C1270.443,555.752,1283.394,543.439,1287.662,535.274C1289.428,532.062,1292.077,524.969,1293.696,519.481C1296.492,509.844,1304.145,489.500,1306.942,484.013C1312.240,473.841,1314.300,448.678,1310.327,442.120C1308.855,439.845,1308.855,438.506,1310.179,436.231C1311.798,433.420,1311.357,418.965,1309.296,412.943C1308.413,410.132,1308.560,410.132,1316.949,411.336C1328.134,412.943,1331.519,412.006,1333.432,406.920C1335.640,401.031,1335.493,388.985,1333.138,387.245C1332.108,386.442,1328.429,385.371,1325.044,384.836C1318.274,383.899,1318.127,381.623,1324.749,381.623C1336.817,381.623,1336.523,362.082,1324.308,355.792C1320.187,353.517,1319.598,353.650,1305.617,358.201C1289.281,363.555,1288.987,363.555,1286.485,360.878C1284.719,358.870,1284.719,358.870,1296.345,356.729C1300.319,356.060,1311.062,348.698,1314.742,344.148C1321.070,336.251,1319.157,319.788,1310.915,311.490C1304.293,305.066,1296.492,303.192,1282.070,304.798C1271.621,305.869,1270.002,305.735,1267.058,303.593C1261.613,299.712,1245.277,293.287,1238.360,292.351C1234.681,291.949,1232.032,290.878,1232.032,289.941C1232.032,282.179,1252.047,251.930,1260.289,247.246C1263.673,245.372,1263.821,237.207,1260.730,231.720C1257.639,226.232,1249.545,221.013,1244.100,221.013C1241.009,221.013,1237.036,222.619,1232.620,225.697C1228.941,228.240,1225.262,230.382,1224.526,230.382C1223.790,230.382,1223.202,228.374,1223.202,225.831C1223.202,217.399,1209.367,212.982,1199.654,218.336ZZM1215.843,232.657C1215.843,237.743,1218.051,242.427,1220.405,242.427C1221.288,242.427,1226.145,239.750,1231.296,236.404L1240.568,230.248L1243.511,234.129C1245.130,236.137,1248.221,238.680,1250.281,239.617L1253.960,241.490L1247.190,248.316C1235.858,259.827,1227.028,274.549,1224.085,286.863C1223.202,290.209,1222.466,290.611,1217.462,290.611C1214.371,290.611,1208.632,291.012,1204.805,291.547C1196.711,292.484,1196.711,294.358,1204.069,275.219C1209.515,260.764,1209.809,256.079,1205.688,240.955C1204.069,234.531,1202.598,229.177,1202.598,228.909C1202.598,228.642,1205.541,228.240,1209.220,228.240C1215.843,228.106,1215.843,228.106,1215.843,232.657ZZM1158.446,241.223C1158.446,255.276,1166.246,275.219,1177.137,289.406L1181.994,295.563L1172.722,298.106C1167.718,299.444,1162.862,300.783,1161.979,301.050C1160.801,301.318,1160.654,299.712,1161.537,295.027C1162.567,290.209,1162.273,286.997,1160.507,281.643C1157.563,273.077,1153.295,269.330,1144.171,267.188C1135.193,265.047,1131.956,259.961,1130.926,245.506L1130.043,235.066L1144.318,235.066L1158.446,235.066L1158.446,241.223ZZM1090.159,243.632C1097.812,247.915,1108.408,261.567,1108.408,267.054C1108.408,269.062,1099.137,274.549,1095.752,274.549C1094.574,274.549,1093.250,273.479,1092.661,272.140C1091.337,268.928,1082.359,258.622,1076.031,253.536C1071.321,249.521,1071.027,248.986,1073.676,247.647C1075.148,246.844,1077.355,244.970,1078.680,243.632C1081.771,240.420,1084.420,240.420,1090.159,243.632ZZM1066.465,275.085C1073.235,276.825,1084.861,280.840,1086.186,282.045C1086.480,282.312,1084.125,284.722,1081.035,287.265C1076.914,290.744,1074.412,291.815,1072.352,291.280C1070.733,290.744,1062.050,290.075,1052.925,289.674L1036.589,289.004L1035.853,284.722C1035.412,282.446,1034.676,279.234,1034.087,277.628C1033.204,275.219,1033.646,274.683,1037.325,274.148C1046.450,272.943,1059.548,273.345,1066.465,275.085ZZM1138.137,274.014C1138.726,274.416,1138.137,276.825,1136.960,279.234C1132.986,287.934,1135.488,303.326,1141.669,307.475C1143.435,308.813,1142.258,309.884,1134.163,314.033C1122.831,319.788,1113.559,328.086,1111.205,334.511C1108.850,340.935,1108.850,350.706,1111.057,377.474C1112.235,390.323,1112.676,404.109,1112.088,407.990C1110.174,422.044,1099.137,434.357,1076.767,447.340C1069.555,451.623,1061.755,456.307,1059.548,457.780C1053.808,461.929,1047.038,472.101,1045.861,478.124L1044.831,483.611L1041.446,480.667C1036.883,476.785,1031.144,466.747,1028.200,457.512C1026.287,451.221,1025.846,445.065,1026.287,423.382C1026.729,397.283,1026.729,396.881,1030.997,389.922C1033.204,386.040,1038.650,380.017,1043.065,376.537L1051.012,370.247L1053.072,356.193C1054.397,348.430,1056.604,338.660,1058.370,334.511C1062.491,323.937,1068.525,312.427,1071.027,310.553C1072.204,309.750,1073.087,308.278,1073.087,307.475C1073.087,306.672,1074.265,304.932,1075.737,303.727C1077.061,302.523,1080.299,299.578,1082.654,297.035C1089.129,290.611,1102.522,280.572,1107.967,278.029C1114.884,274.817,1136.076,272.006,1138.137,274.014ZZM1246.307,302.656C1257.639,306.270,1260.583,308.947,1254.549,310.018C1240.568,312.695,1217.756,322.599,1196.858,335.314C1183.171,343.612,1180.669,348.297,1179.492,366.499C1178.314,384.033,1176.401,385.906,1155.503,390.859L1140.050,394.472L1139.609,399.960C1138.726,411.604,1153.295,429.941,1165.216,431.948C1171.103,432.885,1187.586,430.610,1193.767,427.799C1195.828,426.862,1198.918,425.658,1200.832,425.122C1204.216,424.185,1204.069,424.453,1199.507,432.082C1196.858,436.365,1194.356,440.380,1193.767,440.916C1193.179,441.585,1186.850,443.459,1179.639,445.199C1158.005,450.285,1141.963,456.977,1135.341,463.535C1133.575,465.275,1131.514,470.227,1130.484,474.644C1128.424,483.745,1125.333,490.437,1120.624,495.791C1117.091,499.806,1117.533,503.420,1121.654,503.420C1126.216,503.420,1134.899,490.571,1137.107,480.533C1139.461,469.290,1140.786,467.550,1149.175,463.267C1156.828,459.252,1157.416,459.252,1159.329,461.527C1165.363,468.755,1166.982,475.045,1165.511,484.682C1165.216,487.359,1165.805,488.162,1168.307,488.430C1172.280,488.965,1174.635,484.682,1174.635,477.321C1174.635,472.502,1170.073,461.527,1167.424,460.055C1164.628,458.449,1165.658,456.575,1169.926,455.103C1174.194,453.497,1191.265,450.017,1192.001,450.552C1193.179,451.623,1195.386,475.982,1194.798,482.674C1193.767,494.319,1189.205,501.814,1176.548,513.057C1159.624,528.047,1157.711,531.125,1157.858,545.045C1157.858,555.485,1158.299,557.225,1161.831,562.177C1166.394,568.334,1169.631,570.073,1171.986,567.932C1173.311,566.727,1172.428,564.184,1169.043,558.162C1163.597,548.659,1163.156,542.770,1167.277,534.471C1170.073,528.716,1184.496,515.064,1186.409,516.135C1186.998,516.537,1189.941,522.024,1193.032,528.449C1197.888,538.754,1198.624,541.565,1198.624,550.934C1198.771,560.838,1198.330,562.311,1193.326,570.341C1182.141,588.410,1180.081,593.362,1179.933,602.062C1179.786,611.029,1181.847,614.777,1185.820,612.502C1187.439,611.565,1188.175,608.620,1188.322,602.463C1188.469,596.574,1189.647,592.024,1191.707,588.410C1207.160,561.641,1206.277,563.917,1206.277,550.532L1206.277,538.219L1211.281,538.219C1215.107,538.219,1217.462,539.290,1221.288,543.037C1224.232,545.982,1227.028,547.588,1228.352,547.053C1234.975,544.777,1224.526,531.527,1216.137,531.527C1204.658,531.527,1202.598,530.322,1198.035,521.221C1192.884,510.647,1192.884,510.112,1197.447,501.412C1203.628,489.500,1204.511,483.344,1202.450,464.472C1200.832,449.883,1200.979,446.938,1202.892,442.522L1205.100,437.436L1208.190,442.120C1209.956,444.797,1215.696,450.552,1220.847,455.237L1230.413,463.669L1226.145,468.487C1217.168,478.927,1212.752,491.508,1217.756,493.114C1220.994,494.051,1223.202,492.445,1223.202,489.099C1223.202,485.084,1232.915,470.896,1235.270,471.565C1236.153,471.833,1237.919,475.045,1239.096,478.659C1241.009,484.682,1241.009,491.508,1239.096,506.097C1238.802,508.640,1239.390,509.577,1241.745,509.844C1248.956,510.781,1252.047,490.839,1246.896,476.919C1242.628,465.676,1238.066,459.654,1227.469,451.221C1219.081,444.663,1212.900,436.365,1212.900,431.814C1212.900,429.941,1213.341,429.941,1217.609,431.948C1223.054,434.491,1230.707,435.027,1241.745,433.420C1249.251,432.484,1249.398,432.484,1251.753,436.766C1257.492,447.474,1258.375,447.875,1274.270,447.608C1282.217,447.474,1291.783,446.537,1295.462,445.466L1302.379,443.592L1303.262,451.489C1304.734,462.866,1303.262,469.959,1296.051,487.359C1292.519,495.791,1287.957,508.774,1285.749,516.135C1279.862,535.408,1272.945,544.242,1255.873,553.879C1243.364,560.972,1234.534,569.672,1228.352,580.513C1222.760,590.819,1213.047,602.330,1204.511,609.022C1195.239,616.249,1183.613,618.257,1165.658,615.848C1158.888,615.045,1151.382,613.305,1149.028,612.234C1146.526,611.029,1133.869,600.456,1120.771,588.544C1107.820,576.632,1093.103,563.649,1088.393,559.634C1077.944,550.800,1069.261,536.345,1059.842,512.120C1052.042,492.043,1051.306,481.604,1057.340,472.369C1059.401,469.022,1063.669,464.873,1066.759,463.000C1069.850,461.260,1077.355,456.709,1083.389,453.095C1105.759,439.845,1116.797,427.398,1120.329,411.470C1121.801,404.778,1121.948,399.424,1120.476,384.702C1119.446,374.530,1118.710,359.406,1118.710,350.973L1118.710,335.582L1125.775,329.559C1137.107,319.654,1164.186,307.876,1189.499,301.987C1207.454,297.704,1231.885,297.972,1246.307,302.656ZZM1283.689,317.111C1277.802,323.000,1276.624,329.425,1280.598,336.786C1283.541,342.274,1290.164,346.691,1295.609,346.824C1296.640,346.958,1295.757,347.761,1293.696,348.832C1291.489,349.903,1283.247,351.509,1275.300,352.312C1259.111,354.052,1253.813,355.926,1247.926,361.815C1243.217,366.499,1237.919,378.679,1237.919,384.702C1237.919,390.859,1231.443,402.101,1225.556,406.117C1219.522,410.266,1210.839,414.013,1196.711,418.430C1173.016,425.791,1164.186,425.925,1157.563,418.698C1153.590,414.415,1148.292,405.046,1148.144,402.101C1148.144,401.298,1151.971,399.826,1156.533,399.023C1171.545,396.078,1182.582,390.055,1186.115,382.560C1186.998,380.419,1187.881,374.664,1188.028,369.711C1188.028,364.893,1188.911,358.201,1189.794,354.855C1191.413,349.501,1192.884,348.029,1203.186,341.337C1224.820,327.283,1247.485,318.450,1271.768,314.836C1280.304,313.498,1287.368,312.561,1287.662,312.695C1287.809,312.828,1286.043,314.836,1283.689,317.111ZZM1280.009,367.035C1285.455,371.719,1285.896,372.924,1295.904,401.432C1300.466,414.281,1302.674,422.847,1302.674,427.665L1302.674,434.759L1295.021,437.168C1290.753,438.373,1281.923,439.845,1275.447,440.113L1263.673,440.782L1260.730,435.160C1255.873,425.524,1252.930,424.319,1237.183,425.256C1223.349,426.193,1217.315,424.988,1217.315,421.241C1217.315,420.170,1219.228,418.698,1221.583,417.895C1226.586,415.887,1236.447,407.857,1240.420,402.369C1242.039,400.094,1244.983,392.331,1246.749,384.969C1251.164,366.901,1257.051,360.878,1269.413,362.082C1273.240,362.484,1276.624,364.090,1280.009,367.035ZZM1313.270,373.325C1315.330,375.467,1315.183,375.467,1305.764,377.340C1297.081,379.214,1295.315,378.411,1295.315,372.790C1295.315,370.514,1297.081,369.310,1303.115,367.302L1310.768,364.625L1311.210,368.105C1311.504,369.979,1312.534,372.388,1313.270,373.325ZZM1312.093,390.859C1316.066,391.528,1316.508,392.197,1316.655,397.417C1316.802,402.771,1316.508,403.172,1313.417,402.503C1305.764,400.629,1302.674,399.023,1302.674,396.480C1302.674,395.008,1302.232,393.000,1301.791,391.795C1300.760,389.520,1303.851,389.252,1312.093,390.859ZZ"
+                  style="fill: #ffffff; fill-opacity: 1"
+                ></path>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <!-- text: Good Morning User,
+        Welcome to your MediBASE dashboard. 
+        What would you like to do today? -->
+      <div class="shape text good-morni-44444117e0c6">
+        <div
+          class="text-node-html"
+          id="html-text-node-a19c5e35-ca12-808b-8005-44444117e0c6"
+          data-x="378.00000000000006"
+          data-y="267"
+        >
+          <div
+            class="root rich-text root-0"
+            style="
+              display: flex;
+              white-space: break-spaces;
+              align-items: flex-start;
+            "
+            xmlns="http://www.w3.org/1999/xhtml"
+          >
+            <div class="paragraph-set root-0-paragraph-set-0">
+              <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
+                <span
+                  class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                  style="
+                    color: rgba(242, 235, 213, 1);
+                    text-transform: none;
+                    line-break: auto;
+                    overflow-wrap: initial;
+                    white-space: break-spaces;
+                    font-size: 36px;
+                    text-rendering: geometricPrecision;
+                    caret-color: rgba(242, 235, 213, 1);
+                    text-decoration: none;
+                    --font-id: gfont-noto-sans;
+                    --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                      '~:fill-opacity', 1]];
+                    letter-spacing: 0px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 900;
+                  "
+                  >Good Morning User,</span
+                >
+              </p>
+              <p class="paragraph root-0-paragraph-set-0-paragraph-1" dir="ltr">
+                <span
+                  class="text-node root-0-paragraph-set-0-paragraph-1-text-0"
+                  style="
+                    color: rgba(242, 235, 213, 1);
+                    text-transform: none;
+                    line-break: auto;
+                    overflow-wrap: initial;
+                    white-space: break-spaces;
+                    font-size: 18px;
+                    text-rendering: geometricPrecision;
+                    caret-color: rgba(242, 235, 213, 1);
+                    text-decoration: none;
+                    --font-id: gfont-noto-sans;
+                    --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                      '~:fill-opacity', 1]];
+                    letter-spacing: 0px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 600;
+                  "
+                  >Welcome to your MediBASE dashboa</span
+                ><span
+                  class="text-node root-0-paragraph-set-0-paragraph-1-text-1"
+                  style="
+                    color: rgba(242, 235, 213, 1);
+                    text-transform: none;
+                    line-break: auto;
+                    overflow-wrap: initial;
+                    white-space: break-spaces;
+                    font-size: 18px;
+                    text-rendering: geometricPrecision;
+                    caret-color: rgba(242, 235, 213, 1);
+                    text-decoration: none;
+                    --font-id: gfont-noto-sans;
+                    --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                      '~:fill-opacity', 1]];
+                    letter-spacing: 0px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 600;
+                  "
+                  >rd.
+                </span>
+              </p>
+              <p class="paragraph root-0-paragraph-set-0-paragraph-2" dir="ltr">
+                <span
+                  class="text-node root-0-paragraph-set-0-paragraph-2-text-0"
+                  style="
+                    color: rgba(242, 235, 213, 1);
+                    text-transform: none;
+                    line-break: auto;
+                    overflow-wrap: initial;
+                    white-space: break-spaces;
+                    font-size: 18px;
+                    text-rendering: geometricPrecision;
+                    caret-color: rgba(242, 235, 213, 1);
+                    text-decoration: none;
+                    --font-id: gfont-noto-sans;
+                    --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                      '~:fill-opacity', 1]];
+                    letter-spacing: 0px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 600;
+                  "
+                  >What would you like to do today?</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- group: btn_patients -->
+      <div class="group btnpatien-4448fd079a63">
+        <!-- group: Group -->
+        <div class="group group-4447460bb89f">
+          <!-- rect: Rectangle -->
+          <div class="shape rect rectangle-4445d336292c"></div>
+          <!-- circle: Ellipse -->
+          <div class="shape circle ellipse-44472fc0e999"></div>
+          <!-- circle: Ellipse -->
+          <div class="shape circle ellipse-4447424a9145"></div>
+        </div>
+        <!-- text: Patients -->
+        <div class="shape text patients-4446e8b24c01">
+          <div
+            class="text-node-html"
+            id="html-text-node-a19c5e35-ca12-808b-8005-4446e8b24c01"
+            data-x="295"
+            data-y="732.0000000000001"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <span
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(242, 235, 213, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(242, 235, 213, 1);
+                      text-decoration: none;
+                      --font-id: gfont-noto-sans;
+                      --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                        '~:fill-color-ref-id',
+                        '~ua19c5e35-ca12-808b-8005-44469bb3a18a',
+                        '~:fill-color-ref-file',
+                        '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Noto Sans';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                    >Patients</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- group: btn_doctors -->
+      <div class="group btndoctor-444933ff64bd">
+        <!-- group: Group -->
+        <div class="group group-444933ff64be">
+          <!-- rect: Rectangle -->
+          <div class="shape rect rectangle-444933ff64c0"></div>
+          <!-- circle: Ellipse -->
+          <div class="shape circle ellipse-444933ff64c1"></div>
+          <!-- circle: Ellipse -->
+          <div class="shape circle ellipse-444933ff64c2"></div>
+        </div>
+        <!-- text: Doctors -->
+        <div class="shape text doctors-444933ff64bf">
+          <div
+            class="text-node-html"
+            id="html-text-node-a19c5e35-ca12-808b-8005-444933ff64bf"
+            data-x="580"
+            data-y="732.0000000000001"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <span
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(242, 235, 213, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(242, 235, 213, 1);
+                      text-decoration: none;
+                      --font-id: gfont-noto-sans;
+                      --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                        '~:fill-color-ref-id',
+                        '~ua19c5e35-ca12-808b-8005-44469bb3a18a',
+                        '~:fill-color-ref-file',
+                        '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Noto Sans';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                    >Doctors</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- group: btn_medical -->
+      <div class="group btnmedica-4449a71fcc64">
+        <!-- group: Group -->
+        <div class="group group-4449a71fcc65">
+          <!-- rect: Rectangle -->
+          <div class="shape rect rectangle-4449a71fcc67"></div>
+          <!-- circle: Ellipse -->
+          <div class="shape circle ellipse-4449a71fcc68"></div>
+          <!-- circle: Ellipse -->
+          <div class="shape circle ellipse-4449a71fcc69"></div>
+        </div>
+        <!-- text: Medical Records -->
+        <div class="shape text medical-re-4449a71fcc66">
+          <div
+            class="text-node-html"
+            id="html-text-node-a19c5e35-ca12-808b-8005-4449a71fcc66"
+            data-x="865"
+            data-y="732"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <span
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(242, 235, 213, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(242, 235, 213, 1);
+                      text-decoration: none;
+                      --font-id: gfont-noto-sans;
+                      --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                        '~:fill-color-ref-id',
+                        '~ua19c5e35-ca12-808b-8005-44469bb3a18a',
+                        '~:fill-color-ref-file',
+                        '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Noto Sans';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                    >Medical Records</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- group: btn_patients -->
+      <div class="group btnpatien-44497652b6c7">
+        <!-- group: Group -->
+        <div class="group group-44497652b6c8">
+          <!-- rect: Rectangle -->
+          <div class="shape rect rectangle-44497652b6ca"></div>
+          <!-- circle: Ellipse -->
+          <div class="shape circle ellipse-44497652b6cb"></div>
+          <!-- circle: Ellipse -->
+          <div class="shape circle ellipse-44497652b6cc"></div>
+        </div>
+        <!-- text: Medications -->
+        <div class="shape text medication-44497652b6c9">
+          <div
+            class="text-node-html"
+            id="html-text-node-a19c5e35-ca12-808b-8005-44497652b6c9"
+            data-x="1150"
+            data-y="732.0000000000002"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <span
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(242, 235, 213, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(242, 235, 213, 1);
+                      text-decoration: none;
+                      --font-id: gfont-noto-sans;
+                      --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                        '~:fill-color-ref-id',
+                        '~ua19c5e35-ca12-808b-8005-44469bb3a18a',
+                        '~:fill-color-ref-file',
+                        '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Noto Sans';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                    >Medications</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- group: btn_appointment -->
+      <div class="group btnappoin-4448b754c5c0">
+        <!-- group: Group -->
+        <div class="group group-4448b754c5c1">
+          <!-- rect: Rectangle -->
+          <div class="shape rect rectangle-4448b754c5c3"></div>
+          <!-- circle: Ellipse -->
+          <div class="shape circle ellipse-4448b754c5c4"></div>
+          <!-- circle: Ellipse -->
+          <div class="shape circle ellipse-4448b754c5c5"></div>
+        </div>
+        <!-- text: Create an Appointment -->
+        <div class="shape text create-an-4448b754c5c2">
+          <div
+            class="text-node-html"
+            id="html-text-node-a19c5e35-ca12-808b-8005-4448b754c5c2"
+            data-x="325"
+            data-y="405"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <span
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(217, 37, 37, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: pre;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(217, 37, 37, 1);
+                      text-decoration: none;
+                      --font-id: gfont-noto-sans;
+                      --fills: [[ '^ ', '~:fill-color', '#D92525',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Noto Sans';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                    >Create an Appointment</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- group: Group -->
+      <div class="group group-494c36f45412">
+        <!-- rect: Rectangle -->
+        <div class="shape rect rectangle-494c36f45414"></div>
+        <!-- circle: Ellipse -->
+        <div class="shape circle ellipse-494c36f45415"></div>
+        <!-- circle: Ellipse -->
+        <div class="shape circle ellipse-494c36f45416"></div>
+      </div>
+      <!-- text: View Hospital Reports -->
+      <div class="shape text view-hospi-494c36f45413">
+        <div
+          class="text-node-html"
+          id="html-text-node-7cac9e63-56d2-80b3-8005-494c36f45413"
+          data-x="681"
+          data-y="405"
+        >
+          <div
+            class="root rich-text root-0"
+            style="
+              display: flex;
+              white-space: break-spaces;
+              align-items: flex-start;
+            "
+            xmlns="http://www.w3.org/1999/xhtml"
+          >
+            <div class="paragraph-set root-0-paragraph-set-0">
+              <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
+                <span
+                  class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                  style="
+                    color: rgba(217, 37, 37, 1);
+                    text-transform: none;
+                    line-break: auto;
+                    overflow-wrap: initial;
+                    white-space: pre;
+                    font-size: 18px;
+                    text-rendering: geometricPrecision;
+                    caret-color: rgba(217, 37, 37, 1);
+                    text-decoration: none;
+                    --font-id: gfont-noto-sans;
+                    --fills: [[ '^ ', '~:fill-color', '#D92525',
+                      '~:fill-opacity', 1]];
+                    letter-spacing: 0px;
+                    font-family: 'Noto Sans';
+                    font-style: normal;
+                    font-weight: 600;
+                  "
+                  >View Hospital Reports</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- group: img_medical -->
+      <div class="shape group imgmedica-444bd60b25f4">
+        <svg
+          width="153"
+          xmlns="http://www.w3.org/2000/svg"
+          height="150"
+          id="screenshot-a19c5e35-ca12-808b-8005-444bd60b25f4"
+          viewBox="869 534 153 150"
+          style="-webkit-print-color-adjust::exact"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          fill="none"
+          version="1.1"
+        >
+          <g
+            id="shape-a19c5e35-ca12-808b-8005-444bd60b25f4"
+            style="fill: #000000"
+            width="500"
+            height="500"
+            version="1.0"
+            rx="0"
+            ry="0"
+          >
+            <defs></defs>
+            <g
+              id="shape-a19c5e35-ca12-808b-8005-444bd60baf11"
+              style="display: none"
+            >
+              <defs></defs>
+              <g class="fills" id="fills-a19c5e35-ca12-808b-8005-444bd60baf11">
+                <rect
+                  rx="0"
+                  ry="0"
+                  x="869"
+                  y="534"
+                  transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)"
+                  width="153"
+                  height="150"
+                  fill="none"
+                  style="fill: #4b93bf; fill-opacity: 1"
+                ></rect>
+              </g>
+            </g>
+            <g id="shape-a19c5e35-ca12-808b-8005-444bd60bf372">
+              <defs></defs>
+              <defs style="fill: #4b93bf; fill-opacity: 1"></defs>
+            </g>
+            <g
+              id="shape-a19c5e35-ca12-808b-8005-444bd60bf373"
+              style="fill: #000000"
+              clip-path="url(#render-4959-a)"
+              rx="0"
+              ry="0"
+            >
+              <defs>
+                <clipPath
+                  id="render-4959-a"
+                  class="svg-def"
+                  transform="matrix(0.408000, 0.000000, 0.000000, 0.400000, 869.000000, 534.000000)"
+                >
+                  <path
+                    d="M 41.015625 0 L 334.265625 0 L 334.265625 375 L 41.015625 375 Z M 41.015625 0"
+                  ></path>
+                </clipPath>
+              </defs>
+              <g id="shape-a19c5e35-ca12-808b-8005-444bd60c22f3">
+                <defs></defs>
+                <g
+                  class="fills"
+                  id="fills-a19c5e35-ca12-808b-8005-444bd60c22f3"
+                >
+                  <path
+                    d="M998.202,534.000L892.913,534.000C888.965,534.000,885.734,537.164,885.734,541.031L885.734,676.969C885.734,680.836,888.965,684.000,892.913,684.000L998.202,684.000C1002.150,684.000,1005.380,680.836,1005.380,676.969L1005.380,541.031C1005.380,537.164,1002.150,534.000,998.202,534.000ZZM921.629,538.688L969.486,538.688L969.486,552.750C969.486,554.039,968.410,555.094,967.094,555.094L924.021,555.094C922.705,555.094,921.629,554.039,921.629,552.750ZM1000.594,676.969C1000.594,678.258,999.517,679.313,998.202,679.313L892.913,679.313C891.598,679.313,890.520,678.258,890.520,676.969L890.520,541.031C890.520,539.742,891.598,538.688,892.913,538.688L916.843,538.688L916.843,552.750C916.843,556.617,920.073,559.781,924.021,559.781L967.094,559.781C971.041,559.781,974.272,556.617,974.272,552.750L974.272,538.688L998.202,538.688C999.517,538.688,1000.594,539.742,1000.594,541.031ZM1000.594,676.969"
+                    style="fill: #4b93bf; fill-opacity: 1"
+                  ></path>
+                </g>
+              </g>
+            </g>
+            <g id="shape-a19c5e35-ca12-808b-8005-444bd60c5072">
+              <defs></defs>
+              <g class="fills" id="fills-a19c5e35-ca12-808b-8005-444bd60c5072">
+                <path
+                  d="M926.413,543.375L964.702,543.375L964.702,550.406L926.413,550.406ZM926.413,543.375"
+                  style="fill: #4b93bf; fill-opacity: 1"
+                ></path>
+              </g>
+            </g>
+            <g id="shape-a19c5e35-ca12-808b-8005-444bd60cfb34">
+              <defs></defs>
+              <g class="fills" id="fills-a19c5e35-ca12-808b-8005-444bd60cfb34">
+                <path
+                  d="M991.022,543.375L979.058,543.375L979.058,552.750C979.058,559.195,973.674,564.469,967.094,564.469L924.021,564.469C917.440,564.469,912.057,559.195,912.057,552.750L912.057,543.375L900.092,543.375C897.460,543.375,895.306,545.484,895.306,548.063L895.306,669.938C895.306,672.516,897.460,674.625,900.092,674.625L991.022,674.625C993.655,674.625,995.808,672.516,995.808,669.938L995.808,548.063C995.808,545.484,993.655,543.375,991.022,543.375ZZM904.879,593.063C904.879,591.773,905.954,590.719,907.271,590.719L916.244,590.719L921.629,580.172C922.107,579.234,923.063,578.766,924.021,578.883C924.979,579.000,925.816,579.703,926.055,580.641L929.524,593.766L933.593,573.375C933.832,572.320,934.790,571.500,935.866,571.500C936.943,571.500,938.019,572.203,938.140,573.375L941.729,588.844L944.121,582.867C944.480,581.930,945.318,581.344,946.396,581.344C947.352,581.344,948.310,581.930,948.668,582.867L953.693,596.109L960.394,573.961C960.752,572.906,961.591,572.320,962.666,572.320C963.744,572.320,964.702,573.023,964.941,574.078L969.727,592.711L973.794,586.500C974.272,585.797,974.991,585.445,975.827,585.445L983.844,585.445C985.160,585.445,986.236,586.500,986.236,587.789C986.236,589.078,985.160,590.133,983.844,590.133L977.263,590.133L970.922,599.742C970.444,600.563,969.486,600.914,968.530,600.797C967.572,600.680,966.855,599.977,966.616,599.039L962.547,583.453L956.325,604.195C955.966,605.133,955.129,605.836,954.052,605.836C952.975,605.836,952.138,605.250,951.779,604.313L946.515,590.367L943.643,597.750C943.285,598.688,942.327,599.273,941.249,599.273C940.174,599.156,939.335,598.453,939.096,597.398L936.344,585.211L932.396,604.781C932.157,605.836,931.199,606.656,930.123,606.656L930.004,606.656C928.927,606.656,927.969,605.953,927.730,604.898L923.063,587.906L919.834,594.117C919.474,594.938,918.637,595.406,917.679,595.406L907.271,595.406C905.954,595.406,904.879,594.352,904.879,593.063ZZM977.861,632.438L913.254,632.438C911.937,632.438,910.860,631.383,910.860,630.094C910.860,628.805,911.937,627.750,913.254,627.750L977.861,627.750C979.178,627.750,980.255,628.805,980.255,630.094C980.255,631.383,979.178,632.438,977.861,632.438ZZM980.255,641.813C980.255,643.102,979.178,644.156,977.861,644.156L913.254,644.156C911.937,644.156,910.860,643.102,910.860,641.813C910.860,640.523,911.937,639.469,913.254,639.469L977.861,639.469C979.178,639.469,980.255,640.523,980.255,641.813ZZM977.861,620.719L913.254,620.719C911.937,620.719,910.860,619.664,910.860,618.375C910.860,617.086,911.937,616.031,913.254,616.031L977.861,616.031C979.178,616.031,980.255,617.086,980.255,618.375C980.255,619.664,979.178,620.719,977.861,620.719ZZM910.860,653.531C910.860,652.242,911.937,651.188,913.254,651.188L977.861,651.188C979.178,651.188,980.255,652.242,980.255,653.531C980.255,654.820,979.178,655.875,977.861,655.875L913.254,655.875C911.937,655.875,910.860,654.820,910.860,653.531ZZM991.022,669.938L975.230,669.938L991.022,654.469ZM991.022,669.938"
+                  style="fill: #4b93bf; fill-opacity: 1"
+                ></path>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <!-- group: img_medications -->
+      <div class="shape group imgmedica-444bd61f8cd8">
+        <svg
+          width="150"
+          xmlns="http://www.w3.org/2000/svg"
+          height="150"
+          id="screenshot-a19c5e35-ca12-808b-8005-444bd61f8cd8"
+          viewBox="1155 534 150 150"
+          style="-webkit-print-color-adjust::exact"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          fill="none"
+          version="1.1"
+        >
+          <g
+            id="shape-a19c5e35-ca12-808b-8005-444bd61f8cd8"
+            style="fill: #000000"
+            width="500"
+            height="500"
+            version="1.0"
+            rx="0"
+            ry="0"
+          >
+            <defs></defs>
+            <g
+              id="shape-a19c5e35-ca12-808b-8005-444bd6203425"
+              style="display: none"
+            >
+              <defs></defs>
+              <g class="fills" id="fills-a19c5e35-ca12-808b-8005-444bd6203425">
+                <rect
+                  rx="0"
+                  ry="0"
+                  x="1155"
+                  y="534"
+                  transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)"
+                  width="150"
+                  height="150"
+                  fill="none"
+                  style="fill: #4b93bf; fill-opacity: 1"
+                ></rect>
+              </g>
+            </g>
+            <g id="shape-a19c5e35-ca12-808b-8005-444bd6203426">
+              <defs></defs>
+              <defs style="fill: #4b93bf; fill-opacity: 1"></defs>
+            </g>
+            <g id="shape-a19c5e35-ca12-808b-8005-444bd62067e9">
+              <defs></defs>
+              <g class="fills" id="fills-a19c5e35-ca12-808b-8005-444bd62067e9">
+                <path
+                  d="M1265.722,562.978L1280.756,562.978C1281.766,562.981,1282.730,563.195,1283.647,563.617C1283.294,563.055,1282.884,562.536,1282.422,562.059L1257.195,536.822C1256.714,536.350,1256.189,535.934,1255.620,535.573C1256.042,536.491,1256.255,537.455,1256.258,538.466L1256.258,553.511C1256.259,553.822,1256.275,554.130,1256.305,554.439C1256.336,554.747,1256.381,555.053,1256.442,555.358C1256.503,555.661,1256.578,555.961,1256.669,556.258C1256.759,556.555,1256.862,556.847,1256.981,557.133C1257.100,557.419,1257.233,557.698,1257.380,557.972C1257.525,558.245,1257.684,558.511,1257.856,558.769C1258.030,559.027,1258.214,559.275,1258.409,559.514C1258.606,559.753,1258.814,559.983,1259.033,560.202C1259.253,560.422,1259.481,560.630,1259.722,560.827C1259.961,561.023,1260.209,561.208,1260.467,561.380C1260.725,561.552,1260.989,561.711,1261.262,561.858C1261.536,562.003,1261.816,562.136,1262.102,562.255C1262.387,562.373,1262.680,562.478,1262.975,562.569C1263.272,562.658,1263.572,562.734,1263.877,562.795C1264.180,562.855,1264.486,562.902,1264.794,562.931C1265.103,562.962,1265.411,562.978,1265.722,562.978ZZM1265.722,562.978"
+                  style="fill: #4b93bf; fill-opacity: 1"
+                ></path>
+              </g>
+            </g>
+            <g id="shape-a19c5e35-ca12-808b-8005-444bd620ae2b">
+              <defs></defs>
+              <g class="fills" id="fills-a19c5e35-ca12-808b-8005-444bd620ae2b">
+                <path
+                  d="M1210.384,558.428C1210.384,558.147,1210.370,557.866,1210.342,557.584C1210.314,557.305,1210.272,557.027,1210.217,556.752C1210.162,556.475,1210.094,556.202,1210.012,555.933C1209.930,555.664,1209.834,555.398,1209.727,555.139C1209.619,554.878,1209.498,554.625,1209.366,554.377C1209.233,554.128,1209.089,553.888,1208.933,553.653C1208.777,553.419,1208.608,553.194,1208.430,552.975C1208.252,552.758,1208.063,552.550,1207.864,552.350C1207.664,552.152,1207.456,551.962,1207.239,551.784C1207.022,551.605,1206.795,551.438,1206.561,551.281C1206.328,551.125,1206.086,550.980,1205.839,550.847C1205.591,550.714,1205.336,550.594,1205.077,550.486C1204.817,550.378,1204.552,550.284,1204.283,550.202C1204.014,550.120,1203.741,550.052,1203.466,549.997C1203.189,549.941,1202.911,549.900,1202.631,549.872C1202.352,549.844,1202.070,549.830,1201.789,549.830L1193.173,549.830C1192.914,549.830,1192.658,549.855,1192.403,549.906C1192.150,549.956,1191.903,550.031,1191.664,550.131C1191.425,550.230,1191.198,550.352,1190.983,550.495C1190.769,550.639,1190.569,550.803,1190.386,550.986C1190.203,551.169,1190.039,551.369,1189.895,551.584C1189.752,551.798,1189.630,552.027,1189.531,552.266C1189.431,552.505,1189.356,552.752,1189.306,553.005C1189.256,553.259,1189.230,553.516,1189.230,553.773L1189.230,567.028L1201.789,567.028C1202.070,567.028,1202.352,567.014,1202.631,566.986C1202.911,566.958,1203.189,566.917,1203.466,566.861C1203.741,566.806,1204.014,566.737,1204.283,566.656C1204.553,566.573,1204.817,566.480,1205.077,566.372C1205.338,566.263,1205.591,566.142,1205.839,566.009C1206.088,565.877,1206.328,565.733,1206.563,565.577C1206.797,565.419,1207.022,565.252,1207.239,565.073C1207.458,564.894,1207.666,564.706,1207.864,564.506C1208.064,564.308,1208.252,564.098,1208.431,563.881C1208.609,563.664,1208.777,563.438,1208.933,563.203C1209.089,562.969,1209.234,562.728,1209.367,562.480C1209.500,562.231,1209.620,561.978,1209.728,561.717C1209.836,561.458,1209.931,561.192,1210.012,560.923C1210.094,560.653,1210.162,560.381,1210.217,560.105C1210.273,559.828,1210.314,559.550,1210.342,559.270C1210.370,558.991,1210.384,558.709,1210.384,558.428ZZM1210.384,558.428"
+                  style="fill: #4b93bf; fill-opacity: 1"
+                ></path>
+              </g>
+            </g>
+            <g
+              id="shape-a19c5e35-ca12-808b-8005-444bd620db8a"
+              style="fill: #000000"
+              clip-path="url(#render-4968-a)"
+              rx="0"
+              ry="0"
+            >
+              <defs>
+                <clipPath
+                  id="render-4968-a"
+                  class="svg-def"
+                  transform="matrix(0.400000, 0.000000, 0.000000, 0.400000, 1155.000000, 534.000000)"
+                >
+                  <path
+                    d="M 49.433594 0 L 325.433594 0 L 325.433594 375 L 49.433594 375 Z M 49.433594 0"
+                  ></path>
+                </clipPath>
+              </defs>
+              <g id="shape-a19c5e35-ca12-808b-8005-444bd6229eec">
+                <defs></defs>
+                <g
+                  class="fills"
+                  id="fills-a19c5e35-ca12-808b-8005-444bd6229eec"
+                >
+                  <path
+                    d="M1280.756,565.608L1265.722,565.608C1265.325,565.608,1264.931,565.587,1264.536,565.548C1264.142,565.509,1263.752,565.452,1263.364,565.373C1262.975,565.295,1262.592,565.200,1262.213,565.084C1261.834,564.969,1261.463,564.836,1261.097,564.684C1260.731,564.533,1260.373,564.362,1260.023,564.177C1259.675,563.989,1259.336,563.786,1259.006,563.566C1258.678,563.345,1258.361,563.109,1258.055,562.858C1257.748,562.606,1257.455,562.341,1257.175,562.061C1256.895,561.781,1256.630,561.487,1256.378,561.181C1256.128,560.877,1255.892,560.558,1255.672,560.228C1255.452,559.900,1255.248,559.561,1255.061,559.211C1254.875,558.862,1254.706,558.505,1254.553,558.139C1254.402,557.772,1254.269,557.400,1254.153,557.022C1254.039,556.642,1253.942,556.259,1253.864,555.870C1253.787,555.481,1253.728,555.091,1253.689,554.697C1253.650,554.303,1253.630,553.908,1253.630,553.511L1253.630,538.469C1253.630,538.178,1253.602,537.891,1253.544,537.606C1253.487,537.322,1253.403,537.047,1253.292,536.778C1253.181,536.511,1253.045,536.256,1252.884,536.016C1252.722,535.773,1252.539,535.552,1252.334,535.345C1252.130,535.141,1251.906,534.958,1251.666,534.797C1251.425,534.636,1251.170,534.500,1250.903,534.389C1250.634,534.277,1250.359,534.194,1250.075,534.136C1249.791,534.080,1249.503,534.052,1249.214,534.050L1183.973,534.050C1183.672,534.052,1183.370,534.066,1183.072,534.095C1182.772,534.127,1182.473,534.170,1182.178,534.230C1181.883,534.289,1181.592,534.362,1181.303,534.450C1181.016,534.538,1180.733,534.639,1180.453,534.755C1180.175,534.870,1179.903,534.998,1179.637,535.141C1179.372,535.283,1179.114,535.438,1178.864,535.605C1178.614,535.773,1178.372,535.952,1178.139,536.144C1177.906,536.334,1177.684,536.538,1177.470,536.750C1177.258,536.962,1177.056,537.186,1176.864,537.419C1176.673,537.652,1176.494,537.894,1176.327,538.144C1176.159,538.395,1176.005,538.653,1175.862,538.919C1175.720,539.184,1175.592,539.456,1175.477,539.734C1175.361,540.013,1175.259,540.297,1175.172,540.584C1175.084,540.873,1175.011,541.164,1174.952,541.459C1174.892,541.756,1174.848,542.053,1174.819,542.353C1174.787,542.653,1174.773,542.953,1174.773,543.255L1174.773,674.745C1174.773,675.047,1174.787,675.347,1174.819,675.647C1174.848,675.947,1174.892,676.244,1174.952,676.539C1175.011,676.836,1175.084,677.127,1175.172,677.416C1175.259,677.703,1175.361,677.987,1175.477,678.266C1175.592,678.544,1175.720,678.816,1175.862,679.081C1176.005,679.347,1176.159,679.605,1176.327,679.856C1176.494,680.106,1176.673,680.348,1176.864,680.581C1177.056,680.814,1177.258,681.038,1177.470,681.250C1177.684,681.463,1177.906,681.666,1178.139,681.856C1178.372,682.048,1178.614,682.227,1178.864,682.395C1179.114,682.563,1179.372,682.717,1179.637,682.859C1179.903,683.002,1180.175,683.130,1180.453,683.245C1180.731,683.361,1181.016,683.463,1181.303,683.550C1181.592,683.638,1181.883,683.711,1182.178,683.770C1182.473,683.830,1182.772,683.873,1183.072,683.905C1183.370,683.934,1183.672,683.948,1183.973,683.950L1275.973,683.950C1276.273,683.948,1276.575,683.934,1276.873,683.905C1277.173,683.873,1277.472,683.830,1277.767,683.770C1278.063,683.711,1278.355,683.638,1278.642,683.550C1278.930,683.463,1279.214,683.361,1279.492,683.245C1279.770,683.130,1280.042,683.002,1280.308,682.859C1280.573,682.717,1280.831,682.563,1281.081,682.395C1281.331,682.227,1281.573,682.048,1281.806,681.856C1282.039,681.666,1282.262,681.464,1282.475,681.250C1282.688,681.038,1282.891,680.814,1283.081,680.581C1283.272,680.348,1283.452,680.106,1283.619,679.856C1283.786,679.606,1283.941,679.347,1284.083,679.081C1284.225,678.816,1284.355,678.544,1284.469,678.266C1284.584,677.987,1284.686,677.705,1284.773,677.416C1284.862,677.127,1284.934,676.836,1284.994,676.541C1285.053,676.244,1285.097,675.947,1285.128,675.647C1285.158,675.347,1285.172,675.047,1285.173,674.745L1285.173,570.025C1285.172,569.736,1285.144,569.448,1285.088,569.164C1285.030,568.880,1284.945,568.603,1284.834,568.336C1284.723,568.069,1284.588,567.814,1284.427,567.573C1284.266,567.331,1284.083,567.109,1283.877,566.903C1283.672,566.698,1283.450,566.516,1283.208,566.355C1282.967,566.194,1282.713,566.058,1282.445,565.945C1282.178,565.834,1281.902,565.752,1281.617,565.694C1281.333,565.638,1281.047,565.609,1280.756,565.608ZZM1186.602,553.773C1186.602,553.559,1186.612,553.344,1186.633,553.130C1186.655,552.916,1186.686,552.703,1186.728,552.492C1186.770,552.281,1186.823,552.072,1186.886,551.867C1186.948,551.661,1187.020,551.458,1187.103,551.259C1187.186,551.061,1187.278,550.866,1187.380,550.677C1187.481,550.486,1187.591,550.302,1187.711,550.123C1187.831,549.944,1187.958,549.772,1188.095,549.605C1188.231,549.439,1188.377,549.280,1188.528,549.128C1188.680,548.975,1188.839,548.831,1189.006,548.694C1189.172,548.558,1189.345,548.430,1189.523,548.309C1189.702,548.191,1189.886,548.080,1190.077,547.978C1190.266,547.877,1190.461,547.784,1190.659,547.702C1190.858,547.620,1191.059,547.547,1191.266,547.484C1191.472,547.422,1191.680,547.369,1191.891,547.327C1192.102,547.284,1192.314,547.253,1192.528,547.231C1192.742,547.211,1192.958,547.200,1193.173,547.200L1201.789,547.200C1202.156,547.200,1202.523,547.217,1202.889,547.253C1203.255,547.289,1203.619,547.344,1203.978,547.416C1204.339,547.487,1204.695,547.577,1205.047,547.683C1205.398,547.791,1205.744,547.914,1206.084,548.055C1206.423,548.195,1206.756,548.352,1207.080,548.525C1207.405,548.698,1207.719,548.888,1208.025,549.092C1208.330,549.297,1208.625,549.516,1208.909,549.748C1209.194,549.981,1209.466,550.228,1209.725,550.489C1209.986,550.748,1210.231,551.020,1210.466,551.305C1210.698,551.589,1210.917,551.884,1211.122,552.191C1211.325,552.497,1211.514,552.811,1211.688,553.136C1211.861,553.459,1212.017,553.792,1212.158,554.131C1212.298,554.472,1212.423,554.817,1212.530,555.169C1212.636,555.522,1212.725,555.878,1212.797,556.237C1212.869,556.598,1212.923,556.962,1212.959,557.328C1212.995,557.694,1213.012,558.061,1213.012,558.430C1213.012,558.797,1212.995,559.164,1212.959,559.530C1212.923,559.895,1212.869,560.259,1212.797,560.620C1212.725,560.980,1212.636,561.336,1212.530,561.689C1212.423,562.041,1212.298,562.386,1212.158,562.727C1212.017,563.066,1211.861,563.398,1211.688,563.722C1211.514,564.047,1211.325,564.362,1211.122,564.667C1210.917,564.973,1210.698,565.269,1210.466,565.553C1210.231,565.837,1209.986,566.109,1209.725,566.369C1209.466,566.630,1209.194,566.877,1208.909,567.109C1208.625,567.342,1208.330,567.561,1208.025,567.766C1207.719,567.970,1207.405,568.159,1207.080,568.333C1206.756,568.506,1206.423,568.663,1206.084,568.803C1205.744,568.944,1205.398,569.067,1205.047,569.175C1204.695,569.281,1204.339,569.370,1203.978,569.442C1203.619,569.514,1203.255,569.569,1202.889,569.605C1202.523,569.641,1202.156,569.658,1201.789,569.658L1194.089,569.658L1211.102,587.587L1218.658,579.350C1218.777,579.230,1218.916,579.134,1219.072,579.067C1219.228,579.000,1219.391,578.964,1219.561,578.959C1219.731,578.955,1219.895,578.983,1220.055,579.042C1220.214,579.103,1220.356,579.191,1220.483,579.305C1220.608,579.420,1220.706,579.555,1220.780,579.709C1220.853,579.862,1220.895,580.023,1220.905,580.194C1220.916,580.364,1220.894,580.530,1220.839,580.691C1220.786,580.853,1220.703,580.998,1220.594,581.128L1212.916,589.498L1220.578,597.573C1220.698,597.700,1220.791,597.845,1220.853,598.008C1220.916,598.172,1220.945,598.341,1220.941,598.514C1220.936,598.689,1220.898,598.856,1220.828,599.016C1220.756,599.175,1220.658,599.314,1220.531,599.434C1220.405,599.555,1220.261,599.647,1220.097,599.709C1219.934,599.772,1219.766,599.802,1219.592,599.797C1219.417,599.792,1219.250,599.755,1219.091,599.683C1218.931,599.612,1218.792,599.514,1218.672,599.388L1211.133,591.442L1203.861,599.369C1203.745,599.505,1203.608,599.612,1203.448,599.692C1203.289,599.770,1203.120,599.816,1202.942,599.827C1202.764,599.837,1202.591,599.814,1202.422,599.755C1202.255,599.694,1202.105,599.605,1201.973,599.483C1201.842,599.362,1201.739,599.222,1201.666,599.059C1201.592,598.897,1201.553,598.725,1201.548,598.547C1201.544,598.369,1201.573,598.197,1201.639,598.031C1201.705,597.864,1201.802,597.719,1201.927,597.591L1209.319,589.531L1190.487,569.686C1190.480,569.677,1190.478,569.666,1190.470,569.658L1189.230,569.658L1189.230,588.169C1189.230,588.344,1189.197,588.511,1189.130,588.672C1189.063,588.833,1188.969,588.975,1188.845,589.098C1188.722,589.222,1188.580,589.317,1188.419,589.383C1188.258,589.450,1188.091,589.484,1187.916,589.484C1187.741,589.484,1187.573,589.450,1187.412,589.383C1187.252,589.317,1187.109,589.222,1186.986,589.098C1186.862,588.975,1186.769,588.833,1186.702,588.672C1186.634,588.511,1186.602,588.344,1186.602,588.169ZM1272.030,665.541L1187.916,665.541C1187.741,665.541,1187.573,665.508,1187.412,665.441C1187.252,665.373,1187.109,665.278,1186.986,665.156C1186.862,665.033,1186.769,664.891,1186.702,664.730C1186.634,664.567,1186.602,664.400,1186.602,664.225C1186.602,664.052,1186.634,663.884,1186.702,663.722C1186.769,663.561,1186.862,663.419,1186.986,663.295C1187.109,663.173,1187.252,663.078,1187.412,663.011C1187.573,662.944,1187.741,662.911,1187.916,662.911L1272.030,662.911C1272.205,662.911,1272.372,662.944,1272.533,663.011C1272.694,663.078,1272.836,663.173,1272.959,663.295C1273.083,663.419,1273.178,663.561,1273.244,663.722C1273.311,663.884,1273.344,664.052,1273.344,664.225C1273.344,664.400,1273.311,664.567,1273.244,664.730C1273.178,664.891,1273.083,665.033,1272.959,665.156C1272.836,665.278,1272.694,665.373,1272.533,665.441C1272.372,665.508,1272.205,665.541,1272.030,665.541ZZM1272.030,649.763L1187.916,649.763C1187.741,649.763,1187.573,649.728,1187.412,649.663C1187.252,649.595,1187.109,649.500,1186.986,649.377C1186.862,649.253,1186.769,649.111,1186.702,648.950C1186.634,648.789,1186.602,648.622,1186.602,648.447C1186.602,648.272,1186.634,648.105,1186.702,647.944C1186.769,647.783,1186.862,647.641,1186.986,647.517C1187.109,647.394,1187.252,647.298,1187.412,647.233C1187.573,647.166,1187.741,647.133,1187.916,647.133L1272.030,647.133C1272.205,647.133,1272.372,647.166,1272.533,647.233C1272.694,647.298,1272.836,647.394,1272.959,647.517C1273.083,647.641,1273.178,647.783,1273.244,647.944C1273.311,648.105,1273.344,648.272,1273.344,648.447C1273.344,648.622,1273.311,648.789,1273.244,648.950C1273.178,649.111,1273.083,649.253,1272.959,649.377C1272.836,649.500,1272.694,649.595,1272.533,649.663C1272.372,649.728,1272.205,649.763,1272.030,649.763ZZM1272.030,633.983L1187.916,633.983C1187.741,633.983,1187.573,633.950,1187.412,633.883C1187.252,633.816,1187.109,633.722,1186.986,633.598C1186.862,633.475,1186.769,633.333,1186.702,633.172C1186.634,633.011,1186.602,632.842,1186.602,632.669C1186.602,632.494,1186.634,632.327,1186.702,632.166C1186.769,632.003,1186.862,631.861,1186.986,631.739C1187.109,631.616,1187.252,631.520,1187.412,631.453C1187.573,631.386,1187.741,631.353,1187.916,631.353L1272.030,631.353C1272.205,631.353,1272.372,631.386,1272.533,631.453C1272.694,631.520,1272.836,631.616,1272.959,631.739C1273.083,631.861,1273.178,632.003,1273.244,632.166C1273.311,632.327,1273.344,632.494,1273.344,632.669C1273.344,632.842,1273.311,633.011,1273.244,633.172C1273.178,633.333,1273.083,633.475,1272.959,633.598C1272.836,633.722,1272.694,633.816,1272.533,633.883C1272.372,633.950,1272.205,633.983,1272.030,633.983ZZM1272.030,618.205L1203.688,618.205C1203.512,618.205,1203.345,618.170,1203.184,618.105C1203.023,618.038,1202.881,617.942,1202.758,617.819C1202.634,617.695,1202.539,617.553,1202.473,617.392C1202.406,617.231,1202.373,617.064,1202.373,616.889C1202.373,616.716,1202.406,616.547,1202.473,616.386C1202.539,616.225,1202.634,616.083,1202.758,615.959C1202.881,615.836,1203.023,615.741,1203.184,615.675C1203.345,615.608,1203.512,615.575,1203.688,615.575L1272.030,615.575C1272.205,615.575,1272.372,615.608,1272.533,615.675C1272.694,615.741,1272.836,615.836,1272.959,615.959C1273.083,616.083,1273.178,616.225,1273.244,616.386C1273.311,616.547,1273.344,616.716,1273.344,616.889C1273.344,617.064,1273.311,617.231,1273.244,617.392C1273.178,617.553,1273.083,617.695,1272.959,617.819C1272.836,617.942,1272.694,618.038,1272.533,618.105C1272.372,618.170,1272.205,618.205,1272.030,618.205ZZM1272.030,599.795L1256.258,599.795C1256.084,599.795,1255.917,599.763,1255.756,599.695C1255.594,599.628,1255.452,599.534,1255.330,599.411C1255.206,599.288,1255.111,599.145,1255.044,598.984C1254.978,598.823,1254.944,598.655,1254.944,598.481C1254.944,598.306,1254.978,598.139,1255.044,597.978C1255.111,597.817,1255.206,597.675,1255.330,597.552C1255.452,597.428,1255.594,597.333,1255.756,597.266C1255.917,597.200,1256.084,597.166,1256.258,597.166L1272.030,597.166C1272.205,597.166,1272.372,597.200,1272.533,597.266C1272.694,597.333,1272.836,597.428,1272.959,597.552C1273.083,597.675,1273.178,597.817,1273.244,597.978C1273.311,598.139,1273.344,598.306,1273.344,598.481C1273.344,598.655,1273.311,598.823,1273.244,598.984C1273.178,599.145,1273.083,599.288,1272.959,599.411C1272.836,599.534,1272.694,599.628,1272.533,599.695C1272.372,599.763,1272.205,599.795,1272.030,599.795ZZM1272.030,586.647L1256.258,586.647C1256.084,586.647,1255.917,586.614,1255.756,586.547C1255.594,586.480,1255.452,586.384,1255.330,586.261C1255.206,586.138,1255.111,585.995,1255.044,585.834C1254.978,585.673,1254.944,585.506,1254.944,585.331C1254.944,585.158,1254.978,584.989,1255.044,584.828C1255.111,584.667,1255.206,584.525,1255.330,584.402C1255.452,584.278,1255.594,584.184,1255.756,584.117C1255.917,584.050,1256.084,584.017,1256.258,584.017L1272.030,584.017C1272.205,584.017,1272.372,584.050,1272.533,584.117C1272.694,584.184,1272.836,584.278,1272.959,584.402C1273.083,584.525,1273.178,584.667,1273.244,584.828C1273.311,584.989,1273.344,585.158,1273.344,585.331C1273.344,585.506,1273.311,585.673,1273.244,585.834C1273.178,585.995,1273.083,586.138,1272.959,586.261C1272.836,586.384,1272.694,586.480,1272.533,586.547C1272.372,586.614,1272.205,586.647,1272.030,586.647ZZM1272.030,586.647"
+                    style="fill: #4b93bf; fill-opacity: 1"
+                  ></path>
+                </g>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <!-- group: img_patients -->
+      <div class="shape group imgpatien-444bd62d298b">
+        <svg
+          width="150"
+          xmlns="http://www.w3.org/2000/svg"
+          height="150"
+          id="screenshot-a19c5e35-ca12-808b-8005-444bd62d298b"
+          viewBox="295 534 150 150"
+          style="-webkit-print-color-adjust::exact"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          fill="none"
+          version="1.1"
+        >
+          <g
+            id="shape-a19c5e35-ca12-808b-8005-444bd62d298b"
+            style="fill: #000000"
+            width="500"
+            height="500"
+            version="1.0"
+            rx="0"
+            ry="0"
+          >
+            <defs></defs>
+            <g
+              id="shape-a19c5e35-ca12-808b-8005-444bd62d751c"
+              style="display: none"
+            >
+              <defs></defs>
+              <g class="fills" id="fills-a19c5e35-ca12-808b-8005-444bd62d751c">
+                <rect
+                  rx="0"
+                  ry="0"
+                  x="295"
+                  y="534"
+                  transform="matrix(1.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000)"
+                  width="150"
+                  height="149.94845531845"
+                  fill="none"
+                  style="fill: #4b93bf; fill-opacity: 1"
+                ></rect>
+              </g>
+            </g>
+            <g id="shape-a19c5e35-ca12-808b-8005-444bd62d751d">
+              <defs></defs>
+              <defs style="fill: #4b93bf; fill-opacity: 1"></defs>
+            </g>
+            <g
+              id="shape-a19c5e35-ca12-808b-8005-444bd62d751e"
+              style="fill: #000000"
+              clip-path="url(#render-4973-a)"
+              rx="0"
+              ry="0"
+            >
+              <defs>
+                <clipPath
+                  id="render-4973-a"
+                  class="svg-def"
+                  transform="matrix(0.400000, 0.000000, 0.000000, 0.399863, 295.000000, 534.000000)"
+                >
+                  <path
+                    d="M 97 4.628906 L 278 4.628906 L 278 197 L 97 197 Z M 97 4.628906"
+                  ></path>
+                </clipPath>
+              </defs>
+              <g id="shape-a19c5e35-ca12-808b-8005-444bd62d85f1">
+                <defs></defs>
+                <g
+                  class="fills"
+                  id="fills-a19c5e35-ca12-808b-8005-444bd62d85f1"
+                >
+                  <path
+                    d="M370.000,612.698C389.831,612.698,405.963,591.649,405.963,571.818C405.963,551.988,389.831,535.851,370.000,535.851C350.169,535.851,334.036,551.988,334.036,571.818C334.039,591.647,350.170,612.698,370.000,612.698ZZM370.000,612.698"
+                    style="fill: #4b93bf; fill-opacity: 1"
+                  ></path>
+                </g>
+              </g>
+            </g>
+            <g id="shape-a19c5e35-ca12-808b-8005-444bd62d85f2">
+              <defs></defs>
+              <g class="fills" id="fills-a19c5e35-ca12-808b-8005-444bd62d85f2">
+                <path
+                  d="M396.998,613.067C390.022,618.382,381.320,621.543,371.892,621.543L368.108,621.543C358.678,621.543,349.975,618.380,343.000,613.067C320.222,616.748,302.828,636.493,302.828,660.308C302.828,673.391,332.902,684.000,370.000,684.000C407.097,684.000,437.172,673.391,437.172,660.308C437.172,636.493,419.777,616.748,396.998,613.067ZZM396.998,613.067"
+                  style="fill: #4b93bf; fill-opacity: 1"
+                ></path>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <!-- rect: img_doctor -->
+      <div class="shape rect imgdoctor-444d01faebb8"></div>
+      <!-- group: Group -->
+      <div class="group group-444def18d35f">
+        <!-- group: title -->
+        <div class="group title-444868b98b96">
+          <!-- text: MediBASE -->
+          <div class="shape text medi-base-443e4b8f7983">
+            <div
+              class="text-node-html"
+              id="html-text-node-a19c5e35-ca12-808b-8005-443e4b8f7983"
+              data-x="199"
+              data-y="149"
+            >
+              <div
+                class="root rich-text root-0"
+                style="
+                  display: flex;
+                  white-space: break-spaces;
+                  align-items: flex-start;
+                "
+                xmlns="http://www.w3.org/1999/xhtml"
+              >
+                <div class="paragraph-set root-0-paragraph-set-0">
+                  <p
+                    class="paragraph root-0-paragraph-set-0-paragraph-0"
+                    dir="ltr"
+                  >
+                    <span
+                      class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                      style="
+                        color: rgba(64, 21, 32, 1);
+                        text-transform: none;
+                        line-break: auto;
+                        overflow-wrap: initial;
+                        white-space: pre;
+                        font-size: 64px;
+                        text-rendering: geometricPrecision;
+                        caret-color: rgba(64, 21, 32, 1);
+                        text-decoration: none;
+                        --font-id: gfont-space-grotesk;
+                        --fills: [[ '^ ', '~:fill-color', '#401520',
+                          '~:fill-color-ref-id',
+                          '~ua19c5e35-ca12-808b-8005-4446f756ba91',
+                          '~:fill-color-ref-file',
+                          '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                          '~:fill-opacity', 1]];
+                        letter-spacing: -1.5px;
+                        font-family: 'Space Grotesk';
+                        font-style: normal;
+                        font-weight: 400;
+                      "
+                      >Medi</span
+                    ><span
+                      class="text-node root-0-paragraph-set-0-paragraph-0-text-1"
+                      style="
+                        color: rgba(75, 147, 191, 1);
+                        text-transform: none;
+                        line-break: auto;
+                        overflow-wrap: initial;
+                        white-space: pre;
+                        font-size: 64px;
+                        text-rendering: geometricPrecision;
+                        caret-color: rgba(75, 147, 191, 1);
+                        text-decoration: none;
+                        --font-id: gfont-space-grotesk;
+                        --fills: [[ '^ ', '~:fill-color', '#4B93BF',
+                          '~:fill-color-ref-id',
+                          '~ua19c5e35-ca12-808b-8005-44467662b4c0',
+                          '~:fill-color-ref-file',
+                          '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                          '~:fill-opacity', 1]];
+                        letter-spacing: -1.5px;
+                        font-family: 'Space Grotesk';
+                        font-style: normal;
+                        font-weight: 400;
+                      "
+                      >BASE</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- text: Where Patient Care Meets Precision Data -->
+          <div class="shape text where-pati-443eb103d1d9">
+            <div
+              class="text-node-html"
+              id="html-text-node-a19c5e35-ca12-808b-8005-443eb103d1d9"
+              data-x="555"
+              data-y="187"
+            >
+              <div
+                class="root rich-text root-0"
+                style="
+                  display: flex;
+                  white-space: break-spaces;
+                  align-items: flex-start;
+                "
+                xmlns="http://www.w3.org/1999/xhtml"
+              >
+                <div class="paragraph-set root-0-paragraph-set-0">
+                  <p
+                    class="paragraph root-0-paragraph-set-0-paragraph-0"
+                    dir="auto"
+                  >
+                    <span
+                      class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                      style="
+                        color: rgba(64, 21, 32, 1);
+                        text-transform: none;
+                        line-break: auto;
+                        overflow-wrap: initial;
+                        white-space: pre;
+                        font-size: 24px;
+                        text-rendering: geometricPrecision;
+                        caret-color: rgba(64, 21, 32, 1);
+                        text-decoration: none;
+                        --font-id: gfont-noto-sans;
+                        --fills: [[ '^ ', '~:fill-color', '#401520',
+                          '~:fill-color-ref-id',
+                          '~ua19c5e35-ca12-808b-8005-4446f756ba91',
+                          '~:fill-color-ref-file',
+                          '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                          '~:fill-opacity', 1]];
+                        letter-spacing: 0px;
+                        font-family: 'Noto Sans';
+                        font-style: italic;
+                        font-weight: 400;
+                      "
+                      >Where Patient Care Meets Precision Data</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- group: time -->
+        <div class="group time-444de7d6c018">
+          <!-- text: Current Time (GMT+8) -->
+          <div class="shape text current-ti-444d23275d79">
+            <div
+              class="text-node-html"
+              id="html-text-node-a19c5e35-ca12-808b-8005-444d23275d79"
+              data-x="1208"
+              data-y="163"
+            >
+              <div
+                class="root rich-text root-0"
+                style="
+                  display: flex;
+                  white-space: break-spaces;
+                  align-items: flex-start;
+                "
+                xmlns="http://www.w3.org/1999/xhtml"
+              >
+                <div class="paragraph-set root-0-paragraph-set-0">
+                  <p
+                    class="paragraph root-0-paragraph-set-0-paragraph-0"
+                    dir="ltr"
+                  >
+                    <span
+                      class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                      style="
+                        color: rgba(64, 21, 32, 1);
+                        text-transform: none;
+                        line-break: auto;
+                        overflow-wrap: initial;
+                        white-space: pre;
+                        font-size: 18px;
+                        text-rendering: geometricPrecision;
+                        caret-color: rgba(64, 21, 32, 1);
+                        text-decoration: none;
+                        --font-id: gfont-space-grotesk;
+                        --fills: [[ '^ ', '~:fill-color', '#401520',
+                          '~:fill-color-ref-id',
+                          '~ua19c5e35-ca12-808b-8005-4446f756ba91',
+                          '~:fill-color-ref-file',
+                          '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                          '~:fill-opacity', 1]];
+                        letter-spacing: 0px;
+                        font-family: 'Space Grotesk';
+                        font-style: normal;
+                        font-weight: 400;
+                      "
+                      >Current Time (GMT+8)</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- text: XX:XX:XX -->
+          <div class="shape text xx-xx-xx-444d5274672e">
+            <div
+              class="text-node-html"
+              id="html-text-node-a19c5e35-ca12-808b-8005-444d5274672e"
+              data-x="1118"
+              data-y="180"
+            >
+              <div
+                class="root rich-text root-0"
+                style="
+                  display: flex;
+                  white-space: break-spaces;
+                  align-items: flex-start;
+                "
+                xmlns="http://www.w3.org/1999/xhtml"
+              >
+                <div class="paragraph-set root-0-paragraph-set-0">
+                  <p
+                    class="paragraph root-0-paragraph-set-0-paragraph-0"
+                    dir="ltr"
+                  >
+                    <span
+                      class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                      style="
+                        color: rgba(64, 21, 32, 1);
+                        text-transform: none;
+                        line-break: auto;
+                        overflow-wrap: initial;
+                        white-space: break-spaces;
+                        font-size: 32px;
+                        text-rendering: geometricPrecision;
+                        caret-color: rgba(64, 21, 32, 1);
+                        text-decoration: none;
+                        --font-id: gfont-space-grotesk;
+                        --fills: [[ '^ ', '~:fill-color', '#401520',
+                          '~:fill-color-ref-id',
+                          '~ua19c5e35-ca12-808b-8005-4446f756ba91',
+                          '~:fill-color-ref-file',
+                          '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                          '~:fill-opacity', 1]];
+                        letter-spacing: 0px;
+                        font-family: 'Space Grotesk';
+                        font-style: normal;
+                        font-weight: 700;
+                      "
+                      >XX:XX:XX</span
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
