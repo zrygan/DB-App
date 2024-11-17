@@ -20,8 +20,7 @@ CREATE TABLE IF NOT EXISTS doctors_record (
     doctor_name VARCHAR(100)      NOT NULL,
     specialization VARCHAR(100)   NOT NULL,
     phoneNumber VARCHAR(100)      NOT NULL,
-    email VARCHAR(100)            NOT NULL,
-    medicalHierarchy VARCHAR(100) NOT NULL
+    email VARCHAR(100)            NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS consultation_record(

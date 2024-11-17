@@ -9,13 +9,12 @@ public class Doctors {
     private final String email;
     private final String medicalHierarchy;
 
-    public Doctors(String doctorId, String name, String specialization, String phoneNumber, String email, String medicalHierarchy) {
+    public Doctors(String doctorId, String name, String specialization, String phoneNumber, String email) {
         this.name = name;
         this.specialization = specialization;
         this.doctorId = doctorId;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.medicalHierarchy = medicalHierarchy;
     }
 
     // Getters for each attribute
@@ -37,9 +36,5 @@ public class Doctors {
 
     public String getEmail() {
         return email;
-    }
-
-    public String getMedicalHierarchy() {
-        return medicalHierarchy;
     }
 }
