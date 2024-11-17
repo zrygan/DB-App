@@ -1,0 +1,1 @@
+INSERT INTO patients_record VALUES()
