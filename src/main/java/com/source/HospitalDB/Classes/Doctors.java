@@ -1,4 +1,4 @@
-package com.source.HospitalDB;
+package main.java.com.source.HospitalDB.Classes;
 
 public class Doctors {
 
@@ -7,7 +7,6 @@ public class Doctors {
     private final String doctorId;
     private final String phoneNumber;
     private final String email;
-    private final String medicalHierarchy;
 
     public Doctors(String doctorId, String name, String specialization, String phoneNumber, String email) {
         this.name = name;

@@ -1,4 +1,4 @@
-package com.source.HospitalDB;
+package main.java.com.source.HospitalDB.DAO;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import main.java.com.source.HospitalDB.Classes.Medical;
 
 public class MedicalDAO {
     // Create a new medical record

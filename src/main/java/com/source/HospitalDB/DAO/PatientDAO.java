@@ -1,4 +1,4 @@
-package main.java.com.source.HospitalDB;
+package main.java.com.source.HospitalDB.DAO;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -9,6 +9,9 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import main.java.com.source.HospitalDB.Classes.Doctors;
+import main.java.com.source.HospitalDB.Classes.Patient;
 
 public class PatientDAO {
     // Create a new Patient record
