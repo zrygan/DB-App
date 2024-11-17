@@ -1,26 +1,20 @@
 package com.source.HospitalDB;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 public class Patient {
 
     // private ArrayList<Medical> MEDICAL;
     private final int patient_ID;
     private final String name;
     private int age;
-    private final LocalDate birthDate;
+    private final java.sql.Date birthDate;
     private final String sex;
     private double height;
     private double weight;
     private final String religion;
-    private Doctors DOCTOR;
-    private String status;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private int doctor;
+    private java.sql.Timestamp dateCreated;
 
-    //FIXME: add patient ID
-    public Patient(int patient_ID, String name, int age, LocalDate birthDate, String sex, double height, double weight, String religion, Doctors DOCTOR, String status, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public Patient(int patient_ID, String name, int age, java.sql.Date birthDate, String sex, double height, double weight, String religion, int doctor, java.sql.Timestamp dateCreated) {
         this.patient_ID = patient_ID;
         this.name = name;
         this.age = age;
@@ -29,10 +23,8 @@ public class Patient {
         this.height = height;
         this.weight = weight;
         this.religion = religion;
-        this.DOCTOR = DOCTOR;
-        this.status = status;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.doctor = doctor;
+        this.dateCreated = dateCreated;
     }
 
     // Getters
@@ -48,7 +40,7 @@ public class Patient {
         return age;
     }
 
-    public LocalDate getBirthDate() {
+    public java.sql.Date getBirthDate() {
         return birthDate;
     }
 
@@ -68,22 +60,13 @@ public class Patient {
         return religion;
     }
 
-    public Doctors getDoctor() {
-        return DOCTOR;
+    public int getDoctor() {
+        return doctor;
     }
 
-    public String getStatus() {
-        return status;
+    public java.sql.Timestamp getDateCreated() {
+        return dateCreated;
     }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
 
     // Setters
     public void setAge(int age) {
@@ -98,19 +81,11 @@ public class Patient {
         this.weight = weight;
     }
 
-    public void setDoctor(Doctors DOCTOR) {
-        this.DOCTOR = DOCTOR;
+    public void setDoctor(int doctor) {
+        this.doctor = doctor;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setDateCreated(java.sql.Timestamp dateCreated) {
+        this.dateCreated = dateCreated;
     }
 }
