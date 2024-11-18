@@ -1122,7 +1122,7 @@ body {
   border-radius: 0px;
 }
 
-/* btn_appointment */
+/* btn_Consultation */
 .btnappoin-4448b754c5c0 {
   position: absolute;
   left: 111px;
@@ -1131,10 +1131,10 @@ body {
   height: 60px;
 }
 
-/* Create an Appointment */
+/* Create an Consultation */
 .create-an-4448b754c5c2 {
   position: absolute;
-  left: 55px;
+  left: 65px;
   top: 15px;
   width: 206px;
   height: 27px;
