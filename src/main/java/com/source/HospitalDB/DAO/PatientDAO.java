@@ -29,8 +29,8 @@ public class PatientDAO {
             pstmt.setInt(3, patient.getAge());
             pstmt.setDate(4, patient.getBirthDate());
             pstmt.setString(5, patient.getSex());
-            pstmt.setDouble(6, patient.getHeight());
-            pstmt.setDouble(7, patient.getWeight());
+            pstmt.setBigDecimal(6, patient.getHeight());
+            pstmt.setBigDecimal(7, patient.getWeight());
             pstmt.setString(8, patient.getReligion());
             pstmt.setInt(9, patient.getDoctor());
             pstmt.setTimestamp(10, patient.getDateCreated());
@@ -41,9 +41,9 @@ public class PatientDAO {
 
     //Update a patient record
     public void update(Patient patient) throws SQLException {
-        String query = "UPDATE patient_record (patient_ID, name, age, birth_date, sex, height"
-                     + "weight, religion, DOCTOR, status, created_at)"
-                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "UPDATE patients_record (patient_ID, patient_name, age, birth_date, sex, patient_height"
+                     + "patient_weight, religion, doctor, date_created)"
+                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -52,8 +52,8 @@ public class PatientDAO {
             pstmt.setInt(3, patient.getAge());
             pstmt.setDate(4, patient.getBirthDate());
             pstmt.setString(5, patient.getSex());
-            pstmt.setDouble(6, patient.getHeight());
-            pstmt.setDouble(7, patient.getWeight());
+            pstmt.setBigDecimal(6, patient.getHeight());
+            pstmt.setBigDecimal(7, patient.getWeight());
             pstmt.setString(8, patient.getReligion());
             pstmt.setInt(9, patient.getDoctor());
             pstmt.setTimestamp(10, patient.getDateCreated());
