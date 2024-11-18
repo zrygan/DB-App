@@ -1,8 +1,10 @@
 package main.java.com.source.HospitalDB.Classes;
 
+import java.math.BigDecimal;
+
 public class VitalSigns {
     private int vitalSignsID;
-    private double temperature;
+    private BigDecimal temperature;
     private int pulse;
     private int respiratoryRate;
     private int systolicBP;
@@ -10,7 +12,7 @@ public class VitalSigns {
     private int spo2;
     private java.sql.Timestamp vitalSignsDate;
 
-    public VitalSigns(int vitalSignsID, double temperature, int pulse, int respiratoryRate, int systolicBP, int diastolicBP, int spo2, java.sql.Timestamp vitalSignsDate) {
+    public VitalSigns(int vitalSignsID, BigDecimal temperature, int pulse, int respiratoryRate, int systolicBP, int diastolicBP, int spo2, java.sql.Timestamp vitalSignsDate) {
         this.vitalSignsID = vitalSignsID;
         this.temperature = temperature;
         this.pulse = pulse;
@@ -25,8 +27,8 @@ public class VitalSigns {
     public int getVitalSignsID() { return vitalSignsID; }
     public void setVitalSignsID(int vitalSignsID) { this.vitalSignsID = vitalSignsID; }
 
-    public double getTemperature() { return temperature; }
-    public void setTemperature(double temperature) { this.temperature = temperature; }
+    public BigDecimal getTemperature() { return temperature; }
+    public void setTemperature(BigDecimal temperature) { this.temperature = temperature; }
 
     public int getPulse() { return pulse; }
     public void setPulse(int pulse) { this.pulse = pulse; }

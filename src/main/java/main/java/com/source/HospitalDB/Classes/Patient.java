@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 public class Patient {
 
-    // private ArrayList<Medical> MEDICAL;
     private final int patient_ID;
     private final String name;
     private int age;

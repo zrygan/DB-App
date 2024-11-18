@@ -7,8 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.source.HospitalDB.Classes.Medication;
 import com.source.HospitalDB.DBConnection;
+
+import main.java.com.source.HospitalDB.Classes.Medication;
 
 public class MedicationDAO {
     // Create a new Medication Record
@@ -77,8 +78,7 @@ public class MedicationDAO {
                     Medication medication = new Medication(
                         rs.getInt("medication_ID"),
                         rs.getString("generic_name"),
-                        rs.getString("brand_name"),
-
+                        rs.getString("brand_name")
                     );
                     meds.add(medication);
                 }
@@ -100,7 +100,7 @@ public class MedicationDAO {
                     Medication medication = new Medication(
                         rs.getInt("medication_ID"),
                         rs.getString("generic_name"),
-                        rs.getString("brand_name"),
+                        rs.getString("brand_name")
                     );
                     meds.add(medication);
                 }
