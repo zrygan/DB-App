@@ -5,63 +5,65 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.java.com.source.HospitalDB.DBConnection;
 import main.java.com.source.HospitalDB.Classes.Doctors;
 import main.java.com.source.HospitalDB.Classes.Patient;
 
 public class PatientDAO {
     // Create a new Patient record
-    public void createPatient(Patient patient, Connection conn) throws SQLException {
-        String query = "INSERT INTO patient_record (patient_ID, name, age, birth_date, sex, height"
-                     + "weight, religion, DOCTOR, status, created_at)"
-                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public void create(Patient patient) throws SQLException {
+        String query = "INSERT INTO patients_record (patient_ID, patient_name, age, birth_date, sex, patient_height"
+                     + "patient_weight, religion, doctor, date_created)"
+                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+        try (Connection conn = DBConnection.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, patient.getPatientId());
             pstmt.setString(2, patient.getName());
             pstmt.setInt(3, patient.getAge());
-            pstmt.setDate(4, java.sql.Date.valueOf(patient.getBirthDate()));
+            pstmt.setDate(4, patient.getBirthDate());
             pstmt.setString(5, patient.getSex());
             pstmt.setDouble(6, patient.getHeight());
             pstmt.setDouble(7, patient.getWeight());
             pstmt.setString(8, patient.getReligion());
-            //pstmt.setInt(9, patient.getDoctor().getDoctorId()); //Fix me: determine what is doctor's data type
-            pstmt.setString(10, patient.getStatus());
-            pstmt.setDate(11, java.sql.Date.valueOf(patient.getCreatedAt().toLocalDate()));
+            pstmt.setInt(9, patient.getDoctor());
+            pstmt.setTimestamp(10, patient.getDateCreated());
 
             pstmt.executeUpdate();
         }
     }
 
     //Update a patient record
-    public void updatePatient(Patient patient, Connection conn) throws SQLException {
+    public void update(Patient patient) throws SQLException {
         String query = "UPDATE patient_record (patient_ID, name, age, birth_date, sex, height"
                      + "weight, religion, DOCTOR, status, created_at)"
                      + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        try (PreparedStatement pstmt = conn.prepareStatement(query)) {
+        try (Connection conn = DBConnection.getConnection();
+        PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, patient.getPatientId());
             pstmt.setString(2, patient.getName());
             pstmt.setInt(3, patient.getAge());
-            pstmt.setDate(4, java.sql.Date.valueOf(patient.getBirthDate()));
+            pstmt.setDate(4, patient.getBirthDate());
             pstmt.setString(5, patient.getSex());
             pstmt.setDouble(6, patient.getHeight());
             pstmt.setDouble(7, patient.getWeight());
             pstmt.setString(8, patient.getReligion());
-            //pstmt.setInt(9, patient.getDoctor().getDoctorId()); //Fix me: determine what is doctor's data type
-            pstmt.setString(10, patient.getStatus());
-            pstmt.setDate(11, java.sql.Date.valueOf(patient.getCreatedAt().toLocalDate()));
+            pstmt.setInt(9, patient.getDoctor());
+            pstmt.setTimestamp(10, patient.getDateCreated());
 
             pstmt.executeUpdate();
         }
     }
 
     // Delete a patient record
-    public void deletePatient(int id) throws SQLException {
+    public void delete(int id) throws SQLException {
         String query = "DELETE FROM patient_record WHERE patient_ID = ?";
         
         try (Connection conn = DBConnection.getConnection();
@@ -72,66 +74,59 @@ public class PatientDAO {
     }
 
     //Viewing a patient record of a specific patient
-    public Patient getPatient(String name) throws SQLException {
-        String query = "SELECT patient_ID, age, birthDate, sex, height, weight, religion, DOCTOR, status, createdAt, updatedAt"
-                    + "FROM patient_record "
-                    + "WHERE name = ?";  
-
-        try (Connection conn = DBConnection.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, name);
-            try (ResultSet rs = pstmt.executeQuery()) {
+    public Patient getPatient(int id) throws SQLException {
+        String query = "SELECT * FROM patients_record WHERE patient_ID = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                    int patientID = rs.getInt("patient_ID");
-                    int age = rs.getInt("age");
-                    LocalDate birthdate = rs.getDate("birthdate").toLocalDate();
-                    String sex = rs.getString("sex");
-                    double height = rs.getDouble("height");
-                    double weight = rs.getInt("weight");
-                    String religion = rs.getString("religion");
-                    Doctors DOCTOR = (Doctors) rs.getObject("DOCTOR");
-                    String status = rs.getString("status");
-                    LocalDateTime createdAt = rs.getObject("createdAt", LocalDateTime.class);
-                    LocalDateTime updatedAt = rs.getObject("updatedAt", LocalDateTime.class);
-                    // Create and return the Patient object
-                    return new Patient(patientID, name, age, birthdate, sex, height, weight, religion, DOCTOR, status, createdAt, updatedAt);
-                } 
-                return null;
+                    return new Patient(
+                        rs.getInt("patient_ID"),
+                        rs.getString("patient_name"),
+                        rs.getInt("age"),
+                        rs.getDate("birth_date"),
+                        rs.getString("sex"),
+                        rs.getBigDecimal("patient_height"),
+                        rs.getBigDecimal("patient_weight"),
+                        rs.getString("religion"),
+                        rs.getInt("doctor"),
+                        rs.getTimestamp("date_created")
+                    );
+                }
             }
-        } 
+        }
+        return null;
     }
 
-    //Viewing all medical records of patients with the status 'Admitted' or 'Discharged'
-    public Patient status(String status) throws  SQLException{
-        String query = "SELECT patient_ID, name, age, birthDate, sex, height, weight, religion, DOCTOR, createdAt, updatedAt"
-                    + "FROM patient_record "
-                    + "WHERE status = ?";  
 
-        try (Connection conn = DBConnection.getConnection()) {
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, status);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    String name = rs.getString("name");
-                    int patientID = rs.getInt("patient_ID");
-                    int age = rs.getInt("age");
-                    LocalDate birthdate = rs.getDate("birthdate").toLocalDate();
-                    String sex = rs.getString("sex");
-                    double height = rs.getDouble("height");
-                    double weight = rs.getInt("weight");
-                    String religion = rs.getString("religion");
-                    Doctors DOCTOR = (Doctors) rs.getObject("DOCTOR");
-                    LocalDateTime createdAt = rs.getObject("createdAt", LocalDateTime.class);
-                    LocalDateTime updatedAt = rs.getObject("updatedAt", LocalDateTime.class);
-                    // Create and return the Patient object
-                    return new Patient(patientID, name, age, birthdate, sex, height, weight, religion, DOCTOR, status, createdAt, updatedAt);
-                } 
-                return null;
+    //Viewing all medical records of patients with the status 'Admitted' or 'Discharged'
+    public List<Patient> status(String status) throws  SQLException{
+        String query = "SELECT * FROM patients_record";
+        List<Patient> patients = new ArrayList<>();
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                patients.add(new Patient(
+                    rs.getInt("patient_ID"),
+                    rs.getString("patient_name"),
+                    rs.getInt("age"),
+                    rs.getDate("birth_date"),
+                    rs.getString("sex"),
+                    rs.getBigDecimal("patient_height"),
+                    rs.getBigDecimal("patient_weight"),
+                    rs.getString("religion"),
+                    rs.getInt("doctor"),
+                    rs.getTimestamp("date_created")
+                ));
             }
-        } 
+        }
+        return patients;
     }
 
     // Method to get a comprehensive summary of all medical records and return it as a string
+    // FIXME: Review this - Jaztin
     public String getPatientRecordSummary() throws SQLException {
         StringBuilder summary = new StringBuilder();
         

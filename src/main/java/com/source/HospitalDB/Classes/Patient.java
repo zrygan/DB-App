@@ -1,5 +1,7 @@
 package main.java.com.source.HospitalDB.Classes;
 
+import java.math.BigDecimal;
+
 public class Patient {
 
     // private ArrayList<Medical> MEDICAL;
@@ -8,13 +10,13 @@ public class Patient {
     private int age;
     private final java.sql.Date birthDate;
     private final String sex;
-    private double height;
-    private double weight;
+    private BigDecimal height;
+    private BigDecimal weight;
     private final String religion;
     private int doctor;
     private java.sql.Timestamp dateCreated;
 
-    public Patient(int patient_ID, String name, int age, java.sql.Date birthDate, String sex, double height, double weight, String religion, int doctor, java.sql.Timestamp dateCreated) {
+    public Patient(int patient_ID, String name, int age, java.sql.Date birthDate, String sex, BigDecimal height, BigDecimal weight, String religion, int doctor, java.sql.Timestamp dateCreated) {
         this.patient_ID = patient_ID;
         this.name = name;
         this.age = age;
@@ -48,11 +50,11 @@ public class Patient {
         return sex;
     }
 
-    public double getHeight() {
+    public BigDecimal getHeight() {
         return height;
     }
 
-    public double getWeight() {
+    public BigDecimal getWeight() {
         return weight;
     }
 
@@ -73,11 +75,11 @@ public class Patient {
         this.age = age;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(BigDecimal height) {
         this.height = height;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(BigDecimal weight) {
         this.weight = weight;
     }
 

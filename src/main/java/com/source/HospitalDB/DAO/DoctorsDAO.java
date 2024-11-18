@@ -1,6 +1,7 @@
 package main.java.com.source.HospitalDB.DAO;
 
 // import java.math.BigDecimal;
+import com.source.HospitalDB.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,7 @@ import main.java.com.source.HospitalDB.Classes.Doctors;
 
 public class DoctorsDAO {
 
-    public static void addDoctors(Doctors doctors) throws SQLException {
+    public static void create(Doctors doctors) throws SQLException {
         String query = "INSERT INTO doctors_record (name, specialization, doctor_ID, phoneNumber, email, medicalHierarchy) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
