@@ -1,19 +1,18 @@
 <%-- 
-    Document   : test
-    Created on : Nov 13, 2024, 8:28:04 AM
+    Document   : search_patient_result
+    Created on : Nov 18, 2024, 2:51:36 PM
     Author     : Windows User
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Test Variable Processing</title>
+        <title>Search Patient Result</title>
     </head>
     <body>
-        <h1> Successful</h1>
-        <h1> Fail</h1>
+        <h1>INFORMATION of PATIENT</h1>
+        <h1>Patient is not found in MediBASE</h1>
     </body>
 </html>
