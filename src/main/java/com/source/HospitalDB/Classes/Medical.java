@@ -1,4 +1,4 @@
-package com.source.HospitalDB;
+package main.java.com.source.HospitalDB.Classes;
 
 import java.time.LocalDateTime;
 

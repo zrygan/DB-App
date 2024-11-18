@@ -2,6 +2,9 @@ package com.source.HospitalDB;
 
 import java.sql.SQLException;
 
+import main.java.com.source.HospitalDB.Classes.Doctors;
+import main.java.com.source.HospitalDB.DAO.DoctorsDAO;
+
 public class App {
     
     public static void main(String[] args) {
