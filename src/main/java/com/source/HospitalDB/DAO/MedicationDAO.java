@@ -1,4 +1,4 @@
-package main.java.com.source.HospitalDB.DAO;
+package com.source.HospitalDB.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import com.source.HospitalDB.DBConnection;
 
-import main.java.com.source.HospitalDB.Classes.Medication;
+import com.source.HospitalDB.Classes.Medication;
 
 public class MedicationDAO {
     // Create a new Medication Record

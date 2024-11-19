@@ -1,4 +1,4 @@
-package main.java.com.source.HospitalDB.DAO;
+package com.source.HospitalDB.DAO;
 
 // import java.math.BigDecimal;
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.source.HospitalDB.DBConnection;
 
-import main.java.com.source.HospitalDB.Classes.Doctors;
+import com.source.HospitalDB.Classes.Doctors;
 
 public class DoctorsDAO {
 
@@ -32,7 +32,7 @@ public class DoctorsDAO {
     }
 
         // Read Doctor by ID
-    public Doctors get(int doctor_ID) throws SQLException {
+    public static Doctors get(int doctor_ID) throws SQLException {
         String query = "SELECT * FROM doctors_record WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -53,7 +53,7 @@ public class DoctorsDAO {
     }
 
         // Update Doctors
-    public void update(Doctors doctors) throws SQLException {
+    public static void update(Doctors doctors) throws SQLException {
         String query = "UPDATE doctors_record SET doctor_name = ?, specialization = ?, phoneNumber = ?, email = ?, WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {

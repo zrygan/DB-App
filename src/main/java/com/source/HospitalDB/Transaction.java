@@ -5,13 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import main.java.com.source.HospitalDB.Classes.Doctors;
-import main.java.com.source.HospitalDB.Classes.Medical;
-import main.java.com.source.HospitalDB.Classes.Medication;
-import main.java.com.source.HospitalDB.Classes.Patient;
-import main.java.com.source.HospitalDB.DAO.MedicalDAO;
-import main.java.com.source.HospitalDB.DAO.MedicationDAO;
-
 public class Transaction {
 
     // ******************************    

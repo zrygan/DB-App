@@ -1,4 +1,4 @@
-package main.java.com.source.HospitalDB.Classes;
+package com.source.HospitalDB.Classes;
 
 /*
 Medication Record

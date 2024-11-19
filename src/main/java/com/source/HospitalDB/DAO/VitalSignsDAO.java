@@ -1,4 +1,4 @@
-package main.java.com.source.HospitalDB.DAO;
+package com.source.HospitalDB.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.source.HospitalDB.DBConnection;
 
-import main.java.com.source.HospitalDB.Classes.VitalSigns;
+import com.source.HospitalDB.Classes.VitalSigns;
 
 public class VitalSignsDAO {
     public void addVitalSigns(VitalSigns vitalSigns) throws SQLException {

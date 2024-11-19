@@ -10,8 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.source.HospitalDB.Classes.Medical;
-import main.java.com.source.HospitalDB.Classes.Patient;
+import com.source.HospitalDB.Classes.Medical;
+import com.source.HospitalDB.Classes.Patient;
 
 public class Reports {
     // ***************************
