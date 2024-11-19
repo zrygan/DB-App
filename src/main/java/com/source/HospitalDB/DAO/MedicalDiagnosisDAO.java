@@ -1,4 +1,4 @@
-package main.java.com.source.HospitalDB.DAO;
+package com.source.HospitalDB.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import com.source.HospitalDB.DBConnection;
 
-import main.java.com.source.HospitalDB.Classes.MedicalDiagnosis;
+import com.source.HospitalDB.Classes.MedicalDiagnosis;
 
 public class MedicalDiagnosisDAO {
     public void addMedicalDiagnosis(MedicalDiagnosis diagnosis) throws SQLException {

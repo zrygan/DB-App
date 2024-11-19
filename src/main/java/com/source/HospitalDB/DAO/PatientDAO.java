@@ -1,4 +1,4 @@
-package main.java.com.source.HospitalDB.DAO;
+package com.source.HospitalDB.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,14 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.source.HospitalDB.DBConnection;
-
-import main.java.com.source.HospitalDB.Classes.Patient;
+import com.source.HospitalDB.Classes.Patient;
 
 public class PatientDAO {
     // Create a new Patient record
-    public void create(Patient patient) throws SQLException {
+    public static void create(Patient patient) throws SQLException {
         String query = "INSERT INTO patients_record (patient_ID, patient_name, age, birth_date, sex, patient_height"
-                     + "patient_weight, religion, doctor, date_created)"
+                     + "patient_weight, religion, doctor_ID, date_created)"
                      + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
