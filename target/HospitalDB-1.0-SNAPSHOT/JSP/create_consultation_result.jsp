@@ -22,7 +22,7 @@
             String patient_name = request.getParameter("patient_name") != null ? request.getParameter("patient_name") : "Not Provided";
             int age = 19; // FIXME: change this (age = year.now() - birthdate.year()
             String doctor_name = request.getParameter("doctor_name") != null ? request.getParameter("doctor_name") : "Not Provided";
-            Doctors doctor = new Doctors("12346", "Rin", "Surgeon", "(123) 356-5678", "rin@zhean.com");
+            Doctors doctor = new Doctors(88888888, "This is a new person", "Ohayo", "(123) 356-5678", "yarnie@x.com");
             DoctorsDAO.create(doctor);
         %>
         
