@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.source.HospitalDB.DBConnection;
 import com.source.HospitalDB.Classes.Patient;
+import com.source.HospitalDB.DBConnection;
 
 public class PatientDAO {
     // Create a new Patient record
     public static void create(Patient patient) throws SQLException {
-        String query = "INSERT INTO patients_record (patient_ID, patient_name, age, birth_date, sex, patient_height"
+        String query = "INSERT INTO patients_record (patient_ID, patient_name, age, birth_date, sex, patient_height,"
                      + "patient_weight, religion, doctor_ID, date_created)"
                      + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -36,8 +36,8 @@ public class PatientDAO {
     }
 
     //Update a patient record
-    public void update(Patient patient) throws SQLException {
-        String query = "UPDATE patients_record (patient_ID, patient_name, age, birth_date, sex, patient_height"
+    public static void update(Patient patient) throws SQLException {
+        String query = "UPDATE patients_record (patient_ID, patient_name, age, birth_date, sex, patient_height,"
                      + "patient_weight, religion, doctor, date_created)"
                      + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -59,7 +59,7 @@ public class PatientDAO {
     }
 
     // Delete a patient record
-    public void delete(int id) throws SQLException {
+    public static void delete(int id) throws SQLException {
         String query = "DELETE FROM patient_record WHERE patient_ID = ?";
         
         try (Connection conn = DBConnection.getConnection();
@@ -70,7 +70,7 @@ public class PatientDAO {
     }
 
     //Viewing a patient record of a specific patient
-    public Patient getPatient(int id) throws SQLException {
+    public static Patient getPatient(int id) throws SQLException {
         String query = "SELECT * FROM patients_record WHERE patient_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -80,14 +80,12 @@ public class PatientDAO {
                     return new Patient(
                         rs.getInt("patient_ID"),
                         rs.getString("patient_name"),
-                        rs.getInt("age"),
                         rs.getDate("birth_date"),
                         rs.getString("sex"),
                         rs.getBigDecimal("patient_height"),
                         rs.getBigDecimal("patient_weight"),
                         rs.getString("religion"),
-                        rs.getInt("doctor"),
-                        rs.getTimestamp("date_created")
+                        rs.getInt("doctor")
                     );
                 }
             }
@@ -97,7 +95,7 @@ public class PatientDAO {
 
 
     //Viewing all medical records of patients with the status 'Admitted' or 'Discharged'
-    public List<Patient> status(String status) throws  SQLException{
+    public static List<Patient> status(String status) throws  SQLException{
         String query = "SELECT * FROM patients_record";
         List<Patient> patients = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -107,14 +105,12 @@ public class PatientDAO {
                 patients.add(new Patient(
                     rs.getInt("patient_ID"),
                     rs.getString("patient_name"),
-                    rs.getInt("age"),
                     rs.getDate("birth_date"),
                     rs.getString("sex"),
                     rs.getBigDecimal("patient_height"),
                     rs.getBigDecimal("patient_weight"),
                     rs.getString("religion"),
-                    rs.getInt("doctor"),
-                    rs.getTimestamp("date_created")
+                    rs.getInt("doctor")
                 ));
             }
         }
@@ -123,7 +119,7 @@ public class PatientDAO {
 
     // Method to get a comprehensive summary of all medical records and return it as a string
     // FIXME: Review this - Jaztin
-    public String getPatientRecordSummary() throws SQLException {
+    public static String getPatientRecordSummary() throws SQLException {
         StringBuilder summary = new StringBuilder();
         
         // Query for each summary

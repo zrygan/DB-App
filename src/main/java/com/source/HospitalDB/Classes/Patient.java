@@ -1,36 +1,43 @@
 package com.source.HospitalDB.Classes;
 
 import java.math.BigDecimal;
+import java.sql.Date; 
+import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
 
-public class Patient {
+public final class Patient {
 
-    private final int patient_ID;
+    private final int patientId;  
     private final String name;
-    private int age;
-    private final java.sql.Date birthDate;
+    private final int age;
+    private final Date birthDate;  
     private final String sex;
-    private BigDecimal height;
-    private BigDecimal weight;
+    private final BigDecimal height;
+    private final BigDecimal weight;
     private final String religion;
-    private int doctor;
-    private java.sql.Timestamp dateCreated;
+    private final int doctor;
+    private final Timestamp dateCreated;
 
-    public Patient(int patient_ID, String name, int age, java.sql.Date birthDate, String sex, BigDecimal height, BigDecimal weight, String religion, int doctor, java.sql.Timestamp dateCreated) {
-        this.patient_ID = patient_ID;
+    // Constructor
+    public Patient(int patientId, String name, Date birthDate, String sex, 
+                   BigDecimal height, BigDecimal weight, String religion, int doctor) {
+        this.patientId = patientId;
         this.name = name;
-        this.age = age;
         this.birthDate = birthDate;
+        this.age = calculate_age();
         this.sex = sex;
         this.height = height;
         this.weight = weight;
         this.religion = religion;
         this.doctor = doctor;
-        this.dateCreated = dateCreated;
+        this.dateCreated = time_now();
     }
 
-    // Getters
-    public int getPatientId(){
-        return patient_ID;
+    // Getters (No setters for immutability)
+    public int getPatientId() {
+        return patientId;
     }
 
     public String getName() {
@@ -41,7 +48,7 @@ public class Patient {
         return age;
     }
 
-    public java.sql.Date getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
@@ -65,28 +72,20 @@ public class Patient {
         return doctor;
     }
 
-    public java.sql.Timestamp getDateCreated() {
+    public Timestamp getDateCreated() {
         return dateCreated;
     }
 
-    // Setters
-    public void setAge(int age) {
-        this.age = age;
+    public int calculate_age() {
+        LocalDate curr_date = LocalDate.now(); 
+        LocalDate birth_date = birthDate.toLocalDate(); 
+        Period period = Period.between(birth_date, curr_date); 
+        
+        return period.getYears(); 
     }
-
-    public void setHeight(BigDecimal height) {
-        this.height = height;
-    }
-
-    public void setWeight(BigDecimal weight) {
-        this.weight = weight;
-    }
-
-    public void setDoctor(int doctor) {
-        this.doctor = doctor;
-    }
-
-    public void setDateCreated(java.sql.Timestamp dateCreated) {
-        this.dateCreated = dateCreated;
+    
+    public Timestamp time_now(){
+        Instant instant = Instant.now();
+        return Timestamp.from(instant);
     }
 }

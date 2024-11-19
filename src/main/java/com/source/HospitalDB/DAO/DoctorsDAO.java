@@ -18,7 +18,7 @@ public class DoctorsDAO {
         String query = "INSERT INTO doctors_record (doctor_ID, doctor_name, specialization, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, doctors.getDoctorId());
+            pstmt.setInt(1, doctors.getDoctorId());
             pstmt.setString(2, doctors.getName());
             pstmt.setString(3, doctors.getSpecialization());
             pstmt.setString(4, doctors.getPhoneNumber());
@@ -40,7 +40,7 @@ public class DoctorsDAO {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 return new Doctors(
-                    rs.getString("doctor_ID"),
+                    rs.getInt("doctor_ID"),
                     rs.getString("doctor_name"),
                     rs.getString("specialization"),
                     rs.getString("phoneNumber"),
@@ -62,7 +62,7 @@ public class DoctorsDAO {
             pstmt.setString(2, doctors.getSpecialization());
             pstmt.setString(3, doctors.getPhoneNumber());
             pstmt.setString(4, doctors.getEmail());
-            pstmt.setString(5, doctors.getDoctorId());
+            pstmt.setInt(5, doctors.getDoctorId());
 
             pstmt.executeUpdate();
         }
@@ -89,7 +89,7 @@ public class DoctorsDAO {
             try (ResultSet rs = pstmt.executeQuery()) { 
                 while (rs.next()) {
                     Doctors doctors = new Doctors(
-                        rs.getString("doctor_ID"),
+                        rs.getInt("doctor_ID"),
                         rs.getString("doctor_name"),
                         rs.getString("specialization"),
                         rs.getString("phoneNumber"),

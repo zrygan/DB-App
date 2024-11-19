@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS patients_record (
     patient_name VARCHAR(100) NOT NULL,
     age INT NOT NULL,
     birth_date DATE NOT NULL,
-    sex ENUM('M', 'F') NOT NULL,
+    sex VARCHAR(5) NOT NULL,
     patient_height DECIMAL(5, 2) NOT NULL,        -- Height in centimeters or inches
     patient_weight DECIMAL(5, 2) NOT NULL,        -- Weight in kilograms or pounds
     religion VARCHAR(50) NOT NULL,
