@@ -7,12 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.com.source.HospitalDB.Classes.Medication;
 import com.source.HospitalDB.DBConnection;
+
+import main.java.com.source.HospitalDB.Classes.Medication;
 
 public class MedicationDAO {
     // Create a new Medication Record
-    public void addMedication(Medication medication) throws SQLException {
+    public void create(Medication medication) throws SQLException {
         String query = "INSERT INTO medication_record (generic_name, brand_name) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -24,7 +25,7 @@ public class MedicationDAO {
     }
 
     // Read Patient by ID
-    public Medication getMedication(int med_id) throws SQLException {
+    public Medication get(int med_id) throws SQLException {
         String query = "SELECT * FROM medication_record WHERE medication_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -42,20 +43,20 @@ public class MedicationDAO {
     }
 
     // Update Medication
-    public void updateMedication(Medication record) throws SQLException {
-        String query = "INSERT INTO medication_record (generic_name, brand_name) VALUES (?, ?)";
+    public void update(Medication record) throws SQLException {
+        String query = "INSERT INTO medication_record (medication_ID, generic_name, brand_name) VALUES (?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
     
-            pstmt.setString(1, record.getGenericName());
-            pstmt.setString(2, record.getBrandName());
+            pstmt.setInt(1, record.getMedicationID());
+            pstmt.setString(2, record.getGenericName());
+            pstmt.setString(3, record.getBrandName());
             pstmt.executeUpdate();
         }
     }
     
-
     // Delete Medication by ID
-    public void deleteMedication(int id) throws SQLException {
+    public void delete(int id) throws SQLException {
         String query = "DELETE FROM medication_record WHERE medication_ID = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -77,12 +78,7 @@ public class MedicationDAO {
                     Medication medication = new Medication(
                         rs.getInt("medication_ID"),
                         rs.getString("generic_name"),
-                        rs.getString("brand_name"),
-                        rs.getTimestamp("date_time"), 
-                        rs.getString("frequency"),
-                        rs.getFloat("dosage"),
-                        rs.getInt("doctor_ID"),
-                        rs.getInt("patient_ID")
+                        rs.getString("brand_name")
                     );
                     meds.add(medication);
                 }
@@ -104,12 +100,7 @@ public class MedicationDAO {
                     Medication medication = new Medication(
                         rs.getInt("medication_ID"),
                         rs.getString("generic_name"),
-                        rs.getString("brand_name"),
-                        rs.getTimestamp("date_time"), 
-                        rs.getString("frequency"),
-                        rs.getFloat("dosage"),
-                        rs.getInt("doctor_ID"),
-                        rs.getInt("patient_ID")
+                        rs.getString("brand_name")
                     );
                     meds.add(medication);
                 }

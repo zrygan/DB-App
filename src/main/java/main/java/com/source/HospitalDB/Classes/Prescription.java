@@ -1,15 +1,17 @@
 package main.java.com.source.HospitalDB.Classes;
 
+import java.math.BigDecimal;
+
 public class Prescription {
     private int prescriptionID;
     private int medicationID;
     private java.sql.Timestamp prescriptionDate;
     private int frequency;
-    private double dosage;
+    private BigDecimal dosage;
     private int doctorID;
     private int patientID;
 
-    public Prescription(int prescriptionID, int medicationID, java.sql.Timestamp prescriptionDate, int frequency, double dosage, int doctorID, int patientID) {
+    public Prescription(int prescriptionID, int medicationID, java.sql.Timestamp prescriptionDate, int frequency, BigDecimal dosage, int doctorID, int patientID) {
     this.prescriptionID = prescriptionID;
     this.medicationID = medicationID;
     this.prescriptionDate = prescriptionDate;
@@ -32,8 +34,8 @@ public class Prescription {
     public int getFrequency() { return frequency; }
     public void setFrequency(int frequency) { this.frequency = frequency; }
 
-    public double getDosage() { return dosage; }
-    public void setDosage(double dosage) { this.dosage = dosage; }
+    public BigDecimal getDosage() { return dosage; }
+    public void setDosage(BigDecimal dosage) { this.dosage = dosage; }
 
     public int getDoctorID() { return doctorID; }
     public void setDoctorID(int doctorID) { this.doctorID = doctorID; }
