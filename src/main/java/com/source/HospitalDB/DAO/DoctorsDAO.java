@@ -8,9 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.source.HospitalDB.DBConnection;
-
 import com.source.HospitalDB.Classes.Doctors;
+import com.source.HospitalDB.DBConnection;
 
 public class DoctorsDAO {
 
@@ -69,7 +68,7 @@ public class DoctorsDAO {
     }
 
         // Delete Doctor by ID
-    public void delete(int id) throws SQLException {
+    public static void delete(int id) throws SQLException {
         String query = "DELETE FROM doctors_record WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -79,7 +78,7 @@ public class DoctorsDAO {
     }
 
     // Viewing all doctors in the Doctors' Record with the same Specialization
-    public List<Doctors> getDoctorSameSpec(String doctorSameSpec) throws SQLException {
+    public static List<Doctors> getDoctorSameSpec(String doctorSameSpec) throws SQLException {
         List<Doctors> spec = new ArrayList<>();
         String query = "SELECT * FROM doctors_record WHERE specialization = ?";
         try (Connection conn = DBConnection.getConnection();

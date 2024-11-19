@@ -8,13 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.source.HospitalDB.DBConnection;
-
 import com.source.HospitalDB.Classes.Consultation;
+import com.source.HospitalDB.DBConnection;
 
 public class ConsultationDAO {
 
-    public void create(Consultation consultation) throws SQLException {
+    public static void create(Consultation consultation) throws SQLException {
         String query = "INSERT INTO consultation_record (consultation_ID, prescription_ID, doctor_ID, patient_ID, vital_signs_ID, lab_report_ID, consultation_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -29,7 +28,7 @@ public class ConsultationDAO {
         }
     }
     
-    public Consultation get(int consultationId) throws SQLException {
+    public static Consultation get(int consultationId) throws SQLException {
         String query = "SELECT * FROM consultation_record WHERE consultation_ID = ?";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -51,7 +50,7 @@ public class ConsultationDAO {
         return null;
     }
     
-    public List<Consultation> getAll() throws SQLException {
+    public static List<Consultation> getAll() throws SQLException {
         String query = "SELECT * FROM consultation_record";
         List<Consultation> consultations = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -72,29 +71,29 @@ public class ConsultationDAO {
         return consultations;
     }
     
-        public void update(Consultation consultation) throws SQLException {
-            String query = "UPDATE consultation_record SET prescription_ID = ?, doctor_ID = ?, patient_ID = ?, vital_signs_ID = ?, lab_report_ID = ?, consultation_date = ? WHERE consultation_ID = ?";
-            try (Connection conn = DBConnection.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, consultation.getPrescriptionID());
-                stmt.setInt(2, consultation.getDoctorID());
-                stmt.setInt(3, consultation.getPatientID());
-                stmt.setInt(4, consultation.getVitalSignsID());
-                stmt.setInt(5, consultation.getLabReportID());
-                stmt.setTimestamp(6, consultation.getConsultationDate());
-                stmt.setInt(7, consultation.getConsultationID()); // Primary key
-                stmt.executeUpdate();
-            }
+    public static void update(Consultation consultation) throws SQLException {
+        String query = "UPDATE consultation_record SET prescription_ID = ?, doctor_ID = ?, patient_ID = ?, vital_signs_ID = ?, lab_report_ID = ?, consultation_date = ? WHERE consultation_ID = ?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, consultation.getPrescriptionID());
+            stmt.setInt(2, consultation.getDoctorID());
+            stmt.setInt(3, consultation.getPatientID());
+            stmt.setInt(4, consultation.getVitalSignsID());
+            stmt.setInt(5, consultation.getLabReportID());
+            stmt.setTimestamp(6, consultation.getConsultationDate());
+            stmt.setInt(7, consultation.getConsultationID()); // Primary key
+            stmt.executeUpdate();
         }
-    
-        public void delete(int consultationId) throws SQLException {
-            String query = "DELETE FROM consultation_record WHERE consultation_ID = ?";
-            try (Connection conn = DBConnection.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(query)) {
-                stmt.setInt(1, consultationId);
-                stmt.executeUpdate();
-            }
+    }
+
+    public static void delete(int consultationId) throws SQLException {
+        String query = "DELETE FROM consultation_record WHERE consultation_ID = ?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, consultationId);
+            stmt.executeUpdate();
         }
+    }
 }
     
 

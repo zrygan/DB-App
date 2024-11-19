@@ -6,12 +6,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.source.HospitalDB.Classes.LabTest;
 import com.source.HospitalDB.DBConnection;
 
-import com.source.HospitalDB.Classes.LabTest;
-
 public class LabTestDAO {
-    public void addLabTest(LabTest labTest) throws SQLException {
+    public static void addLabTest(LabTest labTest) throws SQLException {
         String query = "INSERT INTO lab_test_record (test_ID, test_description) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -21,7 +20,7 @@ public class LabTestDAO {
         }
     }
 
-    public LabTest getLabTest(int testId) throws SQLException {
+    public static LabTest getLabTest(int testId) throws SQLException {
         String query = "SELECT * FROM lab_test_record WHERE test_ID = ?";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -38,7 +37,7 @@ public class LabTestDAO {
         return null;
     }
 
-    public List<LabTest> getAllLabTests() throws SQLException {
+    public static List<LabTest> getAllLabTests() throws SQLException {
         String query = "SELECT * FROM lab_test_record";
         List<LabTest> labTests = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -54,7 +53,7 @@ public class LabTestDAO {
         return labTests;
     }
 
-    public void updateLabTest(LabTest labTest) throws SQLException {
+    public static void updateLabTest(LabTest labTest) throws SQLException {
         String query = "UPDATE lab_test_record SET test_description = ? WHERE test_ID = ?";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -64,7 +63,7 @@ public class LabTestDAO {
         }
     }
 
-    public void delete(int testId) throws SQLException {
+    public static void delete(int testId) throws SQLException {
         String query = "DELETE FROM lab_test_record WHERE test_ID = ?";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {

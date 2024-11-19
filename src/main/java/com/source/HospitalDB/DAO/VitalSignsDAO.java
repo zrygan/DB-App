@@ -8,12 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.source.HospitalDB.Classes.VitalSigns;
 import com.source.HospitalDB.DBConnection;
 
-import com.source.HospitalDB.Classes.VitalSigns;
-
 public class VitalSignsDAO {
-    public void addVitalSigns(VitalSigns vitalSigns) throws SQLException {
+    public static void addVitalSigns(VitalSigns vitalSigns) throws SQLException {
         String query = "INSERT INTO vital_signs_record (vital_signs_ID, temperature, pulse, respiratory_rate, systolic_bp, diastolic_bp, SPO2, vital_signs_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -29,7 +28,7 @@ public class VitalSignsDAO {
         }
     }
 
-    public VitalSigns getVitalSigns(int vitalSignsId) throws SQLException {
+    public static VitalSigns getVitalSigns(int vitalSignsId) throws SQLException {
         String query = "SELECT * FROM vital_signs_record WHERE vital_signs_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -52,7 +51,7 @@ public class VitalSignsDAO {
         return null;
     }
 
-    public List<VitalSigns> getAllVitalSigns() throws SQLException {
+    public static List<VitalSigns> getAllVitalSigns() throws SQLException {
         String query = "SELECT * FROM vital_signs_record";
         List<VitalSigns> vitalSignsList = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -74,7 +73,7 @@ public class VitalSignsDAO {
         return vitalSignsList;
     }
 
-    public void updateVitalSigns(VitalSigns vitalSigns) throws SQLException {
+    public static void updateVitalSigns(VitalSigns vitalSigns) throws SQLException {
         String query = "UPDATE vital_signs_record SET temperature = ?, pulse = ?, respiratory_rate = ?, systolic_bp = ?, diastolic_bp = ?, SPO2 = ?, vital_signs_date = ? WHERE vital_signs_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -90,7 +89,7 @@ public class VitalSignsDAO {
         }
     }
 
-    public void deleteVitalSigns(int vitalSignsId) throws SQLException {
+    public static void deleteVitalSigns(int vitalSignsId) throws SQLException {
         String query = "DELETE FROM vital_signs_record WHERE vital_signs_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

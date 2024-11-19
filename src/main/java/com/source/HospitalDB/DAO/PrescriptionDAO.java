@@ -8,12 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.source.HospitalDB.Classes.Prescription;
 import com.source.HospitalDB.DBConnection;
 
-import com.source.HospitalDB.Classes.Prescription;
-
 public class PrescriptionDAO {
-    public void addPrescription(Prescription prescription) throws SQLException {
+    public static void addPrescription(Prescription prescription) throws SQLException {
         String query = "INSERT INTO prescription_record (prescription_ID, medication_ID, prescription_date, frequency, dosage, doctor_ID, patient_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -28,7 +27,7 @@ public class PrescriptionDAO {
         }
     }
 
-    public Prescription getPrescription(int prescriptionId) throws SQLException {
+    public static Prescription getPrescription(int prescriptionId) throws SQLException {
         String query = "SELECT * FROM prescription_record WHERE prescription_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -50,7 +49,7 @@ public class PrescriptionDAO {
         return null;
     }
 
-    public List<Prescription> getAllPrescriptions() throws SQLException {
+    public static List<Prescription> getAllPrescriptions() throws SQLException {
         String query = "SELECT * FROM prescription_record";
         List<Prescription> prescriptions = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -71,7 +70,7 @@ public class PrescriptionDAO {
         return prescriptions;
     }
 
-    public void updatePrescription(Prescription prescription) throws SQLException {
+    public static void updatePrescription(Prescription prescription) throws SQLException {
         String query = "UPDATE prescription_record SET medication_ID = ?, prescription_date = ?, frequency = ?, dosage = ?, doctor_ID = ?, patient_ID = ? WHERE prescription_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -86,7 +85,7 @@ public class PrescriptionDAO {
         }
     }
 
-    public void deletePrescription(int prescriptionId) throws SQLException {
+    public static void deletePrescription(int prescriptionId) throws SQLException {
         String query = "DELETE FROM prescription_record WHERE prescription_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

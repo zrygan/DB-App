@@ -8,12 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.source.HospitalDB.Classes.ChiefComplaint;
 import com.source.HospitalDB.DBConnection;
 
-import com.source.HospitalDB.Classes.ChiefComplaint;
-
 public class ChiefComplaintDAO {
-    public void addChiefComplaint(ChiefComplaint complaint) throws SQLException {
+    public static void addChiefComplaint(ChiefComplaint complaint) throws SQLException {
         String query = "INSERT INTO chief_complaint_record (complaint_ID, complaint_description) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -23,7 +22,7 @@ public class ChiefComplaintDAO {
         }
     }
 
-    public ChiefComplaint getChiefComplaint(int complaintId) throws SQLException {
+    public static ChiefComplaint getChiefComplaint(int complaintId) throws SQLException {
         String query = "SELECT * FROM chief_complaint_record WHERE complaint_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -40,7 +39,7 @@ public class ChiefComplaintDAO {
         return null;
     }
 
-    public List<ChiefComplaint> getAllChiefComplaints() throws SQLException {
+    public static List<ChiefComplaint> getAllChiefComplaints() throws SQLException {
         String query = "SELECT * FROM chief_complaint_record";
         List<ChiefComplaint> complaints = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -56,7 +55,7 @@ public class ChiefComplaintDAO {
         return complaints;
     }
 
-    public void updateChiefComplaint(ChiefComplaint complaint) throws SQLException {
+    public static void updateChiefComplaint(ChiefComplaint complaint) throws SQLException {
         String query = "UPDATE chief_complaint_record SET complaint_description = ? WHERE complaint_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -66,7 +65,7 @@ public class ChiefComplaintDAO {
         }
     }
 
-    public void deleteChiefComplaint(int complaintId) throws SQLException {
+    public static void deleteChiefComplaint(int complaintId) throws SQLException {
         String query = "DELETE FROM chief_complaint_record WHERE complaint_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

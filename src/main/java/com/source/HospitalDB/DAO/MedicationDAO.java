@@ -7,13 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.source.HospitalDB.DBConnection;
-
 import com.source.HospitalDB.Classes.Medication;
+import com.source.HospitalDB.DBConnection;
 
 public class MedicationDAO {
     // Create a new Medication Record
-    public void create(Medication medication) throws SQLException {
+    public static void create(Medication medication) throws SQLException {
         String query = "INSERT INTO medication_record (generic_name, brand_name) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -25,7 +24,7 @@ public class MedicationDAO {
     }
 
     // Read Patient by ID
-    public Medication get(int med_id) throws SQLException {
+    public static Medication get(int med_id) throws SQLException {
         String query = "SELECT * FROM medication_record WHERE medication_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -43,7 +42,7 @@ public class MedicationDAO {
     }
 
     // Update Medication
-    public void update(Medication record) throws SQLException {
+    public static void update(Medication record) throws SQLException {
         String query = "INSERT INTO medication_record (medication_ID, generic_name, brand_name) VALUES (?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -56,7 +55,7 @@ public class MedicationDAO {
     }
     
     // Delete Medication by ID
-    public void delete(int id) throws SQLException {
+    public static void delete(int id) throws SQLException {
         String query = "DELETE FROM medication_record WHERE medication_ID = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -66,7 +65,7 @@ public class MedicationDAO {
     }
 
     // Viewing all medications with the same generic name
-    public List<Medication> getMedGenericList(String generic_name) throws SQLException {
+    public static List<Medication> getMedGenericList(String generic_name) throws SQLException {
         List<Medication> meds = new ArrayList<>();
         String query = "SELECT * FROM medication_record WHERE generic_name = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -88,7 +87,7 @@ public class MedicationDAO {
     }
 
     // Viewing all medications with the same brand name
-    public List<Medication> getMedBrandList(String brand_name) throws SQLException {
+    public static List<Medication> getMedBrandList(String brand_name) throws SQLException {
         List<Medication> meds = new ArrayList<>();
         String query = "SELECT * FROM medication_record WHERE brand_name = ?";
         try (Connection conn = DBConnection.getConnection();
