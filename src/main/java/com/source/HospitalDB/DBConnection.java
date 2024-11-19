@@ -13,6 +13,11 @@ public class DBConnection {
     private  static final String PASS  = "password";
 
     public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(DURL, USER, PASS);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            return DriverManager.getConnection(DURL, USER, PASS);
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("MySQL JDBC Driver not found.", e);
+        }
     }
 }
