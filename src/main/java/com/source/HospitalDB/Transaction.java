@@ -85,7 +85,23 @@ public class Transaction {
                 }
             }
 
-            // Step 4: Create the first consultation record
+            // Step 4: Record the Patient’s Vital Signs
+            String insertVitalSignsQuery = """
+            INSERT INTO vital_signs_record 
+            (patient_ID, temperature, pulse, respiratory_rate, blood_pressure, spo2) 
+            VALUES (?, ?, ?, ?, ?, ?)
+            """;
+            try (PreparedStatement vitalSignsStmt = conn.prepareStatement(insertVitalSignsQuery)) {
+                vitalSignsStmt.setInt(1, patient.getPatientId());
+                vitalSignsStmt.setDouble(2, patient.getTemperature());
+                 vitalSignsStmt.setInt(3, patient.getPulse());
+                 vitalSignsStmt.setInt(4, patient.getRespiratoryRate());
+                 vitalSignsStmt.setString(5, patient.getBloodPressure());
+                 vitalSignsStmt.setInt(6, patient.getSPO2());
+                 vitalSignsStmt.executeUpdate();
+            }
+
+            // Step 5: Create the first consultation record
             String createConsultationQuery = "INSERT INTO consultations_record (patient_ID, doctor_ID, consultation_date, chief_complaint) VALUES (?, ?, NOW(), ?)";
             try (PreparedStatement consultStmt = conn.prepareStatement(createConsultationQuery)) {
                 consultStmt.setInt(1, patient.getPatientId());
@@ -94,6 +110,29 @@ public class Transaction {
                 consultStmt.executeUpdate();
             }
 
+        // Step 6: Create and Assign a Prescription and Lab Record
+        String createPrescriptionQuery = "INSERT INTO prescriptions_record (patient_ID, doctor_ID, medication, frequency, dosage) VALUES (?, ?, ?, ?, ?)";
+        String createLabRecordQuery = "INSERT INTO lab_records (patient_ID, doctor_ID, lab_test, result) VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement prescriptionStmt = conn.prepareStatement(createPrescriptionQuery);
+                PreparedStatement labStmt = conn.prepareStatement(createLabRecordQuery)) {
+
+            // Create Prescription
+            prescriptionStmt.setInt(1, patient.getPatientId());
+            prescriptionStmt.setInt(2, patient.getDoctor());
+            prescriptionStmt.setString(3, "Paracetamol");
+            prescriptionStmt.setString(4, "Twice a day");
+            prescriptionStmt.setString(5, "500mg");
+            prescriptionStmt.executeUpdate();
+
+            // Create Lab Record
+            labStmt.setInt(1, patient.getPatientId());
+            labStmt.setInt(2, patient.getDoctor());
+            labStmt.setString(3, "Blood Test");
+            labStmt.setString(4, "Pending");
+            labStmt.executeUpdate();
+
             System.out.println("Patient record created successfully!");
 
         } catch (SQLException e) {
@@ -101,7 +140,7 @@ public class Transaction {
         }
     }
 
-    // Creating an Advanced Patient record
+    /* Creating an Advanced Patient record
     public void createAdvancePatientRecord(Patient patient) throws SQLException {
         createPatientRecord(patient); // Reuse the basic patient creation logic
 
@@ -130,7 +169,7 @@ public class Transaction {
 
             System.out.println("Advanced Patient record created successfully!");
         }
-    }
+    } */
 
     // Deleting a patient record
     public void deletePatientRecord(int patientID) throws SQLException {
