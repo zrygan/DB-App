@@ -13,11 +13,10 @@ import com.source.HospitalDB.DBConnection;
 
 public class LabReportDAO {
     public static void addLabReport(LabReport labReport) throws SQLException {
-        String query = "INSERT INTO lab_report_record (lab_report_ID, test_ID) VALUES (?, ?)";
+        String query = "INSERT INTO lab_report_record (test_ID) VALUES (?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, labReport.getLabReportID()); // Primary key
-            stmt.setInt(2, labReport.getTestID());
+            stmt.setInt(1, labReport.getTestID());
             stmt.executeUpdate();
         }
     }

@@ -11,11 +11,10 @@ import com.source.HospitalDB.DBConnection;
 
 public class LabTestDAO {
     public static void addLabTest(LabTest labTest) throws SQLException {
-        String query = "INSERT INTO lab_test_record (test_ID, test_description) VALUES (?, ?)";
+        String query = "INSERT INTO lab_test_record (test_description) VALUES (?)";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, labTest.getTestID());
-            stmt.setString(2, labTest.getTestDescription());
+            stmt.setString(1, labTest.getTestDescription());
             stmt.executeUpdate();
         }
     }
