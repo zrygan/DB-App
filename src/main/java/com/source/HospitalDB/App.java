@@ -34,13 +34,10 @@ public class App {
     private static HashMap<Integer, LabTest> labTest_map = new HashMap<>();
     private static HashMap<Integer, MedicalDiagnosis> medicalDiagnosis_map = new HashMap<>();
     private static HashMap<Integer, ChiefComplaint> chiefComplaint_map = new HashMap<>();
-    private static HashMap<Integer, Consult_ChiefComplaint> consult_chiefComplaint_map = new HashMap<>();
-    private static HashMap<Integer, Consult_MedDiagnosis> consult_medDiagnosis_map = new HashMap<>();
     private static HashMap<Integer, Consultation> consultation_map = new HashMap<>();
     private static HashMap<Integer, Prescription> prescription_map = new HashMap<>();
     private static HashMap<Integer, VitalSigns> vitalSigns_map = new HashMap<>();
     private static HashMap<Integer, LabReport> labReport_map = new HashMap<>();
-
 
     public static void add_patient(int id, Patient p){ patient_map.put(id, p); }
     
@@ -54,10 +51,6 @@ public class App {
 
     public static void add_chiefComplaint(int id, ChiefComplaint p){ chiefComplaint_map.put(id, p); }
 
-    public static void add_consult_chiefComplaint(int id, Consult_ChiefComplaint p){ consult_chiefComplaint_map.put(id, p); }
-    
-    public static void add_consult_medDiagnosis(int id, Consult_MedDiagnosis p){ consult_medDiagnosis_map.put(id, p); }
-    
     public static void add_consultation(int id, Consultation p){ consultation_map.put(id, p); }
     
     public static void add_prescription(int id, Prescription p){ prescription_map.put(id, p); }
@@ -70,9 +63,7 @@ public class App {
     private static int count_doctors = 0;
     private static int count_medication = 0;
     private static int count_labTests = 0;
-    private static int count_medicalDiagnosis = 0;
     private static int count_chiefComplaint = 0;
-    private static int count_consult_chiefComplaint = 0;
     private static int count_consult_medDiagnosis = 0;
     private static int count_consultation = 0;
     private static int count_prescription = 0;
@@ -88,11 +79,7 @@ public class App {
 
     public static int get_count_labTests(){ return count_labTests; }
 
-    public static int get_count_medicalDiagnosis(){ return count_medicalDiagnosis; }
-
     public static int get_count_chiefComplaint() { return count_chiefComplaint; }
-
-    public static int get_count_consult_chiefComplaint() { return count_consult_chiefComplaint; }
 
     public static int get_count_consult_medDiagnosis() { return count_consult_medDiagnosis; }
 
