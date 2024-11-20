@@ -13,17 +13,16 @@ import com.source.HospitalDB.DBConnection;
 
 public class VitalSignsDAO {
     public static void addVitalSigns(VitalSigns vitalSigns) throws SQLException {
-        String query = "INSERT INTO vital_signs_record (vital_signs_ID, temperature, pulse, respiratory_rate, systolic_bp, diastolic_bp, SPO2, vital_signs_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO vital_signs_record (temperature, pulse, respiratory_rate, systolic_bp, diastolic_bp, SPO2, vital_signs_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, vitalSigns.getVitalSignsID()); // Primary key
-            stmt.setBigDecimal(2, vitalSigns.getTemperature());
-            stmt.setInt(3, vitalSigns.getPulse());
-            stmt.setInt(4, vitalSigns.getRespiratoryRate());
-            stmt.setInt(5, vitalSigns.getSystolicBP());
-            stmt.setInt(6, vitalSigns.getDiastolicBP());
-            stmt.setInt(7, vitalSigns.getSpo2());
-            stmt.setTimestamp(8, vitalSigns.getVitalSignsDate());
+            stmt.setBigDecimal(1, vitalSigns.getTemperature());
+            stmt.setInt(2, vitalSigns.getPulse());
+            stmt.setInt(3, vitalSigns.getRespiratoryRate());
+            stmt.setInt(4, vitalSigns.getSystolicBP());
+            stmt.setInt(5, vitalSigns.getDiastolicBP());
+            stmt.setInt(6, vitalSigns.getSpo2());
+            stmt.setTimestamp(7, vitalSigns.getVitalSignsDate());
             stmt.executeUpdate();
         }
     }

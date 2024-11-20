@@ -3,6 +3,7 @@ package com.source.HospitalDB;
 /*
  * Java imports 
  */
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -18,9 +19,42 @@ import com.source.HospitalDB.Classes.Medication;
 import com.source.HospitalDB.Classes.Patient;
 import com.source.HospitalDB.Classes.Prescription;
 import com.source.HospitalDB.Classes.VitalSigns;
+import com.source.HospitalDB.DAO.ChiefComplaintDAO;
+import com.source.HospitalDB.DAO.ConsultationDAO;
+import com.source.HospitalDB.DAO.DoctorsDAO;
+import com.source.HospitalDB.DAO.LabReportDAO;
+import com.source.HospitalDB.DAO.LabTestDAO;
+import com.source.HospitalDB.DAO.MedicalDiagnosisDAO;
+import com.source.HospitalDB.DAO.MedicationDAO;
+import com.source.HospitalDB.DAO.PatientDAO;
+import com.source.HospitalDB.DAO.PrescriptionDAO;
+import com.source.HospitalDB.DAO.VitalSignsDAO;
 
 public class App {
+    public static void main(String[] args) throws SQLException{
+        Doctors d = new Doctors("Matthew Cutie", "Grogu", "(123) 321-7322", "zr.gntn@gmail.com");
+        Patient p = new Patient("Zhean Robby", Timestamp.valueOf("2004-10-01 00:00:00"), "M", BigDecimal.valueOf(9.4), BigDecimal.valueOf(80.23), "Idiot", 1);
+        VitalSigns v = new VitalSigns(BigDecimal.valueOf(37.2), 65, 12, 120, 170, 99);
+        ChiefComplaint cc = new ChiefComplaint("This is a sample Chief Complaint");
+        MedicalDiagnosis md = new MedicalDiagnosis("Cancer sa tite");
+        Medication m = new Medication("Paracetamol", "Biogesic");
+        Prescription rx = new Prescription(1, 12, BigDecimal.valueOf(35.6), 1, 1);
+        LabTest lt = new LabTest("Blood Test");
+        LabReport lr = new LabReport(1);
+        Consultation c = new Consultation(1,1,1,1,1);
 
+        DoctorsDAO.create(d);
+        PatientDAO.create(p);
+        VitalSignsDAO.addVitalSigns(v);
+        ChiefComplaintDAO.addChiefComplaint(cc);
+        MedicalDiagnosisDAO.addMedicalDiagnosis(md);
+        MedicationDAO.create(m);
+        PrescriptionDAO.addPrescription(rx);
+        LabTestDAO.addLabTest(lt);
+        LabReportDAO.addLabReport(lr);
+        ConsultationDAO.create(c);
+    }
+    
     /************
      * App global variables
      * Contains the HashMaps
@@ -133,10 +167,6 @@ public class App {
     /************
      * Helper functions in the JSP
      ************/
-
-    public static void main(String[] args) throws SQLException{
-
-    }
 
     /************
      * Getter and setter of each Record

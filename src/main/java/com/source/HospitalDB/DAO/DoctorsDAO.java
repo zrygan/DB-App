@@ -14,14 +14,13 @@ import com.source.HospitalDB.DBConnection;
 public class DoctorsDAO {
 
     public static void create(Doctors doctors) throws SQLException {
-        String query = "INSERT INTO doctors_record (doctor_ID, doctor_name, specialization, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO doctors_record (doctor_name, specialization, phoneNumber, email) VALUES (?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, doctors.getDoctorId());
-            pstmt.setString(2, doctors.getName());
-            pstmt.setString(3, doctors.getSpecialization());
-            pstmt.setString(4, doctors.getPhoneNumber());
-            pstmt.setString(5, doctors.getEmail());
+            pstmt.setString(1, doctors.getName());
+            pstmt.setString(2, doctors.getSpecialization());
+            pstmt.setString(3, doctors.getPhoneNumber());
+            pstmt.setString(4, doctors.getEmail());
             pstmt.executeUpdate();
 
         } catch (SQLException e){

@@ -5,18 +5,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.source.HospitalDB.Classes.*;
+import com.source.HospitalDB.Classes.ChiefComplaint;
+import com.source.HospitalDB.Classes.Consultation;
+import com.source.HospitalDB.Classes.MedicalDiagnosis;
+import com.source.HospitalDB.Classes.Patient;
+import com.source.HospitalDB.Classes.Prescription;
+import com.source.HospitalDB.Classes.VitalSigns;
+import com.source.HospitalDB.DAO.ChiefComplaintDAO;
+import com.source.HospitalDB.DAO.Consult_ChiefComplaintDAO;
+import com.source.HospitalDB.DAO.Consult_MedDiagnosisDAO;
+import com.source.HospitalDB.DAO.ConsultationDAO;
+import com.source.HospitalDB.DAO.DoctorsDAO;
+import com.source.HospitalDB.DAO.MedicalDiagnosisDAO;
+import com.source.HospitalDB.DAO.PatientDAO;
+import com.source.HospitalDB.DAO.VitalSignsDAO;
 
 public class Transaction {
     // Deleting Doctor's Record
     // FIXME: doctor_ID should be of type int not of type String
-    public boolean deleteDoctor(String doctorId) throws SQLException {
+    public boolean deleteDoctor(int doctorId) throws SQLException {
         try (Connection conn = DBConnection.getConnection()) {
 
             // Verify the doctor exists in the database
             String doctorExistQuery = "SELECT COUNT(*) FROM doctors_record WHERE doctor_ID = ?";
             try (PreparedStatement doctorExistStmt = conn.prepareStatement(doctorExistQuery)) {
-                doctorExistStmt.setString(1, doctorId);
+                doctorExistStmt.setInt(1, doctorId);
                 ResultSet doctorExistRs = doctorExistStmt.executeQuery();
                 if (!doctorExistRs.next() || doctorExistRs.getInt(1) == 0) {
                     System.out.println("Doctor does not exist.");
@@ -27,7 +40,7 @@ public class Transaction {
             // Check if the doctor has at least one consultation
             String consultationCheckQuery = "SELECT COUNT(*) FROM consultations_record WHERE doctor_ID = ?";
             try (PreparedStatement consultationCheckStmt = conn.prepareStatement(consultationCheckQuery)) {
-                consultationCheckStmt.setString(1, doctorId);
+                consultationCheckStmt.setInt(1, doctorId);
                 ResultSet consultationCheckRs = consultationCheckStmt.executeQuery();
                 if (consultationCheckRs.next() && consultationCheckRs.getInt(1) > 0) {
                     System.out.println("Doctor has consultations and cannot be deleted.");
@@ -36,17 +49,15 @@ public class Transaction {
             }
 
             // Delete the doctor if no consultations
-            String deleteDoctorQuery = "DELETE FROM doctors_record WHERE doctor_ID = ?";
-            try (PreparedStatement deleteStmt = conn.prepareStatement(deleteDoctorQuery)) {
-                deleteStmt.setString(1, doctorId);
-                int rowsDeleted = deleteStmt.executeUpdate();
-                return rowsDeleted > 0;
-            }
+            DoctorsDAO.delete(doctorId);
+            return true;
         }
     }
 
     // Creating a Patient record
-    public void createPatientRecord(Patient patient) throws SQLException {
+    // NO prescription
+    // NO lab
+    public void createPatientRecord(Patient patient, VitalSigns vitalSigns, Consultation consultation, ChiefComplaint[] chiefComplaints, MedicalDiagnosis[] medicalDiagnoses) throws SQLException {
         try (Connection conn = DBConnection.getConnection();){
             // Step 1: Verify that the Patient record does not exist
             String checkPatientQuery = "SELECT COUNT(*) FROM patients_record WHERE patient_ID = ?";
@@ -60,19 +71,7 @@ public class Transaction {
             }
 
             // Step 2: Record the Patient’s information
-            String insertPatientQuery = "INSERT INTO patients_record (patient_ID, name, age, birth_date, sex, height, weight, religion, doctor_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement insertStmt = conn.prepareStatement(insertPatientQuery)) {
-                insertStmt.setInt(1, patient.getPatientId());
-                insertStmt.setString(2, patient.getName());
-                insertStmt.setInt(3, patient.getAge());
-                insertStmt.setTimestamp(4, java.sql.Date.valueOf(patient.getBirthDate())); // FIXME
-                insertStmt.setString(5, patient.getSex());
-                insertStmt.setBigDecimal(6, patient.getHeight());
-                insertStmt.setBigDecimal(7, patient.getWeight());
-                insertStmt.setString(8, patient.getReligion());
-                insertStmt.setInt(9, patient.getDoctor());
-                insertStmt.executeUpdate();
-            }
+            PatientDAO.create(patient);
 
             // Step 3: Ensure the assigned Doctor exists
             String checkDoctorQuery = "SELECT COUNT(*) FROM doctors_record WHERE doctor_ID = ?";
@@ -86,59 +85,31 @@ public class Transaction {
             }
 
             // Step 4: Record the Patient’s Vital Signs
-            String insertVitalSignsQuery = """
-            INSERT INTO vital_signs_record 
-            (patient_ID, temperature, pulse, respiratory_rate, blood_pressure, spo2) 
-            VALUES (?, ?, ?, ?, ?, ?)
-            """;
-            try (PreparedStatement vitalSignsStmt = conn.prepareStatement(insertVitalSignsQuery)) {
-                vitalSignsStmt.setInt(1, patient.getPatientId());
-                vitalSignsStmt.setDouble(2, patient.getTemperature());
-                 vitalSignsStmt.setInt(3, patient.getPulse());
-                 vitalSignsStmt.setInt(4, patient.getRespiratoryRate());
-                 vitalSignsStmt.setString(5, patient.getBloodPressure());
-                 vitalSignsStmt.setInt(6, patient.getSPO2());
-                 vitalSignsStmt.executeUpdate();
-            }
+            VitalSignsDAO.addVitalSigns(vitalSigns);
 
             // Step 5: Create the first consultation record
-            String createConsultationQuery = "INSERT INTO consultations_record (patient_ID, doctor_ID, consultation_date, chief_complaint) VALUES (?, ?, NOW(), ?)";
-            try (PreparedStatement consultStmt = conn.prepareStatement(createConsultationQuery)) {
-                consultStmt.setInt(1, patient.getPatientId());
-                consultStmt.setInt(2, patient.getDoctor());
-                consultStmt.setString(3, "First Consultation");
-                consultStmt.executeUpdate();
+            // assume for now that prescription and lab_report is null
+            ConsultationDAO.create(consultation);
+
+            // Adding chief complaints
+            for (ChiefComplaint chiefComplaint : chiefComplaints) {
+                ChiefComplaintDAO.addChiefComplaint(chiefComplaint);
+                Consult_ChiefComplaintDAO.addConsultChiefComplaint(consultation.getConsultationID(), chiefComplaint.getComplaintID());
+            }
+
+            // Adding medical diagnosis
+            for (MedicalDiagnosis medicalDiagnosis : medicalDiagnoses) {
+                MedicalDiagnosisDAO.addMedicalDiagnosis(medicalDiagnosis);
+                Consult_MedDiagnosisDAO.addConsultMedDiagnosis(consultation.getConsultationID(), medicalDiagnosis.getDiagnosisID());
             }
         }
     }
 
-    // Creating an Advanced Patient record
-    public void createAdvancePatientRecord(Patient patient, Medication medication, Prescription prescription, LabReport labReport) throws SQLException {
-        createPatientRecord(patient); // Reuse the basic patient creation logic
-
-        // Step 5: Create and Assign a Prescription and Lab Record
-        String createPrescriptionQuery = "INSERT INTO prescriptions_record (medication_ID, frequency, dosage, doctor_ID, patient_ID) VALUES (?, ?, ?, ?, ?)";
-        String createLabRecordQuery = "INSERT INTO lab_report_record (lab_report_ID, test_ID) VALUES (?, ?)";
-
-        try (Connection conn = DBConnection.getConnection();
-                PreparedStatement prescriptionStmt = conn.prepareStatement(createPrescriptionQuery);
-                PreparedStatement labStmt = conn.prepareStatement(createLabRecordQuery)) {
-
-            // Create Prescription
-            prescriptionStmt.setInt(1, medication.getMedicationID());
-            prescriptionStmt.setInt(2, prescription.getFrequency());
-            prescriptionStmt.setBigDecimal(3, prescription.getDosage());
-            prescriptionStmt.setInt(4, prescription.getDoctorID());
-            prescriptionStmt.setInt(5, prescription.getPatientID());
-            prescriptionStmt.executeUpdate();
-
-            // Create Lab Record
-            labStmt.setInt(1,labReport.getLabReportID());
-            labStmt.setInt(2, labReport.getTestID());
-            labStmt.executeUpdate();
-
-            System.out.println("Advanced Patient record created successfully!");
-        }
+    // Creating a Patient record
+    // YES prescription
+    // NO lab
+    public void createPatientRecord(Patient patient, VitalSigns vitalSigns, Prescription prescription){
+        
     }
 
     // Deleting a patient record
