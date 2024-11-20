@@ -14,16 +14,15 @@ import com.source.HospitalDB.DBConnection;
 public class ConsultationDAO {
 
     public static void create(Consultation consultation) throws SQLException {
-        String query = "INSERT INTO consultation_record (consultation_ID, prescription_ID, doctor_ID, patient_ID, vital_signs_ID, lab_report_ID, consultation_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO consultation_record (prescription_ID, doctor_ID, patient_ID, vital_signs_ID, lab_report_ID, consultation_date) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, consultation.getConsultationID()); // Primary key
-            stmt.setInt(2, consultation.getPrescriptionID());
-            stmt.setInt(3, consultation.getDoctorID());
-            stmt.setInt(4, consultation.getPatientID());
-            stmt.setInt(5, consultation.getVitalSignsID());
-            stmt.setInt(6, consultation.getLabReportID());
-            stmt.setTimestamp(7, consultation.getConsultationDate());
+             PreparedStatement stmt = conn.prepareStatement(query)) { 
+            stmt.setInt(1, consultation.getPrescriptionID());
+            stmt.setInt(2, consultation.getDoctorID());
+            stmt.setInt(3, consultation.getPatientID());
+            stmt.setInt(4, consultation.getVitalSignsID());
+            stmt.setInt(5, consultation.getLabReportID());
+            stmt.setTimestamp(6, consultation.getConsultationDate());
             stmt.executeUpdate();
         }
     }

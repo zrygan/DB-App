@@ -13,16 +13,15 @@ import com.source.HospitalDB.DBConnection;
 
 public class PrescriptionDAO {
     public static void addPrescription(Prescription prescription) throws SQLException {
-        String query = "INSERT INTO prescription_record (prescription_ID, medication_ID, prescription_date, frequency, dosage, doctor_ID, patient_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO prescription_record (medication_ID, prescription_date, frequency, dosage, doctor_ID, patient_ID) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, prescription.getPrescriptionID());
-            stmt.setInt(2, prescription.getMedicationID());
-            stmt.setTimestamp(3, prescription.getPrescriptionDate());
-            stmt.setInt(4, prescription.getFrequency());
-            stmt.setBigDecimal(5, prescription.getDosage());
-            stmt.setInt(6, prescription.getDoctorID());
-            stmt.setInt(7, prescription.getPatientID());
+            stmt.setInt(1, prescription.getMedicationID());
+            stmt.setTimestamp(2, prescription.getPrescriptionDate());
+            stmt.setInt(3, prescription.getFrequency());
+            stmt.setBigDecimal(4, prescription.getDosage());
+            stmt.setInt(5, prescription.getDoctorID());
+            stmt.setInt(6, prescription.getPatientID());
             stmt.executeUpdate();
         }
     }

@@ -13,11 +13,10 @@ import com.source.HospitalDB.DBConnection;
 
 public class MedicalDiagnosisDAO {
     public static void addMedicalDiagnosis(MedicalDiagnosis diagnosis) throws SQLException {
-        String query = "INSERT INTO medical_diagnosis_record (diagnosis_ID, diagnosis_description) VALUES (?, ?)";
+        String query = "INSERT INTO medical_diagnosis_record (diagnosis_description) VALUES (?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, diagnosis.getDiagnosisID()); // Primary key
-            stmt.setString(2, diagnosis.getDiagnosisDescription());
+            stmt.setString(1, diagnosis.getDiagnosisDescription());
             stmt.executeUpdate();
         }
     }
