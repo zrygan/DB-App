@@ -1,8 +1,8 @@
 package com.source.HospitalDB.Classes;
 
 public class Consult_MedDiagnosis {
-    private int consultationID;
-    private int diagnosisID;
+    private final int consultationID;
+    private final int diagnosisID;
 
     public Consult_MedDiagnosis(int consultationID, int diagnosisID) {
         this.consultationID = consultationID;
@@ -11,9 +11,7 @@ public class Consult_MedDiagnosis {
 
     // Getters and Setters
     public int getConsultationID() { return consultationID; }
-    public void setConsultationID(int consultationID) { this.consultationID = consultationID; }
 
     public int getDiagnosisID() { return diagnosisID; }
-    public void setDiagnosisID(int diagnosisID) { this.diagnosisID = diagnosisID; }
 
 }

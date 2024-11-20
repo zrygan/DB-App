@@ -14,9 +14,9 @@ Assigned to Jaztin Jimenez
  */
 public class Medication{
     
-    private int medicationID;
-    private String genericName;
-    private String brandName;
+    private final int medicationID;
+    private final String genericName;
+    private final String brandName;
 
     public Medication(int medicationID, String genericName, String brandName) {
         this.medicationID = medicationID;
@@ -27,12 +27,9 @@ public class Medication{
     
     // Getters and Setters
     public int getMedicationID() { return medicationID; }
-    public void setMedicationID(int medicationID) { this.medicationID = medicationID; }
 
     public String getGenericName() { return genericName; }
-    public void setGenericName(String genericName) { this.genericName = genericName; }
 
     public String getBrandName() { return brandName; }
-    public void setBrandName(String brandName) { this.brandName = brandName; }
 
 }
