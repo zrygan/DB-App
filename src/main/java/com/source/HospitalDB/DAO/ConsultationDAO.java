@@ -40,8 +40,7 @@ public class ConsultationDAO {
                         rs.getInt("doctor_ID"),
                         rs.getInt("patient_ID"),
                         rs.getInt("vital_signs_ID"),
-                        rs.getInt("lab_report_ID"),
-                        rs.getTimestamp("consultation_date")
+                        rs.getInt("lab_report_ID")
                     );
                 }
             }
@@ -61,8 +60,7 @@ public class ConsultationDAO {
                     rs.getInt("doctor_ID"),
                     rs.getInt("patient_ID"),
                     rs.getInt("vital_signs_ID"),
-                    rs.getInt("lab_report_ID"),
-                    rs.getTimestamp("consultation_date")
+                    rs.getInt("lab_report_ID")
                 ));
             }
         }

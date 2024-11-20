@@ -41,8 +41,7 @@ public class VitalSignsDAO {
                         rs.getInt("respiratory_rate"),
                         rs.getInt("systolic_bp"),
                         rs.getInt("diastolic_bp"),
-                        rs.getInt("SPO2"),
-                        rs.getTimestamp("vital_signs_date")
+                        rs.getInt("SPO2")
                     );
                 }
             }
@@ -63,8 +62,7 @@ public class VitalSignsDAO {
                     rs.getInt("respiratory_rate"),
                     rs.getInt("systolic_bp"),
                     rs.getInt("diastolic_bp"),
-                    rs.getInt("SPO2"),
-                    rs.getTimestamp("vital_signs_date")
+                    rs.getInt("SPO2")
                 ));
             }
         }

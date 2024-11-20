@@ -36,7 +36,6 @@ public class PrescriptionDAO {
                 if (rs.next()) {
                     return new Prescription(
                         rs.getInt("medication_ID"),
-                        rs.getTimestamp("prescription_date"),
                         rs.getInt("frequency"),
                         rs.getBigDecimal("dosage"),
                         rs.getInt("doctor_ID"),
@@ -57,7 +56,6 @@ public class PrescriptionDAO {
             while (rs.next()) {
                 prescriptions.add(new Prescription(
                     rs.getInt("medication_ID"),
-                    rs.getTimestamp("prescription_date"),
                     rs.getInt("frequency"),
                     rs.getBigDecimal("dosage"),
                     rs.getInt("doctor_ID"),
