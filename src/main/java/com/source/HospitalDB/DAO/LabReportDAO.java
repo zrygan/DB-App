@@ -30,7 +30,6 @@ public class LabReportDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new LabReport(
-                        rs.getInt("lab_report_ID"),
                         rs.getInt("test_ID")
                     );
                 }
@@ -47,7 +46,6 @@ public class LabReportDAO {
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 labReports.add(new LabReport(
-                    rs.getInt("lab_report_ID"),
                     rs.getInt("test_ID")
                 ));
             }

@@ -36,7 +36,6 @@ public class VitalSignsDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new VitalSigns(
-                        rs.getInt("vital_signs_ID"),
                         rs.getBigDecimal("temperature"),
                         rs.getInt("pulse"),
                         rs.getInt("respiratory_rate"),
@@ -59,7 +58,6 @@ public class VitalSignsDAO {
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 vitalSignsList.add(new VitalSigns(
-                    rs.getInt("vital_signs_ID"),
                     rs.getBigDecimal("temperature"),
                     rs.getInt("pulse"),
                     rs.getInt("respiratory_rate"),

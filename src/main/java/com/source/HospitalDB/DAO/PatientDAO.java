@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.source.HospitalDB.DBConnection;
 import com.source.HospitalDB.Classes.Patient;
+import com.source.HospitalDB.DBConnection;
 
 public class PatientDAO {
     // Create a new Patient record
@@ -77,7 +77,6 @@ public class PatientDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new Patient(
-                        rs.getInt("patient_ID"),
                         rs.getString("patient_name"),
                         rs.getDate("birth_date"),
                         rs.getString("sex"),
@@ -102,7 +101,6 @@ public class PatientDAO {
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 patients.add(new Patient(
-                    rs.getInt("patient_ID"),
                     rs.getString("patient_name"),
                     rs.getDate("birth_date"),
                     rs.getString("sex"),

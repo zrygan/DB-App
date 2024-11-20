@@ -32,7 +32,6 @@ public class MedicationDAO {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 return new Medication(
-                    rs.getInt("medication_ID"),
                     rs.getString("generic_name"),
                     rs.getString("brand_name")
                 );
@@ -75,7 +74,6 @@ public class MedicationDAO {
             try (ResultSet rs = pstmt.executeQuery()) { 
                 while (rs.next()) {
                     Medication medication = new Medication(
-                        rs.getInt("medication_ID"),
                         rs.getString("generic_name"),
                         rs.getString("brand_name")
                     );
@@ -97,7 +95,6 @@ public class MedicationDAO {
             try (ResultSet rs = pstmt.executeQuery()) { 
                 while (rs.next()) {
                     Medication medication = new Medication(
-                        rs.getInt("medication_ID"),
                         rs.getString("generic_name"),
                         rs.getString("brand_name")
                     );

@@ -30,7 +30,6 @@ public class MedicalDiagnosisDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new MedicalDiagnosis(
-                        rs.getInt("diagnosis_ID"),
                         rs.getString("diagnosis_description")
                     );
                 }
@@ -47,7 +46,6 @@ public class MedicalDiagnosisDAO {
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 diagnoses.add(new MedicalDiagnosis(
-                    rs.getInt("diagnosis_ID"),
                     rs.getString("diagnosis_description")
                 ));
             }

@@ -39,7 +39,6 @@ public class DoctorsDAO {
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 return new Doctors(
-                    rs.getInt("doctor_ID"),
                     rs.getString("doctor_name"),
                     rs.getString("specialization"),
                     rs.getString("phoneNumber"),
@@ -88,7 +87,6 @@ public class DoctorsDAO {
             try (ResultSet rs = pstmt.executeQuery()) { 
                 while (rs.next()) {
                     Doctors doctors = new Doctors(
-                        rs.getInt("doctor_ID"),
                         rs.getString("doctor_name"),
                         rs.getString("specialization"),
                         rs.getString("phoneNumber"),

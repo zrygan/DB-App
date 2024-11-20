@@ -30,7 +30,6 @@ public class ChiefComplaintDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new ChiefComplaint(
-                        rs.getInt("complaint_ID"),
                         rs.getString("complaint_description")
                     );
                 }
@@ -47,7 +46,6 @@ public class ChiefComplaintDAO {
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 complaints.add(new ChiefComplaint(
-                    rs.getInt("complaint_ID"),
                     rs.getString("complaint_description")
                 ));
             }

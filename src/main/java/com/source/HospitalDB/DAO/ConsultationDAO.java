@@ -36,7 +36,6 @@ public class ConsultationDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new Consultation(
-                        rs.getInt("consultation_ID"),
                         rs.getInt("prescription_ID"),
                         rs.getInt("doctor_ID"),
                         rs.getInt("patient_ID"),
@@ -58,7 +57,6 @@ public class ConsultationDAO {
                 ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 consultations.add(new Consultation(
-                    rs.getInt("consultation_ID"),
                     rs.getInt("prescription_ID"),
                     rs.getInt("doctor_ID"),
                     rs.getInt("patient_ID"),

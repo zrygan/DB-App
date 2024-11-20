@@ -28,7 +28,6 @@ public class LabTestDAO {
             try (java.sql.ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new LabTest(
-                        rs.getInt("test_ID"),
                         rs.getString("test_description")
                     );
                 }
@@ -45,7 +44,6 @@ public class LabTestDAO {
                 java.sql.ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 labTests.add(new LabTest(
-                    rs.getInt("test_ID"),
                     rs.getString("test_description")
                 ));
             }

@@ -35,7 +35,6 @@ public class PrescriptionDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new Prescription(
-                        rs.getInt("prescription_ID"),
                         rs.getInt("medication_ID"),
                         rs.getTimestamp("prescription_date"),
                         rs.getInt("frequency"),
@@ -57,7 +56,6 @@ public class PrescriptionDAO {
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 prescriptions.add(new Prescription(
-                    rs.getInt("prescription_ID"),
                     rs.getInt("medication_ID"),
                     rs.getTimestamp("prescription_date"),
                     rs.getInt("frequency"),
