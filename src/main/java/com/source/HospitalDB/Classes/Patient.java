@@ -1,7 +1,6 @@
 package com.source.HospitalDB.Classes;
 
 import java.math.BigDecimal;
-import java.sql.Date; 
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.Period;
@@ -13,7 +12,7 @@ public final class Patient {
     private final int patientId;  
     private final String name;
     private final int age;
-    private final Date birthDate;
+    private final Timestamp birthDate;
     private final String sex;
     private final BigDecimal height;
     private final BigDecimal weight;
@@ -22,7 +21,7 @@ public final class Patient {
     private final Timestamp dateCreated;
 
     // Constructor
-    public Patient(String name, Date birthDate, String sex, 
+    public Patient(String name, Timestamp birthDate, String sex, 
                    BigDecimal height, BigDecimal weight, String religion, int doctor) {
         App.inc_count_patient();
         patientId = App.get_count_patient();
@@ -52,7 +51,7 @@ public final class Patient {
         return age;
     }
 
-    public Date getBirthDate() {
+    public Timestamp getBirthDate() {
         return birthDate;
     }
 
@@ -82,7 +81,7 @@ public final class Patient {
 
     public int calculate_age() {
         LocalDate curr_date = LocalDate.now(); 
-        LocalDate birth_date = birthDate.toLocalDate(); 
+        LocalDate birth_date = birthDate.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate(); 
         Period period = Period.between(birth_date, curr_date); 
         
         return period.getYears(); 
