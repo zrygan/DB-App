@@ -39,99 +39,92 @@ public class App {
     private static HashMap<Integer, LabReport> labReport_map = new HashMap<>();
 
 
-    public static void add_patient(int id, Patient p){
-        patient_map.put(id, p);
-    }
+    public static void add_patient(int id, Patient p){ patient_map.put(id, p); }
     
-    public static void add_doctors(int id, Doctors p){
-        doctors_map.put(id, p);
-    }
+    public static void add_doctors(int id, Doctors p){ doctors_map.put(id, p); }
     
-    public static void add_medication(int id, Medication p){
-        medication_map.put(id, p);
-    }
+    public static void add_medication(int id, Medication p){ medication_map.put(id, p); }
     
-    public static void add_labTests(int id, LabTest p){
-        labTest_map.put(id, p);
-    }
+    public static void add_labTests(int id, LabTest p){ labTest_map.put(id, p); }
     
-    public static void add_medicalDiagnosis(int id, MedicalDiagnosis p){
-        medicalDiagnosis_map.put(id, p);
-    }
+    public static void add_medicalDiagnosis(int id, MedicalDiagnosis p){ medicalDiagnosis_map.put(id, p); }
 
-    public static void add_chiefComplaint(int id, ChiefComplaint p){
-        chiefComplaint_map.put(id, p);
-    }
+    public static void add_chiefComplaint(int id, ChiefComplaint p){ chiefComplaint_map.put(id, p); }
 
-    public static void add_consult_chiefComplaint(int id, Consult_ChiefComplaint p){
-        consult_chiefComplaint_map.put(id, p);
-    }
+    public static void add_consult_chiefComplaint(int id, Consult_ChiefComplaint p){ consult_chiefComplaint_map.put(id, p); }
     
-    public static void add_consult_medDiagnosis(int id, Consult_MedDiagnosis p){
-        consult_medDiagnosis_map.put(id, p);
-    }
+    public static void add_consult_medDiagnosis(int id, Consult_MedDiagnosis p){ consult_medDiagnosis_map.put(id, p); }
     
-    public static void add_consultation(int id, Consultation p){
-        consultation_map.put(id, p);
-    }
+    public static void add_consultation(int id, Consultation p){ consultation_map.put(id, p); }
     
-    public static void add_prescription(int id, Prescription p){
-        prescription_map.put(id, p);
-    }
+    public static void add_prescription(int id, Prescription p){ prescription_map.put(id, p); }
 
-    public static void add_vitalSigns(int id, VitalSigns p){
-        vitalSigns_map.put(id, p);
-    }
+    public static void add_vitalSigns(int id, VitalSigns p){ vitalSigns_map.put(id, p); }
     
-    public static void add_labReport(int id, LabReport p){
-        labReport_map.put(id, p);
-    }
+    public static void add_labReport(int id, LabReport p){ labReport_map.put(id, p); }
     
     private static int count_patient = 0;
     private static int count_doctors = 0;
     private static int count_medication = 0;
     private static int count_labTests = 0;
     private static int count_medicalDiagnosis = 0;
+    private static int count_chiefComplaint = 0;
+    private static int count_consult_chiefComplaint = 0;
+    private static int count_consult_medDiagnosis = 0;
+    private static int count_consultation = 0;
+    private static int count_prescription = 0;
+    private static int count_vitalSigns = 0;
+    private static int count_labReport = 0;
+
+    // getters
+    public static int get_count_patient(){ return count_patient; }
     
-    public static int get_count_patient(){
-        return count_patient;
-    }
+    public static int get_count_doctors(){ return count_doctors; }
+
+    public static int get_count_medication(){ return count_medication; }
+
+    public static int get_count_labTests(){ return count_labTests; }
+
+    public static int get_count_medicalDiagnosis(){ return count_medicalDiagnosis; }
+
+    public static int get_count_chiefComplaint() { return count_chiefComplaint; }
+
+    public static int get_count_consult_chiefComplaint() { return count_consult_chiefComplaint; }
+
+    public static int get_count_consult_medDiagnosis() { return count_consult_medDiagnosis; }
+
+    public static int get_count_consultation() { return count_consultation; }
+
+    public static int get_count_prescription() { return count_prescription; }
+
+    public static int get_count_vitalSigns() { return count_vitalSigns; }
+
+    public static int get_count_labReport() { return count_labReport; }
+
+    // incrementers (setters)
+    public static void inc_count_patient(){ count_patient++; }
     
-    public static int get_count_doctors(){
-        return count_doctors;
-    }
-
-    public static int get_count_medication(){
-        return count_medication;
-    }
-
-    public static int get_count_labTests(){
-        return count_labTests;
-    }
-
-    public static int get_count_medicalDiagnosis(){
-        return count_medicalDiagnosis;
-    }
-
-    public static void inc_count_patient(){
-        count_patient++;
-    }
+    public static void inc_count_doctors(){ count_doctors++; }
     
-    public static void inc_count_doctors(){
-        count_doctors++;
-    }
+    public static void inc_count_medication(){ count_medication++; }
+
+    public static void inc_count_labTests(){ count_labTests++; }
+
+    public static void inc_count_medicalDiagnosis(){ count_medicalDiagnosis++; }
     
-    public static void inc_count_medication(){
-        count_medication++;
-    }
+    public static void inc_count_chiefComplaint() { count_chiefComplaint++; }
 
-    public static void inc_count_labTests(){
-        count_labTests++;
-    }
+    public static void inc_count_consult_chiefComplaint() { count_consult_chiefComplaint++; }
 
-    public static void inc_count_medicalDiagnosis(){
-        count_medicalDiagnosis++;
-    }
+    public static void inc_count_consult_medDiagnosis() { count_consult_medDiagnosis++; }
+
+    public static void inc_count_consultation() { count_consultation++; }
+
+    public static void inc_count_prescription() { count_prescription++; }
+
+    public static void inc_count_vitalSigns() { count_vitalSigns++; }
+
+    public static void inc_count_labReport() { count_labReport++; }
     
     // FIXME: create a function in App that will create the HospitalDB
     // without running it on SQL Workbench
@@ -154,6 +147,9 @@ public class App {
 
     }
 
+    /************
+     * Getter and setter of each Record
+     ************/
     public static HashMap<Integer, Patient> getPatientMap() {
         return patient_map;
     }
