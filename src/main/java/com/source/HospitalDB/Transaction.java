@@ -17,11 +17,13 @@ import com.source.HospitalDB.Classes.MedicalDiagnosis;
 import com.source.HospitalDB.Classes.Patient;
 import com.source.HospitalDB.Classes.Prescription;
 import com.source.HospitalDB.Classes.VitalSigns;
+import com.source.HospitalDB.DAO.ChiefComplaintDAO;
 import com.source.HospitalDB.DAO.Consult_ChiefComplaintDAO;
 import com.source.HospitalDB.DAO.Consult_MedDiagnosisDAO;
 import com.source.HospitalDB.DAO.ConsultationDAO;
 import com.source.HospitalDB.DAO.DoctorsDAO;
 import com.source.HospitalDB.DAO.LabReportDAO;
+import com.source.HospitalDB.DAO.MedicalDiagnosisDAO;
 import com.source.HospitalDB.DAO.PatientDAO;
 import com.source.HospitalDB.DAO.PrescriptionDAO;
 import com.source.HospitalDB.DAO.VitalSignsDAO;
@@ -99,6 +101,8 @@ public class Transaction {
             // Step 8: Record the Patient’s Chief Complaints if any
             if (chiefComplaints != null) {
                 for (ChiefComplaint chiefComplaint : chiefComplaints) {
+                    ChiefComplaintDAO.addChiefComplaint(chiefComplaint);
+
                     Consult_ChiefComplaint consultChiefComplaint = new Consult_ChiefComplaint(consultation.getConsultationID(), chiefComplaint.getComplaintID());
                     Consult_ChiefComplaintDAO.addConsultChiefComplaint(consultChiefComplaint);
                 }
@@ -107,10 +111,14 @@ public class Transaction {
             // Step 9: Record the Patient’s Medical Diagnoses if any
             if (medicalDiagnoses != null) {
                 for (MedicalDiagnosis medicalDiagnosis : medicalDiagnoses) {
+                    MedicalDiagnosisDAO.addMedicalDiagnosis(medicalDiagnosis);
+
                     Consult_MedDiagnosis consultMedDiagnosis = new Consult_MedDiagnosis(consultation.getConsultationID(), medicalDiagnosis.getDiagnosisID());
                     Consult_MedDiagnosisDAO.addConsultMedDiagnosis(consultMedDiagnosis);
                 }
             }
+
+            
 
             conn.commit(); // Commit transaction if all operations succeed
             
