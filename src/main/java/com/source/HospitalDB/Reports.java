@@ -2,13 +2,33 @@ package com.source.HospitalDB;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.lang.StringBuilder;
 
 public class Reports {
-    //Commented out for now
+    /***********
+     * Diagnostic-specific Annual Health Summary Report
+     ***********/
+    public StringBuilder DiagnosticSpecificAnnualHealthSummaryReport(Connection conn, String diagnosis) throws SQLException { //Fix me: Add necessary parameters
+        StringBuilder report = null; // tempvalue, can be deleted
+        // add methods here
 
-    // "MAIN" FUNCTION
+        return report;
+    } 
+    /********** 
+     * Medication-specific Annual Patient Report 
+     ***********/
+    public StringBuilder MedificationAnnualPatientReport(Connection conn) throws SQLException { //Fix me: Add necessary parameters
+        StringBuilder report = null; // tempvalue, can be deleted
+        // add methods here
+
+        return StringBuilder;
+    } 
+
+    /***********
+     * DailyTPR Report
+     ***********/
     //The patient’s basic information and daily temperature, pulse, and respiratory rate data. Furthermore, a summary of these data for the past 7 days
-    public static String DailyTPR(int patientId, Connection conn) throws SQLException {
+    public static StStringBuilderring DailyTPR(int patientId, Connection conn) throws SQLException {
         // step 1: get basic patient information
         Patient patient = getPatientInfo(patientId, conn);
 
@@ -36,7 +56,7 @@ public class Reports {
         String report = generateReport(patient, currentTemperature, currentPulse, currentRespiratoryRate,
                                        avgTemperature, avgPulse, avgRespiratoryRate, df);
 
-        return report;
+        return StringBuilder;
     }
 
     // HELPER FUNCTIONS
@@ -120,7 +140,7 @@ public class Reports {
     }
 
     // report as a string 
-    private static String generateReport(Patient patient, float currentTemperature, int currentPulse, int currentRespiratoryRate,
+    private static StringBuilder generateReport(Patient patient, float currentTemperature, int currentPulse, int currentRespiratoryRate,
                                      double avgTemperature, double avgPulse, double avgRespiratoryRate, DecimalFormat df) {
         StringBuilder report = new StringBuilder();
 
@@ -144,33 +164,11 @@ public class Reports {
         return report.toString();
     }
 
-    //TO DO: Jaime and Barlaan
-
-    // Diagnostic-specific Annual Health Summary Report
-    // The summary of sex and age data for the year for a specific diagnosis.
-    public String AnnualHealthSummaryReport(Connection conn) throws SQLException { //Fix me: Add necessary parameters
-        String report = null; // tempvalue, can be deleted
-        // add methods here
-
-        return report;
-    } 
-
-
-
-    // Medication-specific Annual Patient Report
-    // A list of all patients along with their age, sex, and diagnosis for a specific medication.
-    public String MedificationAnnualPatientReport(Connection conn) throws SQLException { //Fix me: Add necessary parameters
-        String report = null; // tempvalue, can be deleted
-        // add methods here
-
-        return report;
-    } 
-
-
-    // Yearly Patient Management Report
-    // A list of patients handled by a specific doctor for a specific year, and their medical diagnosis.
-    public String YearlyPatientManagementReport(Connection conn) throws SQLException { //Fix me: Add necessary parameters
-        String report = null; // tempvalue, can be deleted
+    /**********
+     * Yearly Patient Management Report
+     ***********/
+    public StringBuilder YearlyPatientManagementReport(Connection conn) throws SQLException { //Fix me: Add necessary parameters
+        StringBuilder report = null; // tempvalue, can be deleted
         // add methods here
 
         return report;
