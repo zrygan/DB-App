@@ -1,5 +1,7 @@
 package com.source.HospitalDB.Classes;
 
+import com.source.HospitalDB.App;
+
 public class Doctors {
 
     private final String name;
@@ -8,10 +10,12 @@ public class Doctors {
     private final String phoneNumber;
     private final String email;
 
-    public Doctors(int doctorId, String name, String specialization, String phoneNumber, String email) {
+    public Doctors(String name, String specialization, String phoneNumber, String email) {
+        App.inc_count_doctors();
+        doctorId = App.get_count_doctors();
+        
         this.name = name;
         this.specialization = specialization;
-        this.doctorId = doctorId;
         this.phoneNumber = phoneNumber;
         this.email = email;
     }

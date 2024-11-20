@@ -1,5 +1,7 @@
 package com.source.HospitalDB.Classes;
 
+import com.source.HospitalDB.App;
+
 /*
 Medication Record
 (Generic Name, Brand Name, Date, Frequency, Dosage, Prescribing Doctor, Patient)
@@ -18,8 +20,9 @@ public class Medication{
     private final String genericName;
     private final String brandName;
 
-    public Medication(int medicationID, String genericName, String brandName) {
-        this.medicationID = medicationID;
+    public Medication(String genericName, String brandName) {
+        App.inc_count_medication();
+        medicationID = App.get_count_medication();
         this.genericName = genericName;
         this.brandName = brandName;
     }

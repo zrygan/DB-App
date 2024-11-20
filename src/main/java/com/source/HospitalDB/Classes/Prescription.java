@@ -2,6 +2,8 @@ package com.source.HospitalDB.Classes;
 
 import java.math.BigDecimal;
 
+import com.source.HospitalDB.App;
+
 public class Prescription {
     private final int prescriptionID;
     private final int medicationID;
@@ -11,14 +13,15 @@ public class Prescription {
     private final int doctorID;
     private final int patientID;
 
-    public Prescription(int prescriptionID, int medicationID, java.sql.Timestamp prescriptionDate, int frequency, BigDecimal dosage, int doctorID, int patientID) {
-    this.prescriptionID = prescriptionID;
-    this.medicationID = medicationID;
-    this.prescriptionDate = prescriptionDate;
-    this.frequency = frequency;
-    this.dosage = dosage;
-    this.doctorID = doctorID;
-    this.patientID = patientID;
+    public Prescription(int medicationID, java.sql.Timestamp prescriptionDate, int frequency, BigDecimal dosage, int doctorID, int patientID) {
+        App.inc_count_prescription();
+        prescriptionID = App.get_count_prescription(); 
+        this.medicationID = medicationID;
+        this.prescriptionDate = prescriptionDate;
+        this.frequency = frequency;
+        this.dosage = dosage;
+        this.doctorID = doctorID;
+        this.patientID = patientID;
     }
 
     // Getters and Setters

@@ -7,12 +7,14 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 
+import com.source.HospitalDB.App;
+
 public final class Patient {
 
     private final int patientId;  
     private final String name;
     private final int age;
-    private final Date birthDate;  
+    private final Date birthDate;
     private final String sex;
     private final BigDecimal height;
     private final BigDecimal weight;
@@ -21,9 +23,10 @@ public final class Patient {
     private final Timestamp dateCreated;
 
     // Constructor
-    public Patient(int patientId, String name, Date birthDate, String sex, 
+    public Patient(String name, Date birthDate, String sex, 
                    BigDecimal height, BigDecimal weight, String religion, int doctor) {
-        this.patientId = patientId;
+        App.inc_count_patient();
+        patientId = App.get_count_patient();
         this.name = name;
         this.birthDate = birthDate;
         this.age = calculate_age();

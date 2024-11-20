@@ -1,11 +1,14 @@
 package com.source.HospitalDB.Classes;
 
+import com.source.HospitalDB.App;
+
 public class LabTest {
     private final int testID;
     private final String testDescription;
 
-    public LabTest(int testID, String testDescription) {
-        this.testID = testID;
+    public LabTest(String testDescription) {
+        App.inc_count_labTests();
+        testID = App.get_count_labTests();
         this.testDescription = testDescription;
     }
 

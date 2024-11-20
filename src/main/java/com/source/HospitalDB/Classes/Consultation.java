@@ -1,5 +1,7 @@
 package com.source.HospitalDB.Classes;
 
+import com.source.HospitalDB.App;
+
 public class Consultation {
     private final int consultationID;
     private final int prescriptionID;
@@ -9,8 +11,9 @@ public class Consultation {
     private final int labReportID;
     private final java.sql.Timestamp consultationDate;
 
-    public Consultation(int consultationID, int prescriptionID, int doctorID, int patientID, int vitalSignsID, int labReportID, java.sql.Timestamp consultationDate) {
-        this.consultationID = consultationID;
+    public Consultation(int prescriptionID, int doctorID, int patientID, int vitalSignsID, int labReportID, java.sql.Timestamp consultationDate) {
+        App.inc_count_consultation();
+        consultationID = App.get_count_consultation();
         this.prescriptionID = prescriptionID;
         this.doctorID = doctorID;
         this.patientID = patientID;

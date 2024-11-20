@@ -1,11 +1,14 @@
 package com.source.HospitalDB.Classes;
 
+import com.source.HospitalDB.App;
+
 public class ChiefComplaint {
     private int complaintID;
     private String complaintDescription;
 
-    public ChiefComplaint(int complaintID, String complaintDescription) {
-        this.complaintID = complaintID;
+    public ChiefComplaint(String complaintDescription) {
+        App.inc_count_chiefComplaint();
+        complaintID = App.get_count_chiefComplaint();
         this.complaintDescription = complaintDescription;
     }
 

@@ -2,6 +2,8 @@ package com.source.HospitalDB.Classes;
 
 import java.math.BigDecimal;
 
+import com.source.HospitalDB.App;
+
 public class VitalSigns {
     private final int vitalSignsID;
     private final BigDecimal temperature;
@@ -12,8 +14,9 @@ public class VitalSigns {
     private final int spo2;
     private final java.sql.Timestamp vitalSignsDate;
 
-    public VitalSigns(int vitalSignsID, BigDecimal temperature, int pulse, int respiratoryRate, int systolicBP, int diastolicBP, int spo2, java.sql.Timestamp vitalSignsDate) {
-        this.vitalSignsID = vitalSignsID;
+    public VitalSigns(BigDecimal temperature, int pulse, int respiratoryRate, int systolicBP, int diastolicBP, int spo2, java.sql.Timestamp vitalSignsDate) {
+        App.inc_count_vitalSigns();
+        vitalSignsID = App.get_count_vitalSigns();
         this.temperature = temperature;
         this.pulse = pulse;
         this.respiratoryRate = respiratoryRate;
