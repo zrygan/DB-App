@@ -1,5 +1,8 @@
 package com.source.HospitalDB;
 
+/*
+ * Java imports 
+ */
 import java.sql.SQLException;
 import java.util.HashMap;
 
