@@ -138,42 +138,79 @@ public class Transaction {
 
     // Deleting a patient record
     public static void deletePatientRecord(int patientID) throws SQLException {
-        // Step 1: Verify that the patient record to delete exists
+        // Step 1: Verify that the patient record exists
         if (PatientDAO.getPatient(patientID) == null) {
             throw new SQLException("Patient record not found for ID: " + patientID);
         }
-
-        // Step 2-4: Use a transaction to ensure all deletes are executed atomically
+    
         try (Connection conn = DBConnection.getConnection()) {
             conn.setAutoCommit(false); // Start transaction
-
-            // Step 2: Delete all Medication Records of the patient
-            String deleteMedicationRecordsQuery = "DELETE FROM medication_record WHERE patient_ID = ?";
-            try (PreparedStatement deleteMedStmt = conn.prepareStatement(deleteMedicationRecordsQuery)) {
-                deleteMedStmt.setInt(1, patientID);
-                deleteMedStmt.executeUpdate();
+    
+            // Step 2: Delete junction table records for consultations
+            String deleteConsultationChiefComplaintQuery = 
+                "DELETE FROM consultation_chief_complaint_record WHERE consultation_ID IN " +
+                "(SELECT consultation_ID FROM consultation_record WHERE patient_ID = ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(deleteConsultationChiefComplaintQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
             }
-
-            // Step 3: Delete all Medical Records of the patient
-            String deleteMedicalRecordsQuery = "DELETE FROM medical_records WHERE patient_ID = ?";
-            try (PreparedStatement deleteMedicalStmt = conn.prepareStatement(deleteMedicalRecordsQuery)) {
-                deleteMedicalStmt.setInt(1, patientID);
-                deleteMedicalStmt.executeUpdate();
+    
+            String deleteConsultationMedicalDiagnosisQuery = 
+                "DELETE FROM consultation_medical_diagnosis_record WHERE consultation_ID IN " +
+                "(SELECT consultation_ID FROM consultation_record WHERE patient_ID = ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(deleteConsultationMedicalDiagnosisQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
             }
-
-            // Step 4: Delete the Patient Record of the patient
-            PatientDAO.delete(patientID);
-
+    
+            // Step 3: Delete consultations related to the patient
+            String deleteConsultationsQuery = "DELETE FROM consultation_record WHERE patient_ID = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(deleteConsultationsQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            // Step 4: Delete prescriptions related to the patient
+            String deletePrescriptionsQuery = "DELETE FROM prescription_record WHERE patient_ID = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(deletePrescriptionsQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            // Step 5: Delete vital signs records related to the patient
+            String deleteVitalSignsQuery = "DELETE FROM vital_signs_record WHERE vital_signs_ID IN " +
+                                           "(SELECT vital_signs_ID FROM consultation_record WHERE patient_ID = ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(deleteVitalSignsQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            // Step 6: Delete the patient record
+            String deletePatientQuery = "DELETE FROM patients_record WHERE patient_ID = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(deletePatientQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
             conn.commit(); // Commit transaction if all operations succeed
+            System.out.println("Successfully deleted patient with ID: " + patientID);
+    
         } catch (SQLException e) {
-            Connection conn = DBConnection.getConnection();
-            conn.rollback(); // Rollback transaction if any operation fails
+            // Rollback transaction in case of failure
+            try (Connection conn = DBConnection.getConnection()) {
+                conn.rollback();
+            }
             throw e;
+    
         } finally {
-            Connection conn = DBConnection.getConnection();
-            conn.setAutoCommit(true); // Restore default commit behavior
+            // Restore default auto-commit behavior
+            try (Connection conn = DBConnection.getConnection()) {
+                conn.setAutoCommit(true);
+            }
         }
     }
+    
+    
 
     // creating a prescription record
     public static void createPrescriptionRecord(int patientId, int doctorId, int medicationID, int frequency, BigDecimal dosage) throws SQLException {
