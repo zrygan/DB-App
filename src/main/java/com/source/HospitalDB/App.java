@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 
 import com.source.HospitalDB.Classes.ChiefComplaint;
-import com.source.HospitalDB.Classes.Consult_ChiefComplaint;
-import com.source.HospitalDB.Classes.Consult_MedDiagnosis;
 import com.source.HospitalDB.Classes.Consultation;
 import com.source.HospitalDB.Classes.Doctors;
 import com.source.HospitalDB.Classes.LabReport;
@@ -100,11 +98,7 @@ public class App {
 
     public static void inc_count_labTests(){ count_labTests++; }
 
-    public static void inc_count_medicalDiagnosis(){ count_medicalDiagnosis++; }
-    
     public static void inc_count_chiefComplaint() { count_chiefComplaint++; }
-
-    public static void inc_count_consult_chiefComplaint() { count_consult_chiefComplaint++; }
 
     public static void inc_count_consult_medDiagnosis() { count_consult_medDiagnosis++; }
 
@@ -164,14 +158,6 @@ public class App {
         return chiefComplaint_map;
     }
 
-    public static HashMap<Integer, Consult_ChiefComplaint> getConsultChiefComplaintMap() {
-        return consult_chiefComplaint_map;
-    }
-
-    public static HashMap<Integer, Consult_MedDiagnosis> getConsultMedDiagnosisMap() {
-        return consult_medDiagnosis_map;
-    }
-
     public static HashMap<Integer, Consultation> getConsultationMap() {
         return consultation_map;
     }
@@ -210,14 +196,6 @@ public class App {
 
     public static void setChiefComplaintMap(HashMap<Integer, ChiefComplaint> map) {
         chiefComplaint_map = map;
-    }
-
-    public static void setConsultChiefComplaintMap(HashMap<Integer, Consult_ChiefComplaint> map) {
-        consult_chiefComplaint_map = map;
-    }
-
-    public static void setConsultMedDiagnosisMap(HashMap<Integer, Consult_MedDiagnosis> map) {
-        consult_medDiagnosis_map = map;
     }
 
     public static void setConsultationMap(HashMap<Integer, Consultation> map) {
