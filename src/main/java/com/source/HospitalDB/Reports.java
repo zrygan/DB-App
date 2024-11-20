@@ -1,24 +1,13 @@
 package com.source.HospitalDB;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.source.HospitalDB.Classes.Medical;
-import com.source.HospitalDB.Classes.Patient;
 
 public class Reports {
-    // ***************************
-    // ****************** GANITUEN
-    // ***************************
+    //Commented out for now
 
     // "MAIN" FUNCTION
+    //The patient’s basic information and daily temperature, pulse, and respiratory rate data. Furthermore, a summary of these data for the past 7 days
     public static String DailyTPR(int patientId, Connection conn) throws SQLException {
         // step 1: get basic patient information
         Patient patient = getPatientInfo(patientId, conn);
@@ -154,4 +143,36 @@ public class Reports {
 
         return report.toString();
     }
+
+    //TO DO: Jaime and Barlaan
+
+    // Diagnostic-specific Annual Health Summary Report
+    // The summary of sex and age data for the year for a specific diagnosis.
+    public String AnnualHealthSummaryReport(Connection conn) throws SQLException { //Fix me: Add necessary parameters
+        String report = null; // tempvalue, can be deleted
+        // add methods here
+
+        return report;
+    } 
+
+
+
+    // Medication-specific Annual Patient Report
+    // A list of all patients along with their age, sex, and diagnosis for a specific medication.
+    public String MedificationAnnualPatientReport(Connection conn) throws SQLException { //Fix me: Add necessary parameters
+        String report = null; // tempvalue, can be deleted
+        // add methods here
+
+        return report;
+    } 
+
+
+    // Yearly Patient Management Report
+    // A list of patients handled by a specific doctor for a specific year, and their medical diagnosis.
+    public String YearlyPatientManagementReport(Connection conn) throws SQLException { //Fix me: Add necessary parameters
+        String report = null; // tempvalue, can be deleted
+        // add methods here
+
+        return report;
+    } 
 }

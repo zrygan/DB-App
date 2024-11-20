@@ -5,11 +5,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.source.HospitalDB.Classes.Doctors;
+import com.source.HospitalDB.Classes.Medication;
+import com.source.HospitalDB.Classes.Patient;
+import com.source.HospitalDB.DAO.MedicationDAO;
+
 public class Transaction {
 
     // ******************************    
     // ****** [GANITUEN] TRANSACTIONS
     // ******************************
+
 
     // Patient Admission
     public void patientAdmission(Patient patient, Medical medical) throws SQLException{
@@ -262,5 +268,92 @@ public class Transaction {
     }
 }
 
+    //Creating a Patient record
+    public void createPatientRecord(Patient patient, Connection conn) throws SQLException { //Add necessary parameters
+        // 1. Verify that the Patient record does not exist.
+        // 2. Record the Patient’s information Name, Age, BirthDate, Sex, Height, Weight, and Religion.
+        // 3. Assign a Doctor to the Patient, ensure that the Doctor exists in the database.
+        // 4. Create a new Consultation Record (the first Consultation Record of the Patient in the hospital).        
+    }
 
+
+    //Creating a Patient record
+    public void createAdvancePatientRecord(Patient patient, Connection conn) throws SQLException { //Add necessary parameters
+        // 1. Verify that the Patient record does not exist.
+        // 2. Record the Patient’s information Name, Age, BirthDate, Sex, Height, Weight, and Religion.
+        // 3. Assign a Doctor to the Patient, ensure that the Doctor exists in the database.
+        // 4. Create a new Consultation Record (the first Consultation Record of the Patient in the hospital).
+        // 5. Create and Assign a Prescription and Lab Record, if needed.
+    }
+
+    // Deleting a patient record
+    public void deletePatientRecord(Connection conn, int patientID) throws SQLException {
+
+        String checkPatientExistsQuery = "SELECT COUNT(*) FROM patients_record WHERE patient_ID = ?";
+        String deleteMedicationRecordsQuery = "DELETE FROM medication_record WHERE patient_ID = ?";
+        //String deleteMedicalRecordsQuery = "DELETE FROM medical_records WHERE patient_ID = ?"; 
+        String deletePatientRecordQuery = "DELETE FROM patients_record WHERE patient_ID = ?";
+    
+        // Step 1: Verify that the patient record to delete exists
+        try (PreparedStatement checkStmt = conn.prepareStatement(checkPatientExistsQuery)) {
+            checkStmt.setInt(1, patientID);
+            try (ResultSet rs = checkStmt.executeQuery()) {
+                if (rs.next() && rs.getInt(1) == 0) {
+                    throw new SQLException("Patient record not found for ID: " + patientID);
+                }
+            }
+        }
+    
+        // Step 2-4: Use a transaction to ensure all deletes are executed atomically
+        try {
+            conn.setAutoCommit(false); // Start transaction
+    
+            // Step 2: Delete all Medication Records of the patient
+            try (PreparedStatement deleteMedStmt = conn.prepareStatement(deleteMedicationRecordsQuery)) {
+                deleteMedStmt.setInt(1, patientID);
+                deleteMedStmt.executeUpdate();
+            }
+    
+            // Step 3: Delete all Medical Records of the patient
+            try (PreparedStatement deleteMedicalStmt = conn.prepareStatement(deleteMedicalRecordsQuery)) {
+                deleteMedicalStmt.setInt(1, patientID);
+                deleteMedicalStmt.executeUpdate();
+            }
+    
+            // Step 4: Delete the Patient Record of the patient
+            try (PreparedStatement deletePatientStmt = conn.prepareStatement(deletePatientRecordQuery)) {
+                deletePatientStmt.setInt(1, patientID);
+                deletePatientStmt.executeUpdate();
+            }
+    
+            conn.commit(); // Commit transaction if all operations succeed
+        } catch (SQLException e) {
+            conn.rollback(); // Rollback transaction if any operation fails
+            throw e;
+        } finally {
+            conn.setAutoCommit(true); // Restore default commit behavior
+        }
+    }
+    
+
+
+    // Creating a Prescription Record
+    public void createPrescriptionRecord(Connection conn) throws SQLException { //Add necessary parameters
+        // 1. Verify the Patient exists in the database.
+        // 2. Verify the Prescribing Doctor exists in the database.
+        // 3. Verify the Medication prescribed exists in the database(e.g., check if Calpol or Paracetamol is in the database; 
+        // if Calpol is not in the database, but there is a Paracetaol medication of a different brand name, assign that instead).
+        // 4. Record the information of the Prescription (Date [Given], Frequency, Dosage, and Medication).
+    }
+
+    public void createConsultationRecord(Connection conn) throws SQLException { //Add necessary parameters
+        // 1. Verity the Patient exists in the database.
+        // 2. Verify the Doctor exists in the database.
+        // 3. Record the date of the consultation.
+        // 4. Record the Chief Complaint(s) of the Patient.
+        // 5. Record the Medical Diagnosis (or Diagnoses) of the Patient.
+        // 6. Determine if a Lab Report or Prescription was given or assigned the same day the consultation is created, 
+        // if there is record of it in the Consultation Record.
+        // 7. Record the Vital Signs of the Patient in the Consultation Record.
+    }
 }
