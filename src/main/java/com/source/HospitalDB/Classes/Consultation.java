@@ -11,15 +11,17 @@ public class Consultation {
     private final int labReportID;
     private final java.sql.Timestamp consultationDate;
 
-    public Consultation(int prescriptionID, int doctorID, int patientID, int vitalSignsID, int labReportID, java.sql.Timestamp consultationDate) {
+    public Consultation(int prescriptionID, int doctorID, int patientID, int vitalSignsID, int labReportID) {
         App.inc_count_consultation();
         consultationID = App.get_count_consultation();
+
+        consultationDate = App.time_now();
+
         this.prescriptionID = prescriptionID;
         this.doctorID = doctorID;
         this.patientID = patientID;
         this.vitalSignsID = vitalSignsID;
         this.labReportID = labReportID;
-        this.consultationDate = consultationDate;
     }
 
     // Getters and Setters

@@ -3,7 +3,6 @@ package com.source.HospitalDB.Classes;
 import java.math.BigDecimal;
 import java.sql.Date; 
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.Period;
 
@@ -27,6 +26,9 @@ public final class Patient {
                    BigDecimal height, BigDecimal weight, String religion, int doctor) {
         App.inc_count_patient();
         patientId = App.get_count_patient();
+        
+        dateCreated = App.time_now();
+        
         this.name = name;
         this.birthDate = birthDate;
         this.age = calculate_age();
@@ -35,7 +37,6 @@ public final class Patient {
         this.weight = weight;
         this.religion = religion;
         this.doctor = doctor;
-        this.dateCreated = time_now();
     }
 
     // Getters (No setters for immutability)
@@ -87,8 +88,4 @@ public final class Patient {
         return period.getYears(); 
     }
     
-    public Timestamp time_now(){
-        Instant instant = Instant.now();
-        return Timestamp.from(instant);
-    }
 }

@@ -4,6 +4,8 @@ package com.source.HospitalDB;
  * Java imports 
  */
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.HashMap;
 
 import com.source.HospitalDB.Classes.ChiefComplaint;
@@ -109,7 +111,12 @@ public class App {
     public static void inc_count_vitalSigns() { count_vitalSigns++; }
 
     public static void inc_count_labReport() { count_labReport++; }
-    
+   
+    public static Timestamp time_now(){
+        Instant instant = Instant.now();
+        return Timestamp.from(instant);
+    }
+
     // FIXME: create a function in App that will create the HospitalDB
     // without running it on SQL Workbench
     // also do the same for the sample data (see make_sample_data())
