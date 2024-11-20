@@ -22,7 +22,7 @@ public class PatientDAO {
         PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, patient.getName());
             pstmt.setInt(2, patient.getAge());
-            pstmt.setDate(3, patient.getBirthDate());
+            pstmt.setTimestamp(3, patient.getBirthDate());
             pstmt.setString(4, patient.getSex());
             pstmt.setBigDecimal(5, patient.getHeight());
             pstmt.setBigDecimal(6, patient.getWeight());
@@ -45,7 +45,7 @@ public class PatientDAO {
         PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, patient.getName());
             pstmt.setInt(2, patient.getAge());
-            pstmt.setDate(3, patient.getBirthDate());
+            pstmt.setTimestamp(3, patient.getBirthDate());
             pstmt.setString(4, patient.getSex());
             pstmt.setBigDecimal(5, patient.getHeight());
             pstmt.setBigDecimal(6, patient.getWeight());
@@ -78,7 +78,7 @@ public class PatientDAO {
                 if (rs.next()) {
                     return new Patient(
                         rs.getString("patient_name"),
-                        rs.getDate("birth_date"),
+                        rs.getTimestamp("birth_date"),
                         rs.getString("sex"),
                         rs.getBigDecimal("patient_height"),
                         rs.getBigDecimal("patient_weight"),
@@ -102,7 +102,7 @@ public class PatientDAO {
             while (rs.next()) {
                 patients.add(new Patient(
                     rs.getString("patient_name"),
-                    rs.getDate("birth_date"),
+                    rs.getTimestamp("birth_date"),
                     rs.getString("sex"),
                     rs.getBigDecimal("patient_height"),
                     rs.getBigDecimal("patient_weight"),
