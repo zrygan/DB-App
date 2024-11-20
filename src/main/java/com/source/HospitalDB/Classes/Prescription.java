@@ -13,11 +13,13 @@ public class Prescription {
     private final int doctorID;
     private final int patientID;
 
-    public Prescription(int medicationID, java.sql.Timestamp prescriptionDate, int frequency, BigDecimal dosage, int doctorID, int patientID) {
+    public Prescription(int medicationID, int frequency, BigDecimal dosage, int doctorID, int patientID) {
         App.inc_count_prescription();
         prescriptionID = App.get_count_prescription(); 
+
+        prescriptionDate = App.time_now();
+
         this.medicationID = medicationID;
-        this.prescriptionDate = prescriptionDate;
         this.frequency = frequency;
         this.dosage = dosage;
         this.doctorID = doctorID;

@@ -1,6 +1,7 @@
 package com.source.HospitalDB.Classes;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 import com.source.HospitalDB.App;
 
@@ -12,18 +13,19 @@ public class VitalSigns {
     private final int systolicBP;
     private final int diastolicBP;
     private final int spo2;
-    private final java.sql.Timestamp vitalSignsDate;
+    private final Timestamp vitalSignsDate;
 
-    public VitalSigns(BigDecimal temperature, int pulse, int respiratoryRate, int systolicBP, int diastolicBP, int spo2, java.sql.Timestamp vitalSignsDate) {
+    public VitalSigns(BigDecimal temperature, int pulse, int respiratoryRate, int systolicBP, int diastolicBP, int spo2) {
         App.inc_count_vitalSigns();
         vitalSignsID = App.get_count_vitalSigns();
+        vitalSignsDate = App.time_now();
+        
         this.temperature = temperature;
         this.pulse = pulse;
         this.respiratoryRate = respiratoryRate;
         this.systolicBP = systolicBP;
         this.diastolicBP = diastolicBP;
         this.spo2 = spo2;
-        this.vitalSignsDate = vitalSignsDate;
     }
 
     // Getters and Setters
