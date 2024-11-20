@@ -12,32 +12,14 @@ import com.source.HospitalDB.DBConnection;
 
 public class Consult_ChiefComplaintDAO {
 
-    public static void addConsultChiefComplaint(int consultationID, int complaintID) throws SQLException {
+    public static void addConsultChiefComplaint(Consult_ChiefComplaint consultChiefComplaint) throws SQLException {
         String query = "INSERT INTO consultation_chief_complaint_record (consultation_ID, complaint_ID) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, consultationID);
-            stmt.setInt(2, complaintID);
+            stmt.setInt(1, consultChiefComplaint.getConsultationID());
+            stmt.setInt(2, consultChiefComplaint.getComplaintID());
             stmt.executeUpdate();
         }
-    }
-
-    public static Consult_ChiefComplaint getConsultChiefComplaint(int consultationID, int complaintID) throws SQLException {
-        String query = "SELECT * FROM consultation_chief_complaint_record WHERE consultation_ID = ? AND complaint_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, consultationID);
-            stmt.setInt(2, complaintID);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    return new Consult_ChiefComplaint(
-                        rs.getInt("consultation_ID"),
-                        rs.getInt("complaint_ID")
-                    );
-                }
-            }
-        }
-        return null;
     }
 
     public static List<Consult_ChiefComplaint> getAllConsultChiefComplaints() throws SQLException {

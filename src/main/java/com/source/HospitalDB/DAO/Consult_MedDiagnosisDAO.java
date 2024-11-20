@@ -12,32 +12,14 @@ import com.source.HospitalDB.DBConnection;
 
 public class Consult_MedDiagnosisDAO {
 
-    public static void addConsultMedDiagnosis(int consultationID, int diagnosisID) throws SQLException {
+    public static void addConsultMedDiagnosis(Consult_MedDiagnosis consultMedDiagnosis) throws SQLException {
         String query = "INSERT INTO consultation_med_diagnosis_record (consultation_ID, diagnosis_ID) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, consultationID);
-            stmt.setInt(2, diagnosisID);
+            stmt.setInt(1, consultMedDiagnosis.getConsultationID());
+            stmt.setInt(2, consultMedDiagnosis.getDiagnosisID());
             stmt.executeUpdate();
         }
-    }
-
-    public static Consult_MedDiagnosis getConsultMedDiagnosis(int consultationID, int diagnosisID) throws SQLException {
-        String query = "SELECT * FROM consultation_med_diagnosis_record WHERE consultation_ID = ? AND diagnosis_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, consultationID);
-            stmt.setInt(2, diagnosisID);
-            try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    return new Consult_MedDiagnosis(
-                        rs.getInt("consultation_ID"),
-                        rs.getInt("diagnosis_ID")
-                    );
-                }
-            }
-        }
-        return null;
     }
 
     public static List<Consult_MedDiagnosis> getAllConsultMedDiagnoses() throws SQLException {

@@ -20,8 +20,6 @@ CREATE TABLE IF NOT EXISTS patients_record (
     patient_height DECIMAL(5, 2) NOT NULL,        -- Height in centimeters or inches
     patient_weight DECIMAL(5, 2) NOT NULL,        -- Weight in kilograms or pounds
     religion VARCHAR(50) NOT NULL,
-    doctor_ID INT NOT NULL,
-    FOREIGN KEY (doctor_ID) REFERENCES doctors_record(doctor_ID),
     date_created DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

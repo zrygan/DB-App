@@ -1,13 +1,12 @@
 package com.source.HospitalDB;
 
-/*
- * Java imports 
- */
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.source.HospitalDB.Classes.ChiefComplaint;
 import com.source.HospitalDB.Classes.Consultation;
@@ -19,40 +18,38 @@ import com.source.HospitalDB.Classes.Medication;
 import com.source.HospitalDB.Classes.Patient;
 import com.source.HospitalDB.Classes.Prescription;
 import com.source.HospitalDB.Classes.VitalSigns;
-import com.source.HospitalDB.DAO.ChiefComplaintDAO;
-import com.source.HospitalDB.DAO.ConsultationDAO;
 import com.source.HospitalDB.DAO.DoctorsDAO;
-import com.source.HospitalDB.DAO.LabReportDAO;
-import com.source.HospitalDB.DAO.LabTestDAO;
-import com.source.HospitalDB.DAO.MedicalDiagnosisDAO;
-import com.source.HospitalDB.DAO.MedicationDAO;
-import com.source.HospitalDB.DAO.PatientDAO;
-import com.source.HospitalDB.DAO.PrescriptionDAO;
-import com.source.HospitalDB.DAO.VitalSignsDAO;
 
 public class App {
     public static void main(String[] args) throws SQLException{
-        Doctors d = new Doctors("Matthew Cutie", "Grogu", "(123) 321-7322", "zr.gntn@gmail.com");
-        Patient p = new Patient("Zhean Robby", Timestamp.valueOf("2004-10-01 00:00:00"), "M", BigDecimal.valueOf(9.4), BigDecimal.valueOf(80.23), "Idiot", 1);
-        VitalSigns v = new VitalSigns(BigDecimal.valueOf(37.2), 65, 12, 120, 170, 99);
-        ChiefComplaint cc = new ChiefComplaint("This is a sample Chief Complaint");
-        MedicalDiagnosis md = new MedicalDiagnosis("Cancer sa tite");
-        Medication m = new Medication("Paracetamol", "Biogesic");
-        Prescription rx = new Prescription(1, 12, BigDecimal.valueOf(35.6), 1, 1);
-        LabTest lt = new LabTest("Blood Test");
-        LabReport lr = new LabReport(1);
-        Consultation c = new Consultation(1,1,1,1,1);
+        // Ensure the doctor exists
+        Doctors doctor = new Doctors("Dr. Smith", "Cardiology", "1234567890", "dr.smith@example.com");
+        DoctorsDAO.create(doctor);
 
-        DoctorsDAO.create(d);
-        PatientDAO.create(p);
-        VitalSignsDAO.addVitalSigns(v);
-        ChiefComplaintDAO.addChiefComplaint(cc);
-        MedicalDiagnosisDAO.addMedicalDiagnosis(md);
-        MedicationDAO.create(m);
-        PrescriptionDAO.addPrescription(rx);
-        LabTestDAO.addLabTest(lt);
-        LabReportDAO.addLabReport(lr);
-        ConsultationDAO.create(c);
+        // Create sample data
+        Patient orig = new Patient("John Doe", Timestamp.valueOf("1999-01-01 00:00:00"), "M", BigDecimal.valueOf(180), BigDecimal.valueOf(75), "Christianity");
+        Patient patient = new Patient("Jane Doe", Timestamp.valueOf("1999-01-01 00:00:00"), "M", BigDecimal.valueOf(180), BigDecimal.valueOf(75), "Christianity");
+        VitalSigns vitalSigns = new VitalSigns(BigDecimal.valueOf(36.5), 70, 16, 120, 80, 98);
+
+        List<Prescription> prescriptions = new ArrayList<>();
+        prescriptions.add(new Prescription(1, 3, BigDecimal.valueOf(500), 1, 1));
+
+        List<LabReport> labReports = new ArrayList<>();
+        labReports.add(new LabReport(1));
+
+        List<ChiefComplaint> chiefComplaints = new ArrayList<>();
+        chiefComplaints.add(new ChiefComplaint("Headache"));
+
+        List<MedicalDiagnosis> medicalDiagnoses = new ArrayList<>();
+        medicalDiagnoses.add(new MedicalDiagnosis("Migraine"));
+
+        Consultation consultation = new Consultation(1, 1, 1, 1, 1);
+
+        // Call the createPatientRecord method
+        Transaction.createPatientRecord(orig, doctor, vitalSigns, consultation, prescriptions, labReports, chiefComplaints, medicalDiagnoses);
+        Transaction.createPatientRecord(patient, doctor, vitalSigns, consultation, prescriptions, labReports, chiefComplaints, medicalDiagnoses);
+
+        System.out.println("Patient record created successfully!");
     }
     
     /************
