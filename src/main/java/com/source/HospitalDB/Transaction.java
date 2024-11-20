@@ -5,10 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.source.HospitalDB.Classes.LabReport;
-import com.source.HospitalDB.Classes.Medication;
-import com.source.HospitalDB.Classes.Patient;
-import com.source.HospitalDB.Classes.Prescription;
+import com.source.HospitalDB.Classes.*;
 
 public class Transaction {
     // Deleting Doctor's Record
@@ -88,7 +85,23 @@ public class Transaction {
                 }
             }
 
-            // Step 4: Create the first consultation record
+            // Step 4: Record the Patient’s Vital Signs
+            String insertVitalSignsQuery = """
+            INSERT INTO vital_signs_record 
+            (patient_ID, temperature, pulse, respiratory_rate, blood_pressure, spo2) 
+            VALUES (?, ?, ?, ?, ?, ?)
+            """;
+            try (PreparedStatement vitalSignsStmt = conn.prepareStatement(insertVitalSignsQuery)) {
+                vitalSignsStmt.setInt(1, patient.getPatientId());
+                vitalSignsStmt.setDouble(2, patient.getTemperature());
+                 vitalSignsStmt.setInt(3, patient.getPulse());
+                 vitalSignsStmt.setInt(4, patient.getRespiratoryRate());
+                 vitalSignsStmt.setString(5, patient.getBloodPressure());
+                 vitalSignsStmt.setInt(6, patient.getSPO2());
+                 vitalSignsStmt.executeUpdate();
+            }
+
+            // Step 5: Create the first consultation record
             String createConsultationQuery = "INSERT INTO consultations_record (patient_ID, doctor_ID, consultation_date, chief_complaint) VALUES (?, ?, NOW(), ?)";
             try (PreparedStatement consultStmt = conn.prepareStatement(createConsultationQuery)) {
                 consultStmt.setInt(1, patient.getPatientId());
@@ -97,6 +110,29 @@ public class Transaction {
                 consultStmt.executeUpdate();
             }
 
+        // Step 6: Create and Assign a Prescription and Lab Record
+        String createPrescriptionQuery = "INSERT INTO prescriptions_record (patient_ID, doctor_ID, medication, frequency, dosage) VALUES (?, ?, ?, ?, ?)";
+        String createLabRecordQuery = "INSERT INTO lab_records (patient_ID, doctor_ID, lab_test, result) VALUES (?, ?, ?, ?)";
+
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement prescriptionStmt = conn.prepareStatement(createPrescriptionQuery);
+                PreparedStatement labStmt = conn.prepareStatement(createLabRecordQuery)) {
+
+            // Create Prescription
+            prescriptionStmt.setInt(1, patient.getPatientId());
+            prescriptionStmt.setInt(2, patient.getDoctor());
+            prescriptionStmt.setString(3, "Paracetamol");
+            prescriptionStmt.setString(4, "Twice a day");
+            prescriptionStmt.setString(5, "500mg");
+            prescriptionStmt.executeUpdate();
+
+            // Create Lab Record
+            labStmt.setInt(1, patient.getPatientId());
+            labStmt.setInt(2, patient.getDoctor());
+            labStmt.setString(3, "Blood Test");
+            labStmt.setString(4, "Pending");
+            labStmt.executeUpdate();
+
             System.out.println("Patient record created successfully!");
 
         } catch (SQLException e) {
@@ -104,34 +140,36 @@ public class Transaction {
         }
     }
 
-    // Creating an Advanced Patient record
-    public void createAdvancePatientRecord(Patient patient, Medication medication, Prescription prescription, LabReport labReport) throws SQLException {
+    /* Creating an Advanced Patient record
+    public void createAdvancePatientRecord(Patient patient) throws SQLException {
         createPatientRecord(patient); // Reuse the basic patient creation logic
 
         // Step 5: Create and Assign a Prescription and Lab Record
-        String createPrescriptionQuery = "INSERT INTO prescriptions_record (medication_ID, frequency, dosage, doctor_ID, patient_ID) VALUES (?, ?, ?, ?, ?)";
-        String createLabRecordQuery = "INSERT INTO lab_report_record (lab_report_ID, test_ID) VALUES (?, ?)";
+        String createPrescriptionQuery = "INSERT INTO prescriptions_record (patient_ID, doctor_ID, medication, frequency, dosage) VALUES (?, ?, ?, ?, ?)";
+        String createLabRecordQuery = "INSERT INTO lab_records (patient_ID, doctor_ID, lab_test, result) VALUES (?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement prescriptionStmt = conn.prepareStatement(createPrescriptionQuery);
                 PreparedStatement labStmt = conn.prepareStatement(createLabRecordQuery)) {
 
             // Create Prescription
-            prescriptionStmt.setInt(1, medication.getMedicationID());
-            prescriptionStmt.setInt(2, prescription.getFrequency());
-            prescriptionStmt.setBigDecimal(3, prescription.getDosage());
-            prescriptionStmt.setInt(4, prescription.getDoctorID());
-            prescriptionStmt.setInt(5, prescription.getPatientID());
+            prescriptionStmt.setInt(1, patient.getPatientId());
+            prescriptionStmt.setInt(2, patient.getDoctor());
+            prescriptionStmt.setString(3, "Paracetamol");
+            prescriptionStmt.setString(4, "Twice a day");
+            prescriptionStmt.setString(5, "500mg");
             prescriptionStmt.executeUpdate();
 
             // Create Lab Record
-            labStmt.setInt(1,labReport.getLabReportID());
-            labStmt.setInt(2, labReport.getTestID());
+            labStmt.setInt(1, patient.getPatientId());
+            labStmt.setInt(2, patient.getDoctor());
+            labStmt.setString(3, "Blood Test");
+            labStmt.setString(4, "Pending");
             labStmt.executeUpdate();
 
             System.out.println("Advanced Patient record created successfully!");
         }
-    }
+    } */
 
     // Deleting a patient record
     public void deletePatientRecord(int patientID) throws SQLException {
