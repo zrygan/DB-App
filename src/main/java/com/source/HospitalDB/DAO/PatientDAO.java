@@ -8,52 +8,51 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.source.HospitalDB.Classes.Patient;
 import com.source.HospitalDB.DBConnection;
+import com.source.HospitalDB.Classes.Patient;
 
 public class PatientDAO {
     // Create a new Patient record
     public static void create(Patient patient) throws SQLException {
-        String query = "INSERT INTO patients_record (patient_ID, patient_name, age, birth_date, sex, patient_height,"
+        String query = "INSERT INTO patients_record (patient_name, age, birth_date, sex, patient_height,"
                      + "patient_weight, religion, doctor_ID, date_created)"
-                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, patient.getPatientId());
-            pstmt.setString(2, patient.getName());
-            pstmt.setInt(3, patient.getAge());
-            pstmt.setDate(4, patient.getBirthDate());
-            pstmt.setString(5, patient.getSex());
-            pstmt.setBigDecimal(6, patient.getHeight());
-            pstmt.setBigDecimal(7, patient.getWeight());
-            pstmt.setString(8, patient.getReligion());
-            pstmt.setInt(9, patient.getDoctor());
-            pstmt.setTimestamp(10, patient.getDateCreated());
-
+            pstmt.setString(1, patient.getName());
+            pstmt.setInt(2, patient.getAge());
+            pstmt.setDate(3, patient.getBirthDate());
+            pstmt.setString(4, patient.getSex());
+            pstmt.setBigDecimal(5, patient.getHeight());
+            pstmt.setBigDecimal(6, patient.getWeight());
+            pstmt.setString(7, patient.getReligion());
+            pstmt.setInt(8, patient.getDoctor());
+            pstmt.setTimestamp(9, patient.getDateCreated());
+        
             pstmt.executeUpdate();
         }
-    }
+        
+    }       
 
     //Update a patient record
     public static void update(Patient patient) throws SQLException {
-        String query = "UPDATE patients_record (patient_ID, patient_name, age, birth_date, sex, patient_height,"
+        String query = "UPDATE patients_record (patient_name, age, birth_date, sex, patient_height,"
                      + "patient_weight, religion, doctor, date_created)"
-                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DBConnection.getConnection();
         PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, patient.getPatientId());
-            pstmt.setString(2, patient.getName());
-            pstmt.setInt(3, patient.getAge());
-            pstmt.setDate(4, patient.getBirthDate());
-            pstmt.setString(5, patient.getSex());
-            pstmt.setBigDecimal(6, patient.getHeight());
-            pstmt.setBigDecimal(7, patient.getWeight());
-            pstmt.setString(8, patient.getReligion());
-            pstmt.setInt(9, patient.getDoctor());
-            pstmt.setTimestamp(10, patient.getDateCreated());
-
+            pstmt.setString(1, patient.getName());
+            pstmt.setInt(2, patient.getAge());
+            pstmt.setDate(3, patient.getBirthDate());
+            pstmt.setString(4, patient.getSex());
+            pstmt.setBigDecimal(5, patient.getHeight());
+            pstmt.setBigDecimal(6, patient.getWeight());
+            pstmt.setString(7, patient.getReligion());
+            pstmt.setInt(8, patient.getDoctor());
+            pstmt.setTimestamp(9, patient.getDateCreated());
+        
             pstmt.executeUpdate();
         }
     }

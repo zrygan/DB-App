@@ -150,93 +150,11 @@ public class Transaction {
     // ****** [BARLAAN] TRANSACTIONS
     // ******************************
 
-    //Doctor's Prescription
-    public boolean createPrescription(String doctorId, String patientId, String medicationDetails) throws SQLException {
-    try (Connection conn = DBConnection.getConnection()) {
-        
-        // Verify patient exists and is assigned to the correct doctor
-        String patientDoctorCheckQuery = "SELECT COUNT(*) FROM patients_record WHERE patient_ID = ? AND doctor_ID = ?";
-        try (PreparedStatement patientDoctorStmt = conn.prepareStatement(patientDoctorCheckQuery)) {
-            patientDoctorStmt.setString(1, patientId);
-            patientDoctorStmt.setString(2, doctorId);
-            ResultSet patientDoctorRs = patientDoctorStmt.executeQuery();
-            if (!patientDoctorRs.next() || patientDoctorRs.getInt(1) == 0) {
-                System.out.println("Patient is not assigned to this doctor.");
-                return false;
-            }
-        }
-
-        // Verify doctor exists in doctors_record
-        String doctorCheckQuery = "SELECT COUNT(*) FROM doctors_record WHERE doctor_ID = ?";
-        try (PreparedStatement doctorCheckStmt = conn.prepareStatement(doctorCheckQuery)) {
-            doctorCheckStmt.setString(1, doctorId);
-            ResultSet doctorCheckRs = doctorCheckStmt.executeQuery();
-            if (!doctorCheckRs.next() || doctorCheckRs.getInt(1) == 0) {
-                System.out.println("Doctor does not exist.");
-                return false;
-            }
-        }
-
-        // All checks passed, create new medication record
-        String insertMedicationQuery = "INSERT INTO medication_record (doctor_ID, patient_ID, medication_details) VALUES (?, ?, ?)";
-        try (PreparedStatement insertStmt = conn.prepareStatement(insertMedicationQuery)) {
-            insertStmt.setString(1, doctorId);
-            insertStmt.setString(2, patientId);
-            insertStmt.setString(3, medicationDetails);
-            int rowsInserted = insertStmt.executeUpdate();
-            return rowsInserted > 0;
-        }
-    }
-}
-
-    //Creating Doctor's Record
-    public boolean createDoctor(Doctors doctor) throws SQLException {
-    try (Connection conn = DBConnection.getConnection()) {
-        
-        // Check for duplicates by doctor ID or email
-        String duplicateCheckQuery = "SELECT COUNT(*) FROM doctors_record WHERE doctor_ID = ? OR email = ?";
-        try (PreparedStatement duplicateCheckStmt = conn.prepareStatement(duplicateCheckQuery)) {
-            duplicateCheckStmt.setString(1, doctor.getDoctorId());
-            duplicateCheckStmt.setString(2, doctor.getEmail());
-            ResultSet duplicateCheckRs = duplicateCheckStmt.executeQuery();
-            if (duplicateCheckRs.next() && duplicateCheckRs.getInt(1) > 0) {
-                System.out.println("Doctor already exists with this ID or email.");
-                return false;
-            }
-        }
-
-        // Validate email format
-        if (!doctor.getEmail().matches("^[\\w-\\.]+@[\\w-]+\\.[a-z]{2,}$")) {
-            System.out.println("Invalid email format.");
-            return false;
-        }
-
-        // Validate phone number format
-        if (!doctor.getPhoneNumber().matches("\\(\\d{3}\\) \\d{3}-\\d{4}")) {
-            System.out.println("Invalid phone number format.");
-            return false;
-        }
-
-        // Insert new doctor record
-        String insertDoctorQuery = "INSERT INTO doctors_record (name, specialization, doctor_ID, status, phoneNumber, email, medicalHierarchy) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement insertStmt = conn.prepareStatement(insertDoctorQuery)) {
-            insertStmt.setString(1, doctor.getName());
-            insertStmt.setString(2, doctor.getSpecialization());
-            insertStmt.setString(3, doctor.getDoctorId());
-            insertStmt.setString(4, doctor.getPhoneNumber());
-            insertStmt.setString(5, doctor.getEmail());
-            insertStmt.setString(6, doctor.getMedicalHierarchy());
-
-            int rowsInserted = insertStmt.executeUpdate();
-            return rowsInserted > 0;
-        }
-    }
-}
-    //Deleting Doctor's Record
-    public boolean deleteDoctor(String doctorId) throws SQLException {
+    // Deleting Doctor's Record
+public boolean deleteDoctor(String doctorId) throws SQLException {
     try (Connection conn = DBConnection.getConnection()) {
 
-        // Verify doctor exists
+        // Verify the doctor exists in the database
         String doctorExistQuery = "SELECT COUNT(*) FROM doctors_record WHERE doctor_ID = ?";
         try (PreparedStatement doctorExistStmt = conn.prepareStatement(doctorExistQuery)) {
             doctorExistStmt.setString(1, doctorId);
@@ -247,18 +165,18 @@ public class Transaction {
             }
         }
 
-        // Check if doctor has active patients
-        String activePatientCheckQuery = "SELECT COUNT(*) FROM patients_record WHERE doctor_ID = ? AND status = 'Admitted'";
-        try (PreparedStatement activePatientCheckStmt = conn.prepareStatement(activePatientCheckQuery)) {
-            activePatientCheckStmt.setString(1, doctorId);
-            ResultSet activePatientCheckRs = activePatientCheckStmt.executeQuery();
-            if (activePatientCheckRs.next() && activePatientCheckRs.getInt(1) > 0) {
-                System.out.println("Doctor has active patients and cannot be deleted.");
+        // Check if the doctor has at least one consultation
+        String consultationCheckQuery = "SELECT COUNT(*) FROM consultations_record WHERE doctor_ID = ?";
+        try (PreparedStatement consultationCheckStmt = conn.prepareStatement(consultationCheckQuery)) {
+            consultationCheckStmt.setString(1, doctorId);
+            ResultSet consultationCheckRs = consultationCheckStmt.executeQuery();
+            if (consultationCheckRs.next() && consultationCheckRs.getInt(1) > 0) {
+                System.out.println("Doctor has consultations and cannot be deleted.");
                 return false;
             }
         }
 
-        // Delete doctor record if no active patients
+        // Delete the doctor if no consultations
         String deleteDoctorQuery = "DELETE FROM doctors_record WHERE doctor_ID = ?";
         try (PreparedStatement deleteStmt = conn.prepareStatement(deleteDoctorQuery)) {
             deleteStmt.setString(1, doctorId);
@@ -267,6 +185,42 @@ public class Transaction {
         }
     }
 }
+// Deleting Doctor's Record
+public boolean deleteDoctor(String doctorId) throws SQLException {
+    try (Connection conn = DBConnection.getConnection()) {
+
+        // Verify the doctor exists in the database
+        String doctorExistQuery = "SELECT COUNT(*) FROM doctors_record WHERE doctor_ID = ?";
+        try (PreparedStatement doctorExistStmt = conn.prepareStatement(doctorExistQuery)) {
+            doctorExistStmt.setString(1, doctorId);
+            ResultSet doctorExistRs = doctorExistStmt.executeQuery();
+            if (!doctorExistRs.next() || doctorExistRs.getInt(1) == 0) {
+                System.out.println("Doctor does not exist.");
+                return false;
+            }
+        }
+
+        // Check if the doctor has at least one consultation
+        String consultationCheckQuery = "SELECT COUNT(*) FROM consultations_record WHERE doctor_ID = ?";
+        try (PreparedStatement consultationCheckStmt = conn.prepareStatement(consultationCheckQuery)) {
+            consultationCheckStmt.setString(1, doctorId);
+            ResultSet consultationCheckRs = consultationCheckStmt.executeQuery();
+            if (consultationCheckRs.next() && consultationCheckRs.getInt(1) > 0) {
+                System.out.println("Doctor has consultations and cannot be deleted.");
+                return false;
+            }
+        }
+
+        // Delete the doctor if no consultations
+        String deleteDoctorQuery = "DELETE FROM doctors_record WHERE doctor_ID = ?";
+        try (PreparedStatement deleteStmt = conn.prepareStatement(deleteDoctorQuery)) {
+            deleteStmt.setString(1, doctorId);
+            int rowsDeleted = deleteStmt.executeUpdate();
+            return rowsDeleted > 0;
+        }
+    }
+}
+
 
     //Creating a Patient record
     public void createPatientRecord(Patient patient, Connection conn) throws SQLException { //Add necessary parameters
