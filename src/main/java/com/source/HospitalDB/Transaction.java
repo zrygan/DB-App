@@ -222,23 +222,93 @@ public boolean deleteDoctor(String doctorId) throws SQLException {
 }
 
 
-    //Creating a Patient record
-    public void createPatientRecord(Patient patient, Connection conn) throws SQLException { //Add necessary parameters
-        // 1. Verify that the Patient record does not exist.
-        // 2. Record the Patient’s information Name, Age, BirthDate, Sex, Height, Weight, and Religion.
-        // 3. Assign a Doctor to the Patient, ensure that the Doctor exists in the database.
-        // 4. Create a new Consultation Record (the first Consultation Record of the Patient in the hospital).        
+// Creating a Patient record
+public void createPatientRecord(Patient patient, Connection conn) throws SQLException {
+    try {
+        // Step 1: Verify that the Patient record does not exist
+        String checkPatientQuery = "SELECT COUNT(*) FROM patients_record WHERE patient_ID = ?";
+        try (PreparedStatement checkStmt = conn.prepareStatement(checkPatientQuery)) {
+            checkStmt.setInt(1, patient.getPatientId());
+            ResultSet rs = checkStmt.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("Patient record already exists!");
+                return;
+            }
+        }
+
+        // Step 2: Record the Patient’s information
+        String insertPatientQuery = "INSERT INTO patients_record (patient_ID, name, age, birth_date, sex, height, weight, religion, doctor_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement insertStmt = conn.prepareStatement(insertPatientQuery)) {
+            insertStmt.setInt(1, patient.getPatientId());
+            insertStmt.setString(2, patient.getName());
+            insertStmt.setInt(3, patient.getAge());
+            insertStmt.setDate(4, java.sql.Date.valueOf(patient.getBirthDate()));
+            insertStmt.setString(5, patient.getSex());
+            insertStmt.setDouble(6, patient.getHeight());
+            insertStmt.setDouble(7, patient.getWeight());
+            insertStmt.setString(8, patient.getReligion());
+            insertStmt.setString(9, patient.getAssignedDoctorId());
+            insertStmt.executeUpdate();
+        }
+
+        // Step 3: Ensure the assigned Doctor exists
+        String checkDoctorQuery = "SELECT COUNT(*) FROM doctors_record WHERE doctor_ID = ?";
+        try (PreparedStatement checkDoctorStmt = conn.prepareStatement(checkDoctorQuery)) {
+            checkDoctorStmt.setString(1, patient.getAssignedDoctorId());
+            ResultSet rs = checkDoctorStmt.executeQuery();
+            if (!rs.next() || rs.getInt(1) == 0) {
+                System.out.println("Assigned doctor does not exist!");
+                return;
+            }
+        }
+
+        // Step 4: Create the first consultation record
+        String createConsultationQuery = "INSERT INTO consultations_record (patient_ID, doctor_ID, consultation_date, chief_complaint) VALUES (?, ?, NOW(), ?)";
+        try (PreparedStatement consultStmt = conn.prepareStatement(createConsultationQuery)) {
+            consultStmt.setInt(1, patient.getPatientId());
+            consultStmt.setString(2, patient.getAssignedDoctorId());
+            consultStmt.setString(3, "First Consultation");
+            consultStmt.executeUpdate();
+        }
+
+        System.out.println("Patient record created successfully!");
+
+    } catch (SQLException e) {
+        throw new SQLException("Error creating patient record: " + e.getMessage(), e);
     }
+}
 
 
-    //Creating a Patient record
-    public void createAdvancePatientRecord(Patient patient, Connection conn) throws SQLException { //Add necessary parameters
-        // 1. Verify that the Patient record does not exist.
-        // 2. Record the Patient’s information Name, Age, BirthDate, Sex, Height, Weight, and Religion.
-        // 3. Assign a Doctor to the Patient, ensure that the Doctor exists in the database.
-        // 4. Create a new Consultation Record (the first Consultation Record of the Patient in the hospital).
-        // 5. Create and Assign a Prescription and Lab Record, if needed.
+// Creating an Advanced Patient record
+public void createAdvancePatientRecord(Patient patient, Connection conn) throws SQLException {
+    createPatientRecord(patient, conn); // Reuse the basic patient creation logic
+
+    // Step 5: Create and Assign a Prescription and Lab Record
+    String createPrescriptionQuery = "INSERT INTO prescriptions_record (patient_ID, doctor_ID, medication, frequency, dosage) VALUES (?, ?, ?, ?, ?)";
+    String createLabRecordQuery = "INSERT INTO lab_records (patient_ID, doctor_ID, lab_test, result) VALUES (?, ?, ?, ?)";
+
+    try (PreparedStatement prescriptionStmt = conn.prepareStatement(createPrescriptionQuery);
+         PreparedStatement labStmt = conn.prepareStatement(createLabRecordQuery)) {
+        
+        // Create Prescription
+        prescriptionStmt.setInt(1, patient.getPatientId());
+        prescriptionStmt.setString(2, patient.getAssignedDoctorId());
+        prescriptionStmt.setString(3, "Paracetamol");
+        prescriptionStmt.setString(4, "Twice a day");
+        prescriptionStmt.setString(5, "500mg");
+        prescriptionStmt.executeUpdate();
+
+        // Create Lab Record
+        labStmt.setInt(1, patient.getPatientId());
+        labStmt.setString(2, patient.getAssignedDoctorId());
+        labStmt.setString(3, "Blood Test");
+        labStmt.setString(4, "Pending");
+        labStmt.executeUpdate();
+
+        System.out.println("Advanced Patient record created successfully!");
     }
+}
+
 
     // Deleting a patient record
     public void deletePatientRecord(Connection conn, int patientID) throws SQLException {
@@ -290,24 +360,88 @@ public boolean deleteDoctor(String doctorId) throws SQLException {
     }
     
 
-
-    // Creating a Prescription Record
-    public void createPrescriptionRecord(Connection conn) throws SQLException { //Add necessary parameters
-        // 1. Verify the Patient exists in the database.
-        // 2. Verify the Prescribing Doctor exists in the database.
-        // 3. Verify the Medication prescribed exists in the database(e.g., check if Calpol or Paracetamol is in the database; 
-        // if Calpol is not in the database, but there is a Paracetaol medication of a different brand name, assign that instead).
-        // 4. Record the information of the Prescription (Date [Given], Frequency, Dosage, and Medication).
+    //creating a prescription record
+    public void createPrescriptionRecord(int patientId, String doctorId, String medication, String frequency, String dosage, Connection conn) throws SQLException {
+    // Step 1: Verify the Patient exists
+    String checkPatientQuery = "SELECT COUNT(*) FROM patients_record WHERE patient_ID = ?";
+    try (PreparedStatement checkPatientStmt = conn.prepareStatement(checkPatientQuery)) {
+        checkPatientStmt.setInt(1, patientId);
+        ResultSet rs = checkPatientStmt.executeQuery();
+        if (!rs.next() || rs.getInt(1) == 0) {
+            System.out.println("Patient does not exist!");
+            return;
+        }
     }
 
-    public void createConsultationRecord(Connection conn) throws SQLException { //Add necessary parameters
-        // 1. Verity the Patient exists in the database.
-        // 2. Verify the Doctor exists in the database.
-        // 3. Record the date of the consultation.
-        // 4. Record the Chief Complaint(s) of the Patient.
-        // 5. Record the Medical Diagnosis (or Diagnoses) of the Patient.
-        // 6. Determine if a Lab Report or Prescription was given or assigned the same day the consultation is created, 
-        // if there is record of it in the Consultation Record.
-        // 7. Record the Vital Signs of the Patient in the Consultation Record.
+    // Step 2: Verify the Doctor exists
+    String checkDoctorQuery = "SELECT COUNT(*) FROM doctors_record WHERE doctor_ID = ?";
+    try (PreparedStatement checkDoctorStmt = conn.prepareStatement(checkDoctorQuery)) {
+        checkDoctorStmt.setString(1, doctorId);
+        ResultSet rs = checkDoctorStmt.executeQuery();
+        if (!rs.next() || rs.getInt(1) == 0) {
+            System.out.println("Doctor does not exist!");
+            return;
+        }
     }
+
+    // Step 3: Verify Medication exists
+    String checkMedicationQuery = "SELECT COUNT(*) FROM medication_record WHERE medication_name = ?";
+    try (PreparedStatement checkMedicationStmt = conn.prepareStatement(checkMedicationQuery)) {
+        checkMedicationStmt.setString(1, medication);
+        ResultSet rs = checkMedicationStmt.executeQuery();
+        if (!rs.next() || rs.getInt(1) == 0) {
+            System.out.println("Medication does not exist!");
+            return;
+        }
+    }
+
+    // Step 4: Create Prescription Record
+    String createPrescriptionQuery = "INSERT INTO prescriptions_record (patient_ID, doctor_ID, medication, frequency, dosage) VALUES (?, ?, ?, ?, ?)";
+    try (PreparedStatement prescriptionStmt = conn.prepareStatement(createPrescriptionQuery)) {
+        prescriptionStmt.setInt(1, patientId);
+        prescriptionStmt.setString(2, doctorId);
+        prescriptionStmt.setString(3, medication);
+        prescriptionStmt.setString(4, frequency);
+        prescriptionStmt.setString(5, dosage);
+        prescriptionStmt.executeUpdate();
+        System.out.println("Prescription record created successfully!");
+    }
+}
+
+    //creating a consultation record
+    public void createConsultationRecord(int patientId, String doctorId, String chiefComplaint, String diagnosis, Connection conn) throws SQLException {
+    // Step 1: Verify the Patient exists
+    String checkPatientQuery = "SELECT COUNT(*) FROM patients_record WHERE patient_ID = ?";
+    try (PreparedStatement checkPatientStmt = conn.prepareStatement(checkPatientQuery)) {
+        checkPatientStmt.setInt(1, patientId);
+        ResultSet rs = checkPatientStmt.executeQuery();
+        if (!rs.next() || rs.getInt(1) == 0) {
+            System.out.println("Patient does not exist!");
+            return;
+        }
+    }
+
+    // Step 2: Verify the Doctor exists
+    String checkDoctorQuery = "SELECT COUNT(*) FROM doctors_record WHERE doctor_ID = ?";
+    try (PreparedStatement checkDoctorStmt = conn.prepareStatement(checkDoctorQuery)) {
+        checkDoctorStmt.setString(1, doctorId);
+        ResultSet rs = checkDoctorStmt.executeQuery();
+        if (!rs.next() || rs.getInt(1) == 0) {
+            System.out.println("Doctor does not exist!");
+            return;
+        }
+    }
+
+    // Step 3: Record Consultation Details
+    String insertConsultationQuery = "INSERT INTO consultations_record (patient_ID, doctor_ID, consultation_date, chief_complaint, diagnosis) VALUES (?, ?, NOW(), ?, ?)";
+    try (PreparedStatement consultStmt = conn.prepareStatement(insertConsultationQuery)) {
+        consultStmt.setInt(1, patientId);
+        consultStmt.setString(2, doctorId);
+        consultStmt.setString(3, chiefComplaint);
+        consultStmt.setString(4, diagnosis);
+        consultStmt.executeUpdate();
+        System.out.println("Consultation record created successfully!");
+    }
+}
+
 }
