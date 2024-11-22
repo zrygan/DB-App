@@ -15,10 +15,20 @@ import com.source.HospitalDB.Classes.Medication;
 import com.source.HospitalDB.Classes.Patient;
 import com.source.HospitalDB.Classes.Prescription;
 import com.source.HospitalDB.Classes.VitalSigns;
+import com.source.HospitalDB.DAO.ConsultationDAO;
 
 public class App {
     public static void main(String[] args) throws SQLException{
-        
+        Consultation c1 = new Consultation(1, 2, 2, 1, 2);
+        Consultation c2 = new Consultation(1, 3, 3, 1, 2);
+
+        ConsultationDAO.add(c1);
+        ConsultationDAO.add(c2);
+
+        System.out.println(ConsultationDAO.get(1));
+        System.out.println(ConsultationDAO.getAll());
+
+        ConsultationDAO.del(2);
     }
     
     /************

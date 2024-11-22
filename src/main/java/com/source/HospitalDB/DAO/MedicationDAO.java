@@ -50,6 +50,8 @@ public class MedicationDAO {
         }
     }
 
+    // FIXME: no get all
+
     // Viewing all medications with the same generic name
     public static List<Medication> getAllGeneric(String generic_name) throws SQLException {
         List<Medication> meds = new ArrayList<>();
@@ -70,26 +72,4 @@ public class MedicationDAO {
         }
         return meds;
     }
-
-    // Viewing all medications with the same brand name
-    public static List<Medication> getAllBrand(String brand_name) throws SQLException {
-        List<Medication> meds = new ArrayList<>();
-        String query = "SELECT * FROM medication_record WHERE brand_name = ?";
-        try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query)) {
-
-            pstmt.setString(1, brand_name); // Setting the parameter
-            try (ResultSet rs = pstmt.executeQuery()) { 
-                while (rs.next()) {
-                    Medication medication = new Medication(
-                        rs.getString("generic_name"),
-                        rs.getString("brand_name")
-                    );
-                    meds.add(medication);
-                }
-            }
-        }
-        return meds;
-    }
-
 }

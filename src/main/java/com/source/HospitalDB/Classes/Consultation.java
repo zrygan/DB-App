@@ -4,11 +4,11 @@ import com.source.HospitalDB.App;
 
 public class Consultation {
     private final int consultationID;
-    private final int prescriptionID;
+    private int prescriptionID;
     private final int doctorID;
     private final int patientID;
     private final int vitalSignsID;
-    private final int labReportID;
+    private int labReportID;
     private final java.sql.Timestamp consultationDate;
 
     public Consultation(int prescriptionID, int doctorID, int patientID, int vitalSignsID, int labReportID) {
@@ -38,5 +38,9 @@ public class Consultation {
     public int getLabReportID() { return labReportID; }
 
     public java.sql.Timestamp getConsultationDate() { return consultationDate; }
+
+    public void setLabReportID(int labReportID) { this.labReportID = labReportID; }
+
+    public void setPrescriptionID(int prescriptionID) { this.prescriptionID = prescriptionID; }
 
 }

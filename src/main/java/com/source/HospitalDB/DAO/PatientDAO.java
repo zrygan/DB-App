@@ -69,6 +69,7 @@ public class PatientDAO {
     // FIXME: no getAll
 
     // Method to get a comprehensive summary of all medical records and return it as a string
+    // FIXME: untested, needs corrections
     public static String getSummary() throws SQLException {
         StringBuilder summary = new StringBuilder();
 
@@ -120,8 +121,8 @@ public class PatientDAO {
         return summary.toString();
     }
 
-    public int getFromNameBDay(String name, Timestamp birthDate) throws SQLException {
-        String query = "SELECT patient_ID FROM Patient WHERE patient_name = ? AND birth_date = ?";
+    public static int getFromNameBDay(String name, Timestamp birthDate) throws SQLException {
+        String query = "SELECT patient_ID FROM patients_record WHERE patient_name = ? AND birth_date = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement preparedStatement = conn.prepareStatement(query)) {
             preparedStatement.setString(1, name);
