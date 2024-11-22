@@ -33,7 +33,7 @@
         <title>Create Consultation Result</title>   
     </head>
     <body>
-        <form action="JSP/add_prescription.jsp" method="post">
+        <form id="myForm" method="POST">
             <div class="shape text create-4953d79c36fa">
               <div
                 class="text-node-html"
@@ -55,8 +55,8 @@
                       class="paragraph root-0-paragraph-set-0-paragraph-0"
                       dir="ltr"
                     >
-                      <input
-                        type="submit"
+                      <button
+                        type="button"
                         id="prescribe"
                         name="prescribe"
                         value="Prescribe"
@@ -83,13 +83,13 @@
                           font-style: normal;
                           font-weight: 600;
                         "
-                      />
+                        onclick="submitForm('add_prescription.jsp')">Prescribe</button>
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <jsp:forward page="add_prescription.jsp" />
+            <jsp:forward page="add_prescription.jsp" /> <!-- FIXME: Careful idk how this works -->
         </form>
         <form action="JSP/add_labreport.jsp" method="post">
             <div class="shape text create-4953d79c36fa">
@@ -113,8 +113,8 @@
                       class="paragraph root-0-paragraph-set-0-paragraph-0"
                       dir="ltr"
                     >
-                      <input
-                        type="submit"
+                      <button
+                        type="button"
                         id="report"
                         name="report"
                         value="lab report"
@@ -141,13 +141,13 @@
                           font-style: normal;
                           font-weight: 600;
                         "
-                      />
+                        onclick="submitForm('add_labreport.jsp')">Lab Report</button>
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <jsp:forward page="add_labreport.jsp" />
+            <jsp:forward page="add_labreport.jsp" /> <!-- FIXME: Careful idk how this works -->
         </form>
         <% 
         String birthStr = request.getParameter("birth_date") != null ? request.getParameter("birth_date") : "Not Provided";
