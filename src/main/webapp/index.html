@@ -1169,7 +1169,6 @@
               </div>
             </div>
           </div>
-          <!-- text: XX:XX:XX -->
           <div class="shape text xx-xx-xx-444d5274672e">
             <div
               class="text-node-html"
@@ -1192,7 +1191,8 @@
                     dir="ltr"
                   >
                     <span
-                      class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                      class="text-node root-0-paragraph-set-0-paragraph-0-text-0 clock"
+                      id="current-time"
                       style="
                         color: rgba(64, 21, 32, 1);
                         text-transform: none;
@@ -1203,20 +1203,14 @@
                         text-rendering: geometricPrecision;
                         caret-color: rgba(64, 21, 32, 1);
                         text-decoration: none;
-                        --font-id: gfont-space-grotesk;
-                        --fills: [[ '^ ', '~:fill-color', '#401520',
-                          '~:fill-color-ref-id',
-                          '~ua19c5e35-ca12-808b-8005-4446f756ba91',
-                          '~:fill-color-ref-file',
-                          '~ua5adc15f-fb38-8092-8005-41b26c440392',
-                          '~:fill-opacity', 1]];
                         letter-spacing: 0px;
                         font-family: 'Space Grotesk';
                         font-style: normal;
                         font-weight: 700;
                       "
-                      >XX:XX:XX</span
                     >
+                      XX:XX:XX
+                    </span>
                   </p>
                 </div>
               </div>
@@ -1225,5 +1219,7 @@
         </div>
       </div>
     </div>
+
+    <script src="js/clock.js"></script>
   </body>
 </html>
