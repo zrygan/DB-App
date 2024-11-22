@@ -116,6 +116,8 @@
             
             String spo2 = request.getParameter("spo2") != null ? request.getParameter("spo2") : "Not Provided";
             int spo2_int = Integer.parseInt(spo2);
+
+            // boolean isSubmitClicked = "Create".equals(request.getParameter("submit"));
             
             // VitalSigns vitalSigns = new VitalSigns();
             // Add Create Prescription
