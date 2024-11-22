@@ -34,7 +34,7 @@ public class Transaction {
     public static boolean deleteDoctor(int doctorId) throws SQLException {
         try (Connection conn = DBConnection.getConnection()) {
             // Verify the doctor exists in the database
-            if (DoctorsDAO.get(doctorId) == null) {
+            if (DoctorsDAO.getFromID(doctorId) == null) {
                 System.out.println("Doctor does not exist.");
                 return false;
             }
@@ -51,7 +51,7 @@ public class Transaction {
             }
 
             // Delete the doctor if no consultations
-            DoctorsDAO.delete(doctorId);
+            DoctorsDAO.del(doctorId);
             return true;
         }
     }
@@ -64,57 +64,57 @@ public class Transaction {
             conn.setAutoCommit(false); // Start transaction
 
             // Step 1: Verify that the Patient record does not exist
-            if (PatientDAO.getPatient(patient.getPatientId()) != null) {
+            if (PatientDAO.getFromID(patient.getPatientId()) != null) {
                 System.out.println("Patient record already exists!");
                 return false;
             }
 
             // Step 2: Record the Patient’s information
-            PatientDAO.create(patient);
+            PatientDAO.add(patient);
 
             // Step 3: Ensure the assigned Doctor exists
-            if (DoctorsDAO.get(doctor.getDoctorId()) == null){
+            if (DoctorsDAO.getFromID(doctor.getDoctorId()) == null){
                 System.out.println("Assigned doctor does not exist!");
                 return false;
             }
 
             // Step 4: Record the Patient’s Vital Signs
-            VitalSignsDAO.addVitalSigns(vitalSigns);
+            VitalSignsDAO.add(vitalSigns);
 
             // Step 5: Record the Patient’s Prescriptions if any
             if (prescriptions != null) {
                 for (Prescription prescription : prescriptions) {
-                    PrescriptionDAO.addPrescription(prescription);
+                    PrescriptionDAO.add(prescription);
                 }
             }
 
             // Step 6: Record the Patient’s Lab Reports if any
             if (labReports != null) {
                 for (LabReport labReport : labReports) {
-                    LabReportDAO.addLabReport(labReport);
+                    LabReportDAO.add(labReport);
                 }
             }
 
             // Step 7: Create the first consultation record
-            ConsultationDAO.create(consultation);
+            ConsultationDAO.add(consultation);
 
             // Step 8: Record the Patient’s Chief Complaints if any
             if (chiefComplaints != null) {
                 for (ChiefComplaint chiefComplaint : chiefComplaints) {
-                    ChiefComplaintDAO.addChiefComplaint(chiefComplaint);
+                    ChiefComplaintDAO.add(chiefComplaint);
 
                     Consult_ChiefComplaint consultChiefComplaint = new Consult_ChiefComplaint(consultation.getConsultationID(), chiefComplaint.getComplaintID());
-                    Consult_ChiefComplaintDAO.addConsultChiefComplaint(consultChiefComplaint);
+                    Consult_ChiefComplaintDAO.add(consultChiefComplaint);
                 }
             }
 
             // Step 9: Record the Patient’s Medical Diagnoses if any
             if (medicalDiagnoses != null) {
                 for (MedicalDiagnosis medicalDiagnosis : medicalDiagnoses) {
-                    MedicalDiagnosisDAO.addMedicalDiagnosis(medicalDiagnosis);
+                    MedicalDiagnosisDAO.add(medicalDiagnosis);
 
                     Consult_MedDiagnosis consultMedDiagnosis = new Consult_MedDiagnosis(consultation.getConsultationID(), medicalDiagnosis.getDiagnosisID());
-                    Consult_MedDiagnosisDAO.addConsultMedDiagnosis(consultMedDiagnosis);
+                    Consult_MedDiagnosisDAO.add(consultMedDiagnosis);
                 }
             }
 
@@ -136,17 +136,92 @@ public class Transaction {
         }
     }
 
-   
+    // Deleting a patient record
+    public static void deletePatientRecord(int patientID) throws SQLException {
+        // Step 1: Verify that the patient record exists
+        if (PatientDAO.getFromID(patientID) == null) {
+            throw new SQLException("Patient record not found for ID: " + patientID);
+        }
+    
+        try (Connection conn = DBConnection.getConnection()) {
+            conn.setAutoCommit(false); // Start transaction
+    
+            // Step 2: Delete junction table records for consultations
+            String deleteConsultationChiefComplaintQuery = 
+                "DELETE FROM consultation_chief_complaint_record WHERE consultation_ID IN " +
+                "(SELECT consultation_ID FROM consultation_record WHERE patient_ID = ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(deleteConsultationChiefComplaintQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            String deleteConsultationMedicalDiagnosisQuery = 
+                "DELETE FROM consultation_medical_diagnosis_record WHERE consultation_ID IN " +
+                "(SELECT consultation_ID FROM consultation_record WHERE patient_ID = ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(deleteConsultationMedicalDiagnosisQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            // Step 3: Delete consultations related to the patient
+            String deleteConsultationsQuery = "DELETE FROM consultation_record WHERE patient_ID = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(deleteConsultationsQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            // Step 4: Delete prescriptions related to the patient
+            String deletePrescriptionsQuery = "DELETE FROM prescription_record WHERE patient_ID = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(deletePrescriptionsQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            // Step 5: Delete vital signs records related to the patient
+            String deleteVitalSignsQuery = "DELETE FROM vital_signs_record WHERE vital_signs_ID IN " +
+                                           "(SELECT vital_signs_ID FROM consultation_record WHERE patient_ID = ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(deleteVitalSignsQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            // Step 6: Delete the patient record
+            String deletePatientQuery = "DELETE FROM patients_record WHERE patient_ID = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(deletePatientQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            conn.commit(); // Commit transaction if all operations succeed
+            System.out.println("Successfully deleted patient with ID: " + patientID);
+    
+        } catch (SQLException e) {
+            // Rollback transaction in case of failure
+            try (Connection conn = DBConnection.getConnection()) {
+                conn.rollback();
+            }
+            throw e;
+    
+        } finally {
+            // Restore default auto-commit behavior
+            try (Connection conn = DBConnection.getConnection()) {
+                conn.setAutoCommit(true);
+            }
+        }
+    }
+    
+    
+
     // creating a prescription record
     public static void createPrescriptionRecord(int patientId, int doctorId, int medicationID, int frequency, BigDecimal dosage) throws SQLException {
         // Step 1: Verify the Patient exists
-        if (PatientDAO.getPatient(patientId) == null) {
+        if (PatientDAO.getFromID(patientId) == null) {
             System.out.println("Patient does not exist!");
             return;
         }
 
         // Step 2: Verify the Doctor exists
-        if (DoctorsDAO.get(doctorId) == null) {
+        if (DoctorsDAO.getFromID(doctorId) == null) {
             System.out.println("Doctor does not exist!");
             return;
         }
@@ -165,25 +240,25 @@ public class Transaction {
 
         // Step 4: Create the Prescription record
         Prescription prescription = new Prescription(medicationID, frequency, dosage, doctorId, patientId);
-        PrescriptionDAO.addPrescription(prescription);
+        PrescriptionDAO.add(prescription);
     }
 
     // creating a consultation record
     public static void createConsultationRecord(int prescriptionID, int patientId, int doctorId, int vitalSignsID, int labReportID) throws SQLException {
         // Step 1: Verify the Patient exists
-        if (PatientDAO.getPatient(patientId) == null) {
+        if (PatientDAO.getFromID(patientId) == null) {
             System.out.println("Patient does not exist!");
             return;
         }
 
         // Step 2: Verify the Doctor exists
-        if (DoctorsDAO.get(doctorId) == null) {
+        if (DoctorsDAO.getFromID(doctorId) == null) {
             System.out.println("Doctor does not exist!");
             return;
         }
 
         // Step 3: Create the Consultation record
         Consultation consultation = new Consultation(prescriptionID, doctorId, patientId, vitalSignsID, labReportID);
-        ConsultationDAO.create(consultation);
+        ConsultationDAO.add(consultation);
     }
 }

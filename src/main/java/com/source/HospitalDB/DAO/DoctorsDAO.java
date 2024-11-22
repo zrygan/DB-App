@@ -30,7 +30,7 @@ public class DoctorsDAO {
     }
 
         // Read Doctor by ID
-    public static Doctors get(int doctor_ID) throws SQLException {
+    public static Doctors getFromID(int doctor_ID) throws SQLException {
         String query = "SELECT * FROM doctors_record WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -82,6 +82,18 @@ public class DoctorsDAO {
         return spec;
     }
 
-    // FIXME: no get all
+    public static int getFromName(String doctorName) throws SQLException {
+        String query = "SELECT doctor_ID FROM doctors_record WHERE doctor_name = ?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, doctorName);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("doctor_ID");
+                }
+            }
+        }
+        return 0;
+    }
 
 }

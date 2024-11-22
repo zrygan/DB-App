@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import com.source.HospitalDB.Classes.Patient;
 import com.source.HospitalDB.DBConnection;
@@ -42,7 +43,7 @@ public class PatientDAO {
     }
 
     // Viewing a patient record of a specific patient
-    public static Patient get(int id) throws SQLException {
+    public static Patient getFromID(int id) throws SQLException {
         String query = "SELECT * FROM patients_record WHERE patient_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -117,5 +118,22 @@ public class PatientDAO {
         }
 
         return summary.toString();
+    }
+
+    public int getFromNameBDay(String name, Timestamp birthDate) throws SQLException {
+        String query = "SELECT patient_ID FROM Patient WHERE patient_name = ? AND birth_date = ?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setTimestamp(2, birthDate);
+    
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("patient_ID");
+                } else {
+                    return 0;
+                }
+            }
+        }
     }
 }
