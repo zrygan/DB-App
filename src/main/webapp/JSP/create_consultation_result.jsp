@@ -15,6 +15,7 @@
 <%@page import="java.time.Year" %>
 <%@page import="java.text.ParseException" %>
 <%@page import="java.text.SimpleDateFormat" %>
+<%@page import="java.util.*" %>
 <%@page import="com.source.HospitalDB.Classes.VitalSigns" %>
 <%@page import="com.source.HospitalDB.Classes.Prescription" %>
 <%@page import="com.source.HospitalDB.DAO.PrescriptionDAO" %>
@@ -24,20 +25,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Create Consultation Result</title>
+        <title>Create Consultation Result</title>   
     </head>
     <body>
         <% 
             String birthStr = request.getParameter("birth_date") != null ? request.getParameter("birth_date") : "Not Provided";
-            Date birthDate = null;
+            Timestamp birthDate = null;
             if (birthStr != null && !birthStr.isEmpty()) {
                 try {
                     // Convert the String to java.util.Date first
                     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                     java.util.Date utilDate = formatter.parse(birthStr);
 
-                    // Convert java.util.Date to java.sql.Date
-                    birthDate = new Date(utilDate.getTime());
+                    // Convert java.util.Date to java.sql.Timestamp
+                    birthDate = new Timestamp(utilDate.getTime());
                 } catch (ParseException e) {
                     System.out.println("Invalid date format: " + e.getMessage());
                     // Handle the invalid format case
@@ -46,28 +47,52 @@
                 System.out.println("Birth date not provided.");
                 // Handle the missing date case (e.g., set a default value or take other action)
             }
+
             String consultDateStr = request.getParameter("date") != null ? request.getParameter("date") : "Not Provided";
-            Date consultDate = null;
+            Timestamp consultDate = null;
             if (consultDateStr != null && !consultDateStr.isEmpty()) {
                 try {
                     // Convert the String to java.util.Date first
                     SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                    java.util.Date tempDate = formatter.parse(birthStr);
+                    java.util.Date tempDate = formatter.parse(consultDateStr);
 
-                    // Convert java.util.Date to java.sql.Date
-                    consultDate = new Date(tempDate.getTime());
+                    // Convert java.util.Date to java.sql.Timestamp
+                    consultDate = new Timestamp(tempDate.getTime());
                 } catch (ParseException e) {
                     System.out.println("Invalid date format: " + e.getMessage());
                     // Handle the invalid format case
                 }
             } else {
-                System.out.println("Birth date not provided.");
+                System.out.println("Consult date not provided.");
                 // Handle the missing date case (e.g., set a default value or take other action)
             }
+            int age = -1; // Default value in case of error
+            if (birthDate != null && consultDate != null) {
+                Calendar birthCal = Calendar.getInstance();
+                Calendar consultCal = Calendar.getInstance();
+
+                birthCal.setTime(birthDate);
+                consultCal.setTime(consultDate);
+
+                int birthYear = birthCal.get(Calendar.YEAR);
+                int consultYear = consultCal.get(Calendar.YEAR);
+
+                age = consultYear - birthYear;
+
+                // Check if the birth date hasn't occurred yet in the consult year
+                int birthMonth = birthCal.get(Calendar.MONTH);
+                int birthDay = birthCal.get(Calendar.DAY_OF_MONTH);
+                int consultMonth = consultCal.get(Calendar.MONTH);
+                int consultDay = consultCal.get(Calendar.DAY_OF_MONTH);
+
+                if (consultMonth < birthMonth || (consultMonth == birthMonth && consultDay < birthDay)) {
+                    age--; // Adjust age if the birthday hasn't occurred yet
+                }
+            }
             String patient_name = request.getParameter("patient_name") != null ? request.getParameter("patient_name") : "Not Provided";
-            // Look for patient ID with the name and birth date
+            // FIXME: Look for patient ID with the name and birth date
             String doctor_name = request.getParameter("doctor_name") != null ? request.getParameter("doctor_name") : "Not Provided";
-            // Look for patient ID and get int
+            // FIXME: Look for patient ID and get int
             String temperature = request.getParameter("temperature") != null ? request.getParameter("temperature") : "Not Provided";
             int temp_int = Integer.parseInt(temperature);
             String pulse = request.getParameter("pulse") != null ? request.getParameter("pulse") : "Not Provided";
@@ -81,16 +106,32 @@
             String spo2 = request.getParameter("spo2") != null ? request.getParameter("spo2") : "Not Provided";
             int spo2_int = Integer.parseInt(spo2);
             
-            VitalSigns vitalSigns = new VitalSigns();
+            // VitalSigns vitalSigns = new VitalSigns();
             
-            Consultation consultation = new Consultation();
-            ConsultationDAO.create(consultation);
+            // Consultation consultation = new Consultation();
+            // ConsultationDAO.create(consultation);
         %>
         
+        <% 
+        if (birthDate == null || consultDate == null || temperature == null || pulse == null || respiratory_rate == null || systolic == null || diastolic == null || spo2 == null) { 
+        %>
+            <h1>Consultation Failed to Create</h1>
+        <%
+        } else {
+        %>
         <h1>Consultation Successfully Created</h1>
-        <h1>Consultation Failed to Create</h1>
         <p>Name: <%= patient_name %></p>
         <p>Age: <%= age %></p>
         <p>Attending Physician: <%= doctor_name %></p>
+        <p>Temperature: <%= temperature %></p>
+        <p>Pulse: <%= pulse %></p>
+        <p>Respiratory Rate: <%= respiratory_rate %></p>
+        <p>Blood Pressure: <%= systolic %>/<%= diastolic %></p>
+        <p>Oxygen Saturation (SpO2): <%= spo2 %></p>
+        <%
+        }
+        %>
+
+        
     </body>
 </html>

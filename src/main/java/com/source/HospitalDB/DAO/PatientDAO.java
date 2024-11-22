@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -162,5 +163,22 @@ public class PatientDAO {
         }
 
         return summary.toString();
+    }
+
+    public int getPatientId_NameAndBday(String name, Timestamp birthDate) throws SQLException {
+        String query = "SELECT patient_ID FROM Patient WHERE patient_name = ? AND birth_date = ?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setTimestamp(2, birthDate);
+    
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("patient_ID");
+                } else {
+                    return 0;
+                }
+            }
+        }
     }
 }

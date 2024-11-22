@@ -98,4 +98,18 @@ public class DoctorsDAO {
         return spec;
     }
 
+    public static int getDoctorId_name(String doctorName) throws SQLException {
+        String query = "SELECT doctor_ID FROM doctors_record WHERE doctor_name = ?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, doctorName);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("doctor_ID");
+                }
+            }
+        }
+        return 0;
+    }
+
 }
