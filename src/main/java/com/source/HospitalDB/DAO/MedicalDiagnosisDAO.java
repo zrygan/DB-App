@@ -12,7 +12,7 @@ import com.source.HospitalDB.Classes.MedicalDiagnosis;
 import com.source.HospitalDB.DBConnection;
 
 public class MedicalDiagnosisDAO {
-    public static void addMedicalDiagnosis(MedicalDiagnosis diagnosis) throws SQLException {
+    public static void add(MedicalDiagnosis diagnosis) throws SQLException {
         String query = "INSERT INTO medical_diagnosis_record (diagnosis_description) VALUES (?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -21,7 +21,7 @@ public class MedicalDiagnosisDAO {
         }
     }
 
-    public static MedicalDiagnosis getMedicalDiagnosis(int diagnosisId) throws SQLException {
+    public static MedicalDiagnosis get(int diagnosisId) throws SQLException {
         String query = "SELECT * FROM medical_diagnosis_record WHERE diagnosis_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -37,7 +37,7 @@ public class MedicalDiagnosisDAO {
         return null;
     }
 
-    public static List<MedicalDiagnosis> getAllMedicalDiagnoses() throws SQLException {
+    public static List<MedicalDiagnosis> getAll() throws SQLException {
         String query = "SELECT * FROM medical_diagnosis_record";
         List<MedicalDiagnosis> diagnoses = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -52,17 +52,7 @@ public class MedicalDiagnosisDAO {
         return diagnoses;
     }
 
-    public static void updateMedicalDiagnosis(MedicalDiagnosis diagnosis) throws SQLException {
-        String query = "UPDATE medical_diagnosis_record SET diagnosis_description = ? WHERE diagnosis_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, diagnosis.getDiagnosisDescription());
-            stmt.setInt(2, diagnosis.getDiagnosisID());
-            stmt.executeUpdate();
-        }
-    }
-
-    public static void deleteMedicalDiagnosis(int diagnosisId) throws SQLException {
+    public static void del(int diagnosisId) throws SQLException {
         String query = "DELETE FROM medical_diagnosis_record WHERE diagnosis_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

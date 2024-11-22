@@ -12,7 +12,7 @@ import com.source.HospitalDB.DBConnection;
 
 public class Consult_MedDiagnosisDAO {
 
-    public static void addConsultMedDiagnosis(Consult_MedDiagnosis consultMedDiagnosis) throws SQLException {
+    public static void add(Consult_MedDiagnosis consultMedDiagnosis) throws SQLException {
         String query = "INSERT INTO consultation_medical_diagnosis_record (consultation_ID, diagnosis_ID) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -22,7 +22,9 @@ public class Consult_MedDiagnosisDAO {
         }
     }
 
-    public static List<Consult_MedDiagnosis> getAllConsultMedDiagnoses() throws SQLException {
+    // FIXME: no get function
+
+    public static List<Consult_MedDiagnosis> getAll() throws SQLException {
         String query = "SELECT * FROM consultation_medical_diagnosis_record";
         List<Consult_MedDiagnosis> consultMedDiagnoses = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -38,17 +40,7 @@ public class Consult_MedDiagnosisDAO {
         return consultMedDiagnoses;
     }
 
-    public static void updateConsultMedDiagnosis(Consult_MedDiagnosis consultMedDiagnosis) throws SQLException {
-        String query = "UPDATE consultation_medical_diagnosis_record SET diagnosis_ID = ? WHERE consultation_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, consultMedDiagnosis.getDiagnosisID());
-            stmt.setInt(2, consultMedDiagnosis.getConsultationID());
-            stmt.executeUpdate();
-        }
-    }
-
-    public static void deleteConsultMedDiagnosis(int consultationID, int diagnosisID) throws SQLException {
+    public static void del(int consultationID, int diagnosisID) throws SQLException {
         String query = "DELETE FROM consultation_medical_diagnosis_record WHERE consultation_ID = ? AND diagnosis_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

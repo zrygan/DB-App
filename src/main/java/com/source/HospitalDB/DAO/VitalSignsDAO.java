@@ -12,7 +12,7 @@ import com.source.HospitalDB.Classes.VitalSigns;
 import com.source.HospitalDB.DBConnection;
 
 public class VitalSignsDAO {
-    public static void addVitalSigns(VitalSigns vitalSigns) throws SQLException {
+    public static void add(VitalSigns vitalSigns) throws SQLException {
         String query = "INSERT INTO vital_signs_record (temperature, pulse, respiratory_rate, systolic_bp, diastolic_bp, SPO2, vital_signs_date) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -27,7 +27,7 @@ public class VitalSignsDAO {
         }
     }
 
-    public static VitalSigns getVitalSigns(int vitalSignsId) throws SQLException {
+    public static VitalSigns get(int vitalSignsId) throws SQLException {
         String query = "SELECT * FROM vital_signs_record WHERE vital_signs_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -48,7 +48,7 @@ public class VitalSignsDAO {
         return null;
     }
 
-    public static List<VitalSigns> getAllVitalSigns() throws SQLException {
+    public static List<VitalSigns> getAll() throws SQLException {
         String query = "SELECT * FROM vital_signs_record";
         List<VitalSigns> vitalSignsList = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -68,23 +68,7 @@ public class VitalSignsDAO {
         return vitalSignsList;
     }
 
-    public static void updateVitalSigns(VitalSigns vitalSigns) throws SQLException {
-        String query = "UPDATE vital_signs_record SET temperature = ?, pulse = ?, respiratory_rate = ?, systolic_bp = ?, diastolic_bp = ?, SPO2 = ?, vital_signs_date = ? WHERE vital_signs_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setBigDecimal(1, vitalSigns.getTemperature());
-            stmt.setInt(2, vitalSigns.getPulse());
-            stmt.setInt(3, vitalSigns.getRespiratoryRate());
-            stmt.setInt(4, vitalSigns.getSystolicBP());
-            stmt.setInt(5, vitalSigns.getDiastolicBP());
-            stmt.setInt(6, vitalSigns.getSpo2());
-            stmt.setTimestamp(7, vitalSigns.getVitalSignsDate());
-            stmt.setInt(8, vitalSigns.getVitalSignsID());
-            stmt.executeUpdate();
-        }
-    }
-
-    public static void deleteVitalSigns(int vitalSignsId) throws SQLException {
+    public static void del(int vitalSignsId) throws SQLException {
         String query = "DELETE FROM vital_signs_record WHERE vital_signs_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

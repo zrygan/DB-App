@@ -136,45 +136,7 @@ public class Transaction {
         }
     }
 
-    // Deleting a patient record
-    public static void deletePatientRecord(int patientID) throws SQLException {
-        // Step 1: Verify that the patient record to delete exists
-        if (PatientDAO.getPatient(patientID) == null) {
-            throw new SQLException("Patient record not found for ID: " + patientID);
-        }
-
-        // Step 2-4: Use a transaction to ensure all deletes are executed atomically
-        try (Connection conn = DBConnection.getConnection()) {
-            conn.setAutoCommit(false); // Start transaction
-
-            // Step 2: Delete all Medication Records of the patient
-            String deleteMedicationRecordsQuery = "DELETE FROM medication_record WHERE patient_ID = ?";
-            try (PreparedStatement deleteMedStmt = conn.prepareStatement(deleteMedicationRecordsQuery)) {
-                deleteMedStmt.setInt(1, patientID);
-                deleteMedStmt.executeUpdate();
-            }
-
-            // Step 3: Delete all Medical Records of the patient
-            String deleteMedicalRecordsQuery = "DELETE FROM medical_records WHERE patient_ID = ?";
-            try (PreparedStatement deleteMedicalStmt = conn.prepareStatement(deleteMedicalRecordsQuery)) {
-                deleteMedicalStmt.setInt(1, patientID);
-                deleteMedicalStmt.executeUpdate();
-            }
-
-            // Step 4: Delete the Patient Record of the patient
-            PatientDAO.delete(patientID);
-
-            conn.commit(); // Commit transaction if all operations succeed
-        } catch (SQLException e) {
-            Connection conn = DBConnection.getConnection();
-            conn.rollback(); // Rollback transaction if any operation fails
-            throw e;
-        } finally {
-            Connection conn = DBConnection.getConnection();
-            conn.setAutoCommit(true); // Restore default commit behavior
-        }
-    }
-
+   
     // creating a prescription record
     public static void createPrescriptionRecord(int patientId, int doctorId, int medicationID, int frequency, BigDecimal dosage) throws SQLException {
         // Step 1: Verify the Patient exists

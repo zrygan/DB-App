@@ -1,12 +1,9 @@
 package com.source.HospitalDB;
 
-import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import com.source.HospitalDB.Classes.ChiefComplaint;
 import com.source.HospitalDB.Classes.Consultation;
@@ -18,46 +15,10 @@ import com.source.HospitalDB.Classes.Medication;
 import com.source.HospitalDB.Classes.Patient;
 import com.source.HospitalDB.Classes.Prescription;
 import com.source.HospitalDB.Classes.VitalSigns;
-import com.source.HospitalDB.DAO.DoctorsDAO;
-import com.source.HospitalDB.DAO.LabTestDAO;
-import com.source.HospitalDB.DAO.MedicationDAO;
 
 public class App {
     public static void main(String[] args) throws SQLException{
-        // Ensure the doctor exists
-        Doctors doctor = new Doctors("Dr. Smith", "Cardiology", "1234567890", "dr.smith@example.com");
-        DoctorsDAO.create(doctor);
-
-        // Create sample data
-        Patient patient_1 = new Patient("John Doe", Timestamp.valueOf("1999-01-01 00:00:00"), "M", BigDecimal.valueOf(180), BigDecimal.valueOf(75), "Christianity");
-        VitalSigns vitalSigns = new VitalSigns(BigDecimal.valueOf(36.5), 70, 16, 120, 80, 98);
-
-        Medication medication_1 = new Medication("Paracetamol", "Biogesic");
-        LabTest lab_1 = new LabTest("Blood Test");
-
-        MedicationDAO.create(medication_1);
-        LabTestDAO.addLabTest(lab_1);
-
-        List<Prescription> prescriptions = new ArrayList<>();
-        prescriptions.add(new Prescription(1, 3, BigDecimal.valueOf(500), doctor.getDoctorId(), patient_1.getPatientId()));
-
-        List<LabReport> labReports = new ArrayList<>();
-        labReports.add(new LabReport(1));
-
-        List<ChiefComplaint> chiefComplaints = new ArrayList<>();
-        chiefComplaints.add(new ChiefComplaint("Headache"));
-
-        List<MedicalDiagnosis> medicalDiagnoses = new ArrayList<>();
-        medicalDiagnoses.add(new MedicalDiagnosis("Migraine"));
-
-        // Create the first consultation record
-        Consultation consultation = new Consultation(prescriptions.get(0).getPrescriptionID(), doctor.getDoctorId(), patient_1.getPatientId(), 1, 1);
-
-        // Call the createPatientRecord method
-        Transaction.createPatientRecord(patient_1, doctor, vitalSigns, consultation, prescriptions, labReports, chiefComplaints, medicalDiagnoses);
-
-        System.out.println("Patient record created successfully!");
-
+        
     }
     
     /************
@@ -161,7 +122,6 @@ public class App {
     // also do the same for the sample data (see make_sample_data())
     public static void make_sql(){  
         // create the database and tables
-
         
     }
 

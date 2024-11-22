@@ -12,7 +12,7 @@ import com.source.HospitalDB.Classes.LabReport;
 import com.source.HospitalDB.DBConnection;
 
 public class LabReportDAO {
-    public static void addLabReport(LabReport labReport) throws SQLException {
+    public static void add(LabReport labReport) throws SQLException {
         String query = "INSERT INTO lab_report_record (test_ID) VALUES (?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -21,7 +21,7 @@ public class LabReportDAO {
         }
     }
 
-    public static LabReport getLabReport(int labReportId) throws SQLException {
+    public static LabReport get(int labReportId) throws SQLException {
         String query = "SELECT * FROM lab_report_record WHERE lab_report_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -37,7 +37,7 @@ public class LabReportDAO {
         return null;
     }
 
-    public static List<LabReport> getAllLabReports() throws SQLException {
+    public static List<LabReport> getAll() throws SQLException {
         String query = "SELECT * FROM lab_report_record";
         List<LabReport> labReports = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -52,17 +52,7 @@ public class LabReportDAO {
         return labReports;
     }
 
-    public static void updateLabReport(LabReport labReport) throws SQLException {
-        String query = "UPDATE lab_report_record SET test_ID = ? WHERE lab_report_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, labReport.getTestID());
-            stmt.setInt(2, labReport.getLabReportID());
-            stmt.executeUpdate();
-        }
-    }
-
-    public static void deleteLabReport(int labReportId) throws SQLException {
+    public static void del(int labReportId) throws SQLException {
         String query = "DELETE FROM lab_report_record WHERE lab_report_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

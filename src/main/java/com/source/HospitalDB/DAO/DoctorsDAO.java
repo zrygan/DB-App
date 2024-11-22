@@ -13,7 +13,7 @@ import com.source.HospitalDB.DBConnection;
 
 public class DoctorsDAO {
 
-    public static void create(Doctors doctors) throws SQLException {
+    public static void add(Doctors doctors) throws SQLException {
         String query = "INSERT INTO doctors_record (doctor_name, specialization, phoneNumber, email) VALUES (?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -49,24 +49,8 @@ public class DoctorsDAO {
         
     }
 
-        // Update Doctors
-    public static void update(Doctors doctors) throws SQLException {
-        String query = "UPDATE doctors_record SET doctor_name = ?, specialization = ?, phoneNumber = ?, email = ?, WHERE doctor_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query)) {
-    
-            pstmt.setString(1, doctors.getName());
-            pstmt.setString(2, doctors.getSpecialization());
-            pstmt.setString(3, doctors.getPhoneNumber());
-            pstmt.setString(4, doctors.getEmail());
-            pstmt.setInt(5, doctors.getDoctorId());
-
-            pstmt.executeUpdate();
-        }
-    }
-
         // Delete Doctor by ID
-    public static void delete(int id) throws SQLException {
+    public static void del(int id) throws SQLException {
         String query = "DELETE FROM doctors_record WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -76,7 +60,7 @@ public class DoctorsDAO {
     }
 
     // Viewing all doctors in the Doctors' Record with the same Specialization
-    public static List<Doctors> getDoctorSameSpec(String doctorSameSpec) throws SQLException {
+    public static List<Doctors> getSpecs(String doctorSameSpec) throws SQLException {
         List<Doctors> spec = new ArrayList<>();
         String query = "SELECT * FROM doctors_record WHERE specialization = ?";
         try (Connection conn = DBConnection.getConnection();
@@ -97,5 +81,7 @@ public class DoctorsDAO {
         }
         return spec;
     }
+
+    // FIXME: no get all
 
 }

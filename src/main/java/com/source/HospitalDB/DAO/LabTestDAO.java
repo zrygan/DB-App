@@ -10,7 +10,7 @@ import com.source.HospitalDB.Classes.LabTest;
 import com.source.HospitalDB.DBConnection;
 
 public class LabTestDAO {
-    public static void addLabTest(LabTest labTest) throws SQLException {
+    public static void add(LabTest labTest) throws SQLException {
         String query = "INSERT INTO lab_test_record (test_description) VALUES (?)";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -19,7 +19,7 @@ public class LabTestDAO {
         }
     }
 
-    public static LabTest getLabTest(int testId) throws SQLException {
+    public static LabTest get(int testId) throws SQLException {
         String query = "SELECT * FROM lab_test_record WHERE test_ID = ?";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -35,7 +35,7 @@ public class LabTestDAO {
         return null;
     }
 
-    public static List<LabTest> getAllLabTests() throws SQLException {
+    public static List<LabTest> getAll() throws SQLException {
         String query = "SELECT * FROM lab_test_record";
         List<LabTest> labTests = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -50,17 +50,7 @@ public class LabTestDAO {
         return labTests;
     }
 
-    public static void updateLabTest(LabTest labTest) throws SQLException {
-        String query = "UPDATE lab_test_record SET test_description = ? WHERE test_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-                PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, labTest.getTestDescription());
-            stmt.setInt(2, labTest.getTestID());
-            stmt.executeUpdate();
-        }
-    }
-
-    public static void delete(int testId) throws SQLException {
+    public static void del(int testId) throws SQLException {
         String query = "DELETE FROM lab_test_record WHERE test_ID = ?";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(query)) {

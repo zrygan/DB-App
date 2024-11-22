@@ -12,7 +12,7 @@ import com.source.HospitalDB.Classes.Prescription;
 import com.source.HospitalDB.DBConnection;
 
 public class PrescriptionDAO {
-    public static void addPrescription(Prescription prescription) throws SQLException {
+    public static void add(Prescription prescription) throws SQLException {
         String query = "INSERT INTO prescription_record (medication_ID, prescription_date, frequency, dosage, doctor_ID, patient_ID) VALUES (?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -26,7 +26,7 @@ public class PrescriptionDAO {
         }
     }
 
-    public static Prescription getPrescription(int prescriptionId) throws SQLException {
+    public static Prescription get(int prescriptionId) throws SQLException {
         String query = "SELECT * FROM prescription_record WHERE prescription_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -46,7 +46,7 @@ public class PrescriptionDAO {
         return null;
     }
 
-    public static List<Prescription> getAllPrescriptions() throws SQLException {
+    public static List<Prescription> getAll() throws SQLException {
         String query = "SELECT * FROM prescription_record";
         List<Prescription> prescriptions = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -65,22 +65,7 @@ public class PrescriptionDAO {
         return prescriptions;
     }
 
-    public static void updatePrescription(Prescription prescription) throws SQLException {
-        String query = "UPDATE prescription_record SET medication_ID = ?, prescription_date = ?, frequency = ?, dosage = ?, doctor_ID = ?, patient_ID = ? WHERE prescription_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, prescription.getMedicationID());
-            stmt.setTimestamp(2, prescription.getPrescriptionDate());
-            stmt.setInt(3, prescription.getFrequency());
-            stmt.setBigDecimal(4, prescription.getDosage());
-            stmt.setInt(5, prescription.getDoctorID());
-            stmt.setInt(6, prescription.getPatientID());
-            stmt.setInt(7, prescription.getPrescriptionID());
-            stmt.executeUpdate();
-        }
-    }
-
-    public static void deletePrescription(int prescriptionId) throws SQLException {
+    public static void del(int prescriptionId) throws SQLException {
         String query = "DELETE FROM prescription_record WHERE prescription_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

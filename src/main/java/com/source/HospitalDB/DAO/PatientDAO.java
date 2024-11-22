@@ -4,16 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.source.HospitalDB.Classes.Patient;
 import com.source.HospitalDB.DBConnection;
 
 public class PatientDAO {
     // Create a new Patient record
-    public static void create(Patient patient) throws SQLException {
+    public static void add(Patient patient) throws SQLException {
         String query = "INSERT INTO patients_record (patient_name, age, birth_date, sex, patient_height,"
                      + "patient_weight, religion, date_created)"
                      + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -33,29 +30,8 @@ public class PatientDAO {
         }
     }
 
-    // Update a patient record
-    public static void update(Patient patient) throws SQLException {
-        String query = "UPDATE patients_record SET patient_name = ?, age = ?, birth_date = ?, sex = ?, patient_height = ?,"
-                     + "patient_weight = ?, religion = ?, date_created = ? WHERE patient_ID = ?";
-
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, patient.getName());
-            pstmt.setInt(2, patient.getAge());
-            pstmt.setTimestamp(3, patient.getBirthDate());
-            pstmt.setString(4, patient.getSex());
-            pstmt.setBigDecimal(5, patient.getHeight());
-            pstmt.setBigDecimal(6, patient.getWeight());
-            pstmt.setString(7, patient.getReligion());
-            pstmt.setTimestamp(8, patient.getDateCreated());
-            pstmt.setInt(9, patient.getPatientId());
-
-            pstmt.executeUpdate();
-        }
-    }
-
     // Delete a patient record
-    public static void delete(int id) throws SQLException {
+    public static void del(int id) throws SQLException {
         String query = "DELETE FROM patients_record WHERE patient_ID = ?";
 
         try (Connection conn = DBConnection.getConnection();
@@ -66,7 +42,7 @@ public class PatientDAO {
     }
 
     // Viewing a patient record of a specific patient
-    public static Patient getPatient(int id) throws SQLException {
+    public static Patient get(int id) throws SQLException {
         String query = "SELECT * FROM patients_record WHERE patient_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -88,32 +64,11 @@ public class PatientDAO {
         }
         return null;
     }
-
-    // Viewing all medical records of patients with the status 'Admitted' or 'Discharged'
-    public static List<Patient> status(String status) throws SQLException {
-        String query = "SELECT * FROM patients_record";
-        List<Patient> patients = new ArrayList<>();
-        try (Connection conn = DBConnection.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(query)) {
-            while (rs.next()) {
-                patients.add(new Patient(
-                    rs.getInt("patient_ID"),
-                    rs.getString("patient_name"),
-                    rs.getTimestamp("birth_date"),
-                    rs.getString("sex"),
-                    rs.getBigDecimal("patient_height"),
-                    rs.getBigDecimal("patient_weight"),
-                    rs.getString("religion"),
-                    rs.getTimestamp("date_created")
-                ));
-            }
-        }
-        return patients;
-    }
+    
+    // FIXME: no getAll
 
     // Method to get a comprehensive summary of all medical records and return it as a string
-    public static String getPatientRecordSummary() throws SQLException {
+    public static String getSummary() throws SQLException {
         StringBuilder summary = new StringBuilder();
 
         // Query for each summary

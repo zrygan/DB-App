@@ -12,7 +12,7 @@ import com.source.HospitalDB.Classes.ChiefComplaint;
 import com.source.HospitalDB.DBConnection;
 
 public class ChiefComplaintDAO {
-    public static void addChiefComplaint(ChiefComplaint complaint) throws SQLException {
+    public static void add(ChiefComplaint complaint) throws SQLException {
         String query = "INSERT INTO chief_complaint_record (complaint_description) VALUES (?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -21,7 +21,7 @@ public class ChiefComplaintDAO {
         }
     }
 
-    public static ChiefComplaint getChiefComplaint(int complaintId) throws SQLException {
+    public static ChiefComplaint get(int complaintId) throws SQLException {
         String query = "SELECT * FROM chief_complaint_record WHERE complaint_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -37,7 +37,7 @@ public class ChiefComplaintDAO {
         return null;
     }
 
-    public static List<ChiefComplaint> getAllChiefComplaints() throws SQLException {
+    public static List<ChiefComplaint> getAll() throws SQLException {
         String query = "SELECT * FROM chief_complaint_record";
         List<ChiefComplaint> complaints = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -52,17 +52,7 @@ public class ChiefComplaintDAO {
         return complaints;
     }
 
-    public static void updateChiefComplaint(ChiefComplaint complaint) throws SQLException {
-        String query = "UPDATE chief_complaint_record SET complaint_description = ? WHERE complaint_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, complaint.getComplaintDescription());
-            stmt.setInt(2, complaint.getComplaintID());
-            stmt.executeUpdate();
-        }
-    }
-
-    public static void deleteChiefComplaint(int complaintId) throws SQLException {
+    public static void del(int complaintId) throws SQLException {
         String query = "DELETE FROM chief_complaint_record WHERE complaint_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {

@@ -12,7 +12,7 @@ import com.source.HospitalDB.DBConnection;
 
 public class Consult_ChiefComplaintDAO {
 
-    public static void addConsultChiefComplaint(Consult_ChiefComplaint consultChiefComplaint) throws SQLException {
+    public static void add(Consult_ChiefComplaint consultChiefComplaint) throws SQLException {
         String query = "INSERT INTO consultation_chief_complaint_record (consultation_ID, complaint_ID) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -22,7 +22,26 @@ public class Consult_ChiefComplaintDAO {
         }
     }
 
-    public static List<Consult_ChiefComplaint> getAllConsultChiefComplaints() throws SQLException {
+    public static Consult_ChiefComplaint get(int consultation_ID, int complaint_ID) throws SQLException {
+        String query = "SELECT * FROM consultation_chief_complaint_record WHERE consultation_ID = ? AND complaint_ID = ?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(query)){
+                stmt.setInt(1, consultation_ID);
+                stmt.setInt(2, complaint_ID);
+                try (ResultSet rs = stmt.executeQuery()){
+                    if (rs.next()){
+                        return new Consult_ChiefComplaint(
+                            rs.getInt("consultation_ID"),
+                            rs.getInt("complaint_ID")
+                        );
+                    }
+                }
+        }
+
+        return null;
+    }
+
+    public static List<Consult_ChiefComplaint> getAll() throws SQLException {
         String query = "SELECT * FROM consultation_chief_complaint_record";
         List<Consult_ChiefComplaint> consultChiefComplaints = new ArrayList<>();
         try (Connection conn = DBConnection.getConnection();
@@ -38,23 +57,13 @@ public class Consult_ChiefComplaintDAO {
         return consultChiefComplaints;
     }
 
-    public static void updateConsultChiefComplaint(Consult_ChiefComplaint consultChiefComplaint) throws SQLException {
-        String query = "UPDATE consultation_chief_complaint_record SET complaint_ID = ? WHERE consultation_ID = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, consultChiefComplaint.getComplaintID());
-            stmt.setInt(2, consultChiefComplaint.getConsultationID());
-            stmt.executeUpdate();
-        }
-    }
-
-    public static void deleteConsultChiefComplaint(int consultationID, int complaintID) throws SQLException {
+    public static void del(int consultation_ID, int complaint_ID) throws SQLException {
         String query = "DELETE FROM consultation_chief_complaint_record WHERE consultation_ID = ? AND complaint_ID = ?";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, consultationID);
-            stmt.setInt(2, complaintID);
-            stmt.executeUpdate();
+                stmt.setInt(1, consultation_ID);
+                stmt.setInt(2, complaint_ID);
+                stmt.executeUpdate();
         }
     }
 }
