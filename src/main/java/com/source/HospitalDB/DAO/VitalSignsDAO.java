@@ -68,6 +68,29 @@ public class VitalSignsDAO {
         return vitalSignsList;
     }
 
+    // return the vital signs records from a specific date
+    public static List<VitalSigns> getVitalSignsByDate(String date) throws SQLException {
+        String query = "SELECT * FROM vital_signs_record WHERE vital_signs_date = ?";
+        List<VitalSigns> vitalSignsList = new ArrayList<>();
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, date);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    vitalSignsList.add(new VitalSigns(
+                        rs.getBigDecimal("temperature"),
+                        rs.getInt("pulse"),
+                        rs.getInt("respiratory_rate"),
+                        rs.getInt("systolic_bp"),
+                        rs.getInt("diastolic_bp"),
+                        rs.getInt("SPO2")
+                    ));
+                }
+            }
+        }
+        return vitalSignsList;
+    }
+
     public static void del(int vitalSignsId) throws SQLException {
         String query = "DELETE FROM vital_signs_record WHERE vital_signs_ID = ?";
         try (Connection conn = DBConnection.getConnection();

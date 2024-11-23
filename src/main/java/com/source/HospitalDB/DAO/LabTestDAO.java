@@ -58,4 +58,19 @@ public class LabTestDAO {
             stmt.executeUpdate();
         }
     }
+
+    // return description of a test ID
+    public static String getTestDescription(int testId) throws SQLException {
+        String query = "SELECT test_description FROM lab_test_record WHERE test_ID = ?";
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, testId);
+            try (java.sql.ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("test_description");
+                }
+            }
+        }
+        return null;
+    }
 }
