@@ -4,7 +4,8 @@ USE Hospital_DB;
 -- Doctors Record Table
 CREATE TABLE IF NOT EXISTS doctors_record (
     doctor_ID INT PRIMARY KEY AUTO_INCREMENT,
-    doctor_name VARCHAR(100) NOT NULL,
+    doctor_firstname VARCHAR(100) NOT NULL,
+    doctor_lastname VARCHAR(100) NOT NULL,
     specialization VARCHAR(100) NOT NULL,
     phoneNumber VARCHAR(15) NOT NULL,
     email VARCHAR(100) NOT NULL
@@ -13,7 +14,8 @@ CREATE TABLE IF NOT EXISTS doctors_record (
 -- Patients Record Table
 CREATE TABLE IF NOT EXISTS patients_record (
     patient_ID INT PRIMARY KEY AUTO_INCREMENT,
-    patient_name VARCHAR(100) NOT NULL,
+    patient_firstname VARCHAR(100) NOT NULL,
+    patient_lastname VARCHAR(100) NOT NULL,
     age INT NOT NULL,
     birth_date DATE NOT NULL,
     sex VARCHAR(5) NOT NULL,

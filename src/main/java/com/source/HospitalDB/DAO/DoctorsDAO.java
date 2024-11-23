@@ -14,46 +14,47 @@ import com.source.HospitalDB.DBConnection;
 public class DoctorsDAO {
 
     public static void add(Doctors doctors) throws SQLException {
-        String query = "INSERT INTO doctors_record (doctor_name, specialization, phoneNumber, email) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO doctors_record (doctor_firstname, doctor_lastname, specialization, phoneNumber, email) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, doctors.getName());
-            pstmt.setString(2, doctors.getSpecialization());
-            pstmt.setString(3, doctors.getPhoneNumber());
-            pstmt.setString(4, doctors.getEmail());
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, doctors.getFirstname());
+            pstmt.setString(2, doctors.getLastname());
+            pstmt.setString(3, doctors.getSpecialization());
+            pstmt.setString(4, doctors.getPhoneNumber());
+            pstmt.setString(5, doctors.getEmail());
             pstmt.executeUpdate();
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.err.println("Error adding doctor " + e.getMessage());
             throw e;
         }
     }
 
-        // Read Doctor by ID
+    // Read Doctor by ID
     public static Doctors getFromID(int doctor_ID) throws SQLException {
         String query = "SELECT * FROM doctors_record WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, doctor_ID);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
                 return new Doctors(
-                    rs.getString("doctor_name"),
-                    rs.getString("specialization"),
-                    rs.getString("phoneNumber"),
-                    rs.getString("email")            
-                );
+                        rs.getString("doctor_firstname"),
+                        rs.getString("doctor_lastname"),
+                        rs.getString("specialization"),
+                        rs.getString("phoneNumber"),
+                        rs.getString("email"));
             }
         }
         return null;
-        
+
     }
 
-        // Delete Doctor by ID
+    // Delete Doctor by ID
     public static void del(int id) throws SQLException {
         String query = "DELETE FROM doctors_record WHERE doctor_ID = ?";
         try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query)) {
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         }
@@ -64,18 +65,18 @@ public class DoctorsDAO {
         List<Doctors> spec = new ArrayList<>();
         String query = "SELECT * FROM doctors_record WHERE specialization = ?";
         try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query)) {
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
 
-            pstmt.setString(1, doctorSameSpec); 
-            try (ResultSet rs = pstmt.executeQuery()) { 
+            pstmt.setString(1, doctorSameSpec);
+            try (ResultSet rs = pstmt.executeQuery()) {
                 while (rs.next()) {
                     Doctors doctors = new Doctors(
-                        rs.getString("doctor_name"),
-                        rs.getString("specialization"),
-                        rs.getString("phoneNumber"),
-                        rs.getString("email")    
-                    );
-                 spec.add(doctors);
+                            rs.getString("doctor_firstname"),
+                            rs.getString("doctor_lastname"),
+                            rs.getString("specialization"),
+                            rs.getString("phoneNumber"),
+                            rs.getString("email"));
+                    spec.add(doctors);
                 }
             }
         }
@@ -85,7 +86,7 @@ public class DoctorsDAO {
     public static int getFromName(String doctorName) throws SQLException {
         String query = "SELECT doctor_ID FROM doctors_record WHERE doctor_name = ?";
         try (Connection conn = DBConnection.getConnection();
-            PreparedStatement pstmt = conn.prepareStatement(query)) {
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
             pstmt.setString(1, doctorName);
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
