@@ -7,6 +7,7 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="java.util.*" %>
 <%@page import="java.sql.*" %>
+<%@page import="com.source.HospitalDB.App" %>
 <%@page import="com.source.HospitalDB.DAO.*" %>
 <%@page import="com.source.HospitalDB.Classes.*" %>
 <%@ page import="java.math.BigDecimal" %>
@@ -108,11 +109,21 @@
 
         String patient_name = request.getParameter("patient_name") != null ? request.getParameter("patient_name") : "Not Provided";
         String[] patient_parts = WebTools.splitName(patient_name);
-        int patient_id = PatientDAO.getFromNameBDay(patient_parts[1], patient_parts[0], birthDate);
+        int patient_id = 0;
+        for (Patient p : App.getPatientMap().values()){
+            if (p.getFirstname().equals(patient_parts[1]) && p.getLastname().equals(patient_parts[0]) && p.getBirthDate().equals(birthDate)){
+                patient_id = p.getPatientId();
+            }
+        }
 
         String doctor_name = request.getParameter("doctor_name") != null ? request.getParameter("doctor_name") : "Not Provided";
         String[] doctor_parts = WebTools.splitName(doctor_name);
-        int doctor_id = DoctorsDAO.getFromName(doctor_parts[1], doctor_parts[0]);
+        int doctor_id = 0;
+        for (Doctors p : App.getDoctorsMap().values()){
+            if (p.getFirstname().equals(doctor_parts[1]) && p.getLastname().equals(doctor_parts[0])){
+                doctor_id = p.getDoctorId();
+            }
+        }
 
         String temperature = request.getParameter("temperature") != null ? request.getParameter("temperature") : "0";
         BigDecimal tempDecimal = BigDecimal.ZERO;
@@ -174,7 +185,7 @@
         <p>Firstname: <%= patient_parts[1] %></p>
         <p>Lastname: <%= patient_parts[0] %></p>
         <p>Patient ID: <%= patient_id %></p>
-        <p>Birth Date: <%= birthStr %></p>
+        <p>Birth Date: <%= birthDate %></p>
         <p>Age: <%= age %></p>
         <p>Doctor Firstname: <%= doctor_parts[1] %></p>
         <p>Doctor Lastname: <%= doctor_parts[0] %></p>
@@ -189,7 +200,7 @@
             VitalSigns vitalSigns = new VitalSigns(tempDecimal, pulse_int, resp_int, sys_int, dias_int, spo2_int);
             VitalSignsDAO.add(vitalSigns);
             
-            Consultation consultation = new Consultation(-1, doctor_id, patient_id, vitalSigns.getVitalSignsID(), -1);
+            Consultation consultation = new Consultation(0, doctor_id, patient_id, vitalSigns.getVitalSignsID(), 0);
             ConsultationDAO.add(consultation);
 
             int consult_id = consultation.getConsultationID();

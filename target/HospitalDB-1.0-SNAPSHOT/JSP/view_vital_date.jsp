@@ -4,13 +4,12 @@
     Author     : Windows User
 --%>
 
-<%@ page import="java.sql.*, java.util.*" %>
+<%@ page import="java.sql.*, java.util.*, java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.source.HospitalDB.DAO.VitalSignsDAO" %>
 <%@ page import="com.source.HospitalDB.Classes.VitalSigns" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.text.SimpleDateFormat" %>
 
 <!DOCTYPE html>
 <html>
@@ -24,7 +23,7 @@
         if (dateStr != null && !dateStr.isEmpty()) {
             try {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                Date parsedDate = dateFormat.parse(dateStr);
+                java.util.Date parsedDate = dateFormat.parse(dateStr);
                 Timestamp timestamp = new Timestamp(parsedDate.getTime());
 
                 String timestampStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(timestamp);
