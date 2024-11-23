@@ -91,7 +91,7 @@
             </div>
             <jsp:forward page="add_prescription.jsp" /> <!-- FIXME: Careful idk how this works -->
         </form>
-        <form action="JSP/add_labreport.jsp" method="post">
+        <form id="myForm" method="POST">
             <div class="shape text create-4953d79c36fa">
               <div
                 class="text-node-html"
