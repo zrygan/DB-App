@@ -5,666 +5,726 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MediBASE: Patient Management (Create/Remove)</title>
     <link rel="stylesheet" href="style/patient_management.css" />
+    <script>
+      function setFormAction(actionURL) {
+        const form = document.getElementById("patientForm");
+        form.action = actionURL;
+        form.submit();
+      }
+    </script>
   </head>
-  <!-- frame: Patient Management -->
-  <div class="frame patient-ma-495140fa5099">
-    <!-- group: btn_patients -->
-    <div class="group btnpatien-49518a6a2114">
-      <!-- group: Group -->
-      <div class="group group-49518a6a2115">
-        <!-- rect: Rectangle -->
-        <div class="shape rect rectangle-49518a6a2117"></div>
-        <!-- circle: Ellipse -->
-        <div class="shape circle ellipse-49518a6a2118"></div>
-        <!-- circle: Ellipse -->
-        <div class="shape circle ellipse-49518a6a2119"></div>
-      </div>
-      <!-- text: Create Patient -->
-      <div class="shape text create-pat-49518a6a2116">
-        <div
-          class="text-node-html"
-          id="html-text-node-1a60e743-710c-8078-8005-49518a6a2116"
-          data-x="980"
-          data-y="1609"
-        >
-          <div
-            class="root rich-text root-0"
-            style="
-              display: flex;
-              white-space: break-spaces;
-              align-items: flex-start;
-            "
-            xmlns="http://www.w3.org/1999/xhtml"
-          >
-            <div class="paragraph-set root-0-paragraph-set-0">
-              <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-                <a
-                  href="JSP/create_patient_result.jsp"
-                  target="_blank"
-                  class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
-                  style="
-                    color: rgba(242, 235, 213, 1);
-                    text-transform: none;
-                    line-break: auto;
-                    overflow-wrap: initial;
-                    white-space: break-spaces;
-                    font-size: 18px;
-                    text-rendering: geometricPrecision;
-                    caret-color: rgba(242, 235, 213, 1);
-                    text-decoration: none;
-                    --font-id: gfont-noto-sans;
-                    --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
-                      '~:fill-color-ref-id',
-                      '~ua19c5e35-ca12-808b-8005-44469bb3a18a',
-                      '~:fill-color-ref-file',
-                      '~ua5adc15f-fb38-8092-8005-41b26c440392', '~:fill-opacity',
-                      1]];
-                    letter-spacing: 0px;
-                    font-family: 'Noto Sans';
-                    font-style: normal;
-                    font-weight: 600;
-                  "
-                  >Create Patient</a
-                >
-              </p>
-            </div>
+  <body>
+    <form action="patientForm" method="get">
+      <!-- frame: Patient Management -->
+      <div class="frame patient-ma-495140fa5099">
+        <!-- group: btn_patients -->
+        <div class="group btnpatien-49518a6a2114">
+          <!-- group: Group -->
+          <div class="group group-49518a6a2115">
+            <!-- rect: Rectangle -->
+            <div class="shape rect rectangle-49518a6a2117"></div>
+            <!-- circle: Ellipse -->
+            <div class="shape circle ellipse-49518a6a2118"></div>
+            <!-- circle: Ellipse -->
+            <div class="shape circle ellipse-49518a6a2119"></div>
           </div>
-        </div>
-      </div>
-    </div>
-    <!-- group: btn_patients -->
-    <div class="group btnpatien-4ac3d0816949">
-      <!-- group: Group -->
-      <div class="group group-4ac3d081694a">
-        <!-- rect: Rectangle -->
-        <div class="shape rect rectangle-4ac3d081694c"></div>
-        <!-- circle: Ellipse -->
-        <div class="shape circle ellipse-4ac3d081694d"></div>
-        <!-- circle: Ellipse -->
-        <div class="shape circle ellipse-4ac3d081694e"></div>
-      </div>
-      <!-- text: Search Patient -->
-      <div class="shape text search-pat-4ac3d081694b">
-        <div
-          class="text-node-html"
-          id="html-text-node-339bc288-5112-8014-8005-4ac3d081694b"
-          data-x="1123"
-          data-y="1676"
-        >
-          <div
-            class="root rich-text root-0"
-            style="
-              display: flex;
-              white-space: break-spaces;
-              align-items: flex-start;
-            "
-            xmlns="http://www.w3.org/1999/xhtml"
-          >
-            <div class="paragraph-set root-0-paragraph-set-0">
-              <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-                <a
-                  href="JSP/search_patient_result.jsp"
-                  tabindex="_blank"
-                  class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
-                  style="
-                    color: rgba(242, 235, 213, 1);
-                    text-transform: none;
-                    line-break: auto;
-                    overflow-wrap: initial;
-                    white-space: break-spaces;
-                    font-size: 18px;
-                    text-rendering: geometricPrecision;
-                    caret-color: rgba(242, 235, 213, 1);
-                    text-decoration: none;
-                    --font-id: gfont-noto-sans;
-                    --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
-                      '~:fill-color-ref-id',
-                      '~ua19c5e35-ca12-808b-8005-44469bb3a18a',
-                      '~:fill-color-ref-file',
-                      '~ua5adc15f-fb38-8092-8005-41b26c440392', '~:fill-opacity',
-                      1]];
-                    letter-spacing: 0px;
-                    font-family: 'Noto Sans';
-                    font-style: normal;
-                    font-weight: 600;
-                  "
-                  >Search Patient</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- group: btn_patients -->
-    <div class="group btnpatien-49518ef1010e">
-      <!-- group: Group -->
-      <div class="group group-49518ef1010f">
-        <!-- rect: Rectangle -->
-        <div class="shape rect rectangle-49518ef10111"></div>
-        <!-- circle: Ellipse -->
-        <div class="shape circle ellipse-49518ef10112"></div>
-        <!-- circle: Ellipse -->
-        <div class="shape circle ellipse-49518ef10113"></div>
-      </div>
-      <!-- text: Delete Patient -->
-      <div class="shape text delete-pat-49518ef10110">
-        <div
-          class="text-node-html"
-          id="html-text-node-1a60e743-710c-8078-8005-49518ef10110"
-          data-x="1265"
-          data-y="1610"
-        >
-          <div
-            class="root rich-text root-0"
-            style="
-              display: flex;
-              white-space: break-spaces;
-              align-items: flex-start;
-            "
-            xmlns="http://www.w3.org/1999/xhtml"
-          >
-            <div class="paragraph-set root-0-paragraph-set-0">
-              <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-                <a
-                  href="JSP/delete_patient_result.jsp"
-                  target="_blank"
-                  class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
-                  style="
-                    color: rgba(242, 235, 213, 1);
-                    text-transform: none;
-                    line-break: auto;
-                    overflow-wrap: initial;
-                    white-space: break-spaces;
-                    font-size: 18px;
-                    text-rendering: geometricPrecision;
-                    caret-color: rgba(242, 235, 213, 1);
-                    text-decoration: none;
-                    --font-id: gfont-noto-sans;
-                    --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
-                      '~:fill-color-ref-id',
-                      '~ua19c5e35-ca12-808b-8005-44469bb3a18a',
-                      '~:fill-color-ref-file',
-                      '~ua5adc15f-fb38-8092-8005-41b26c440392', '~:fill-opacity',
-                      1]];
-                    letter-spacing: 0px;
-                    font-family: 'Noto Sans';
-                    font-style: normal;
-                    font-weight: 600;
-                  "
-                  >Delete Patient</a
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- text: MediBASE -->
-    <div class="shape text medi-base-495140fa509a">
-      <div
-        class="text-node-html"
-        id="html-text-node-1a60e743-710c-8078-8005-495140fa509a"
-        data-x="919"
-        data-y="1049"
-      >
-        <div
-          class="root rich-text root-0"
-          style="
-            display: flex;
-            white-space: break-spaces;
-            align-items: flex-start;
-          "
-          xmlns="http://www.w3.org/1999/xhtml"
-        >
-          <div class="paragraph-set root-0-paragraph-set-0">
-            <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-              <a
-                href="index.html"
-                class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+          <!-- text: Create Patient -->
+          <div class="shape text create-pat-49518a6a2116">
+            <div
+              class="text-node-html"
+              id="html-text-node-1a60e743-710c-8078-8005-49518a6a2116"
+              data-x="980"
+              data-y="1609"
+            >
+              <div
+                class="root rich-text root-0"
                 style="
-                  color: rgba(64, 21, 32, 1);
-                  text-transform: none;
-                  line-break: auto;
-                  overflow-wrap: initial;
-                  white-space: pre;
-                  font-size: 64px;
-                  text-rendering: geometricPrecision;
-                  caret-color: rgba(64, 21, 32, 1);
-                  text-decoration: none;
-                  --font-id: gfont-space-grotesk;
-                  --fills: [[ '^ ', '~:fill-color', '#401520',
-                    '~:fill-color-ref-id',
-                    '~ua19c5e35-ca12-808b-8005-4446f756ba91',
-                    '~:fill-color-ref-file',
-                    '~ua5adc15f-fb38-8092-8005-41b26c440392', '~:fill-opacity',
-                    1]];
-                  letter-spacing: -1.5px;
-                  font-family: 'Space Grotesk';
-                  font-style: normal;
-                  font-weight: 400;
+                  display: flex;
+                  white-space: break-spaces;
+                  align-items: flex-start;
                 "
-                >Medi</a
-              ><a
-                href="index.html"
-                class="text-node root-0-paragraph-set-0-paragraph-0-text-1"
-                style="
-                  color: rgba(75, 147, 191, 1);
-                  text-transform: none;
-                  line-break: auto;
-                  overflow-wrap: initial;
-                  white-space: pre;
-                  font-size: 64px;
-                  text-rendering: geometricPrecision;
-                  caret-color: rgba(75, 147, 191, 1);
-                  text-decoration: none;
-                  --font-id: gfont-space-grotesk;
-                  --fills: [[ '^ ', '~:fill-color', '#4B93BF',
-                    '~:fill-color-ref-id',
-                    '~ua19c5e35-ca12-808b-8005-44467662b4c0',
-                    '~:fill-color-ref-file',
-                    '~ua5adc15f-fb38-8092-8005-41b26c440392', '~:fill-opacity',
-                    1]];
-                  letter-spacing: -1.5px;
-                  font-family: 'Space Grotesk';
-                  font-style: normal;
-                  font-weight: 400;
-                "
-                >BASE</a
+                xmlns="http://www.w3.org/1999/xhtml"
               >
-            </p>
+                <div class="paragraph-set root-0-paragraph-set-0">
+                  <p
+                    class="paragraph root-0-paragraph-set-0-paragraph-0"
+                    dir="ltr"
+                  >
+                    <input
+                      type="submit"
+                      name="create"
+                      id="create"
+                      value="Create"
+                      onclick="setFormAction('JSP/create_patient_result.jsp'); document.getElementById('patientForm').submit();"
+                      target="_blank"
+                      class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                      style="
+                        background: none;
+                        color: rgba(242, 235, 213, 1);
+                        text-transform: none;
+                        line-break: auto;
+                        overflow-wrap: initial;
+                        white-space: break-spaces;
+                        font-size: 18px;
+                        text-rendering: geometricPrecision;
+                        caret-color: rgba(242, 235, 213, 1);
+                        text-decoration: none;
+                        --font-id: gfont-noto-sans;
+                        --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                          '~:fill-color-ref-id',
+                          '~ua19c5e35-ca12-808b-8005-44469bb3a18a',
+                          '~:fill-color-ref-file',
+                          '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                          '~:fill-opacity', 1]];
+                        letter-spacing: 0px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                      "
+                    />
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- text: Patient Management -->
-    <div class="shape text patient-ma-495140fa509b">
-      <div
-        class="text-node-html"
-        id="html-text-node-1a60e743-710c-8078-8005-495140fa509b"
-        data-x="1229"
-        data-y="1087"
-      >
-        <div
-          class="root rich-text root-0"
-          style="
-            display: flex;
-            white-space: break-spaces;
-            align-items: flex-start;
-          "
-          xmlns="http://www.w3.org/1999/xhtml"
-        >
-          <div class="paragraph-set root-0-paragraph-set-0">
-            <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-              <span
-                class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+        <!-- group: btn_patients -->
+        <div class="group btnpatien-4ac3d0816949">
+          <!-- group: Group -->
+          <div class="group group-4ac3d081694a">
+            <!-- rect: Rectangle -->
+            <div class="shape rect rectangle-4ac3d081694c"></div>
+            <!-- circle: Ellipse -->
+            <div class="shape circle ellipse-4ac3d081694d"></div>
+            <!-- circle: Ellipse -->
+            <div class="shape circle ellipse-4ac3d081694e"></div>
+          </div>
+          <!-- text: Search Patient -->
+          <div class="shape text search-pat-4ac3d081694b">
+            <div
+              class="text-node-html"
+              id="html-text-node-339bc288-5112-8014-8005-4ac3d081694b"
+              data-x="1123"
+              data-y="1676"
+            >
+              <div
+                class="root rich-text root-0"
                 style="
-                  color: rgba(0, 0, 0, 1);
-                  text-transform: none;
-                  line-break: auto;
-                  overflow-wrap: initial;
+                  display: flex;
                   white-space: break-spaces;
-                  font-size: 24px;
-                  text-rendering: geometricPrecision;
-                  caret-color: rgba(0, 0, 0, 1);
-                  text-decoration: none;
-                  --font-id: gfont-space-grotesk;
-                  --fills: [[ '^ ', '~:fill-color', '#000000', '~:fill-opacity',
-                    1]];
-                  letter-spacing: 0px;
-                  font-family: 'Space Grotesk';
-                  font-style: normal;
-                  font-weight: 400;
+                  align-items: flex-start;
                 "
-                >Patient Management</span
+                xmlns="http://www.w3.org/1999/xhtml"
               >
-            </p>
+                <div class="paragraph-set root-0-paragraph-set-0">
+                  <p
+                    class="paragraph root-0-paragraph-set-0-paragraph-0"
+                    dir="ltr"
+                  >
+                    <input
+                      type="submit"
+                      id="search"
+                      name="search"
+                      onclick="setFormAction('JSP/search_patient_result.jsp'); document.getElementById('patientForm').submit();"
+                      value="Search"
+                      tabindex="_blank"
+                      class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                      style="
+                        background: none;
+                        color: rgba(242, 235, 213, 1);
+                        text-transform: none;
+                        line-break: auto;
+                        overflow-wrap: initial;
+                        white-space: break-spaces;
+                        font-size: 18px;
+                        text-rendering: geometricPrecision;
+                        caret-color: rgba(242, 235, 213, 1);
+                        text-decoration: none;
+                        --font-id: gfont-noto-sans;
+                        --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                          '~:fill-color-ref-id',
+                          '~ua19c5e35-ca12-808b-8005-44469bb3a18a',
+                          '~:fill-color-ref-file',
+                          '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                          '~:fill-opacity', 1]];
+                        letter-spacing: 0px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                      "
+                    />
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- text: Patient Name: -->
-    <div class="shape text patient-na-495140fa509c">
-      <div
-        class="text-node-html"
-        id="html-text-node-1a60e743-710c-8078-8005-495140fa509c"
-        data-x="919"
-        data-y="1159"
-      >
-        <div
-          class="root rich-text root-0"
-          style="
-            display: flex;
-            white-space: break-spaces;
-            align-items: flex-start;
-          "
-          xmlns="http://www.w3.org/1999/xhtml"
-        >
-          <div class="paragraph-set root-0-paragraph-set-0">
-            <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-              <input
-                type="text"
-                name="Patient_Name"
-                id="Patient_Name"
-                placeholder="Patient Name"
-                class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+        <!-- group: btn_patients -->
+        <div class="group btnpatien-49518ef1010e">
+          <!-- group: Group -->
+          <div class="group group-49518ef1010f">
+            <!-- rect: Rectangle -->
+            <div class="shape rect rectangle-49518ef10111"></div>
+            <!-- circle: Ellipse -->
+            <div class="shape circle ellipse-49518ef10112"></div>
+            <!-- circle: Ellipse -->
+            <div class="shape circle ellipse-49518ef10113"></div>
+          </div>
+          <!-- text: Delete Patient -->
+          <div class="shape text delete-pat-49518ef10110">
+            <div
+              class="text-node-html"
+              id="html-text-node-1a60e743-710c-8078-8005-49518ef10110"
+              data-x="1265"
+              data-y="1610"
+            >
+              <div
+                class="root rich-text root-0"
                 style="
-                  color: rgba(0, 0, 0, 1);
-                  text-transform: none;
-                  line-break: auto;
-                  overflow-wrap: initial;
+                  display: flex;
                   white-space: break-spaces;
-                  font-size: 18px;
-                  text-rendering: geometricPrecision;
-                  caret-color: rgba(0, 0, 0, 1);
-                  text-decoration: none;
-                  --font-id: gfont-space-grotesk;
-                  --fills: [[ '^ ', '~:fill-color', '#000000', '~:fill-opacity',
-                    1]];
-                  letter-spacing: 0px;
-                  font-family: 'Space Grotesk';
-                  font-style: normal;
-                  font-weight: 600;
+                  align-items: flex-start;
                 "
-              />
-            </p>
+                xmlns="http://www.w3.org/1999/xhtml"
+              >
+                <div class="paragraph-set root-0-paragraph-set-0">
+                  <p
+                    class="paragraph root-0-paragraph-set-0-paragraph-0"
+                    dir="ltr"
+                  >
+                    <input
+                      type="submit"
+                      id="delete"
+                      name="delete"
+                      value="Delete"
+                      onclick="setFormAction('JSP/delete_patient_result.jsp'); document.getElementById('patientForm').submit();"
+                      class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                      style="
+                        background: none;
+                        color: rgba(242, 235, 213, 1);
+                        text-transform: none;
+                        line-break: auto;
+                        overflow-wrap: initial;
+                        white-space: break-spaces;
+                        font-size: 18px;
+                        text-rendering: geometricPrecision;
+                        caret-color: rgba(242, 235, 213, 1);
+                        text-decoration: none;
+                        --font-id: gfont-noto-sans;
+                        --fills: [[ '^ ', '~:fill-color', '#F2EBD5',
+                          '~:fill-color-ref-id',
+                          '~ua19c5e35-ca12-808b-8005-44469bb3a18a',
+                          '~:fill-color-ref-file',
+                          '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                          '~:fill-opacity', 1]];
+                        letter-spacing: 0px;
+                        font-family: 'Noto Sans';
+                        font-style: normal;
+                        font-weight: 600;
+                      "
+                    />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- text: MediBASE -->
+        <div class="shape text medi-base-495140fa509a">
+          <div
+            class="text-node-html"
+            id="html-text-node-1a60e743-710c-8078-8005-495140fa509a"
+            data-x="919"
+            data-y="1049"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <a
+                    href="index.html"
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(64, 21, 32, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: pre;
+                      font-size: 64px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(64, 21, 32, 1);
+                      text-decoration: none;
+                      --font-id: gfont-space-grotesk;
+                      --fills: [[ '^ ', '~:fill-color', '#401520',
+                        '~:fill-color-ref-id',
+                        '~ua19c5e35-ca12-808b-8005-4446f756ba91',
+                        '~:fill-color-ref-file',
+                        '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: -1.5px;
+                      font-family: 'Space Grotesk';
+                      font-style: normal;
+                      font-weight: 400;
+                    "
+                    >Medi</a
+                  ><a
+                    href="index.html"
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-1"
+                    style="
+                      color: rgba(75, 147, 191, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: pre;
+                      font-size: 64px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(75, 147, 191, 1);
+                      text-decoration: none;
+                      --font-id: gfont-space-grotesk;
+                      --fills: [[ '^ ', '~:fill-color', '#4B93BF',
+                        '~:fill-color-ref-id',
+                        '~ua19c5e35-ca12-808b-8005-44467662b4c0',
+                        '~:fill-color-ref-file',
+                        '~ua5adc15f-fb38-8092-8005-41b26c440392',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: -1.5px;
+                      font-family: 'Space Grotesk';
+                      font-style: normal;
+                      font-weight: 400;
+                    "
+                    >BASE</a
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- text: Patient Management -->
+        <div class="shape text patient-ma-495140fa509b">
+          <div
+            class="text-node-html"
+            id="html-text-node-1a60e743-710c-8078-8005-495140fa509b"
+            data-x="1229"
+            data-y="1087"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <span
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 24px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-space-grotesk;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Space Grotesk';
+                      font-style: normal;
+                      font-weight: 400;
+                    "
+                    >Patient Management</span
+                  >
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- text: Patient Name: -->
+        <div class="shape text patient-na-495140fa509c">
+          <div
+            class="text-node-html"
+            id="html-text-node-1a60e743-710c-8078-8005-495140fa509c"
+            data-x="919"
+            data-y="1159"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <input
+                    type="text"
+                    name="patient_name"
+                    id="patient_name"
+                    placeholder="Patient Name"
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-space-grotesk;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Space Grotesk';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- text: Age: -->
+        <div class="shape text age-495140fa509d">
+          <div
+            class="text-node-html"
+            id="html-text-node-1a60e743-710c-8078-8005-495140fa509d"
+            data-x="919"
+            data-y="1211"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <input
+                    type="number"
+                    id="Age"
+                    name="Age"
+                    placeholder="Age"
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-space-grotesk;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Space Grotesk';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- text: Birth Date: -->
+        <div class="shape text birth-date-495140fa509e">
+          <div
+            class="text-node-html"
+            id="html-text-node-1a60e743-710c-8078-8005-495140fa509e"
+            data-x="919"
+            data-y="1263"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <input
+                    type="date"
+                    name="Birth_Date"
+                    id="Birth_Date"
+                    placeholder="Birth Date"
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-space-grotesk;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Space Grotesk';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- text: Sex: -->
+        <div class="shape text sex-495140fa509f">
+          <div
+            class="text-node-html"
+            id="html-text-node-1a60e743-710c-8078-8005-495140fa509f"
+            data-x="919"
+            data-y="1315"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <input
+                    type="text"
+                    id="Sex"
+                    name="Sex"
+                    placeholder="Sex"
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-space-grotesk;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Space Grotesk';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- text: Height: -->
+        <div class="shape text height-495140fa50a0">
+          <div
+            class="text-node-html"
+            id="html-text-node-1a60e743-710c-8078-8005-495140fa50a0"
+            data-x="919"
+            data-y="1367"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <input
+                    type="number"
+                    id="Height"
+                    name="Height"
+                    placeholder="Height"
+                    step="0.01"
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-space-grotesk;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Space Grotesk';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- text: Weight: -->
+        <div class="shape text weight-495140fa50a1">
+          <div
+            class="text-node-html"
+            id="html-text-node-1a60e743-710c-8078-8005-495140fa50a1"
+            data-x="919"
+            data-y="1419"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <input
+                    type="number"
+                    id="Weight"
+                    name="Weight"
+                    placeholder="Weight"
+                    step="0.01"
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-space-grotesk;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Space Grotesk';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                  />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- text: Religion: -->
+        <div class="shape text religion-495140fa50a2">
+          <div
+            class="text-node-html"
+            id="html-text-node-1a60e743-710c-8078-8005-495140fa50a2"
+            data-x="919"
+            data-y="1471"
+          >
+            <div
+              class="root rich-text root-0"
+              style="
+                display: flex;
+                white-space: break-spaces;
+                align-items: flex-start;
+              "
+              xmlns="http://www.w3.org/1999/xhtml"
+            >
+              <div class="paragraph-set root-0-paragraph-set-0">
+                <p
+                  class="paragraph root-0-paragraph-set-0-paragraph-0"
+                  dir="ltr"
+                >
+                  <input
+                    type="text"
+                    id="Religion"
+                    name="Religion"
+                    placeholder="Religion"
+                    class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
+                    style="
+                      color: rgba(0, 0, 0, 1);
+                      text-transform: none;
+                      line-break: auto;
+                      overflow-wrap: initial;
+                      white-space: break-spaces;
+                      font-size: 18px;
+                      text-rendering: geometricPrecision;
+                      caret-color: rgba(0, 0, 0, 1);
+                      text-decoration: none;
+                      --font-id: gfont-space-grotesk;
+                      --fills: [[ '^ ', '~:fill-color', '#000000',
+                        '~:fill-opacity', 1]];
+                      letter-spacing: 0px;
+                      font-family: 'Space Grotesk';
+                      font-style: normal;
+                      font-weight: 600;
+                    "
+                  />
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- text: Age: -->
-    <div class="shape text age-495140fa509d">
-      <div
-        class="text-node-html"
-        id="html-text-node-1a60e743-710c-8078-8005-495140fa509d"
-        data-x="919"
-        data-y="1211"
-      >
-        <div
-          class="root rich-text root-0"
-          style="
-            display: flex;
-            white-space: break-spaces;
-            align-items: flex-start;
-          "
-          xmlns="http://www.w3.org/1999/xhtml"
-        >
-          <div class="paragraph-set root-0-paragraph-set-0">
-            <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-              <input
-                type="number"
-                id="Age"
-                name="Age"
-                placeholder="Age"
-                class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
-                style="
-                  color: rgba(0, 0, 0, 1);
-                  text-transform: none;
-                  line-break: auto;
-                  overflow-wrap: initial;
-                  white-space: break-spaces;
-                  font-size: 18px;
-                  text-rendering: geometricPrecision;
-                  caret-color: rgba(0, 0, 0, 1);
-                  text-decoration: none;
-                  --font-id: gfont-space-grotesk;
-                  --fills: [[ '^ ', '~:fill-color', '#000000', '~:fill-opacity',
-                    1]];
-                  letter-spacing: 0px;
-                  font-family: 'Space Grotesk';
-                  font-style: normal;
-                  font-weight: 600;
-                "
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- text: Birth Date: -->
-    <div class="shape text birth-date-495140fa509e">
-      <div
-        class="text-node-html"
-        id="html-text-node-1a60e743-710c-8078-8005-495140fa509e"
-        data-x="919"
-        data-y="1263"
-      >
-        <div
-          class="root rich-text root-0"
-          style="
-            display: flex;
-            white-space: break-spaces;
-            align-items: flex-start;
-          "
-          xmlns="http://www.w3.org/1999/xhtml"
-        >
-          <div class="paragraph-set root-0-paragraph-set-0">
-            <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-              <input
-                type="date"
-                name="Birth_Date"
-                id="Birth_Date"
-                placeholder="Birth Date"
-                class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
-                style="
-                  color: rgba(0, 0, 0, 1);
-                  text-transform: none;
-                  line-break: auto;
-                  overflow-wrap: initial;
-                  white-space: break-spaces;
-                  font-size: 18px;
-                  text-rendering: geometricPrecision;
-                  caret-color: rgba(0, 0, 0, 1);
-                  text-decoration: none;
-                  --font-id: gfont-space-grotesk;
-                  --fills: [[ '^ ', '~:fill-color', '#000000', '~:fill-opacity',
-                    1]];
-                  letter-spacing: 0px;
-                  font-family: 'Space Grotesk';
-                  font-style: normal;
-                  font-weight: 600;
-                "
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- text: Sex: -->
-    <div class="shape text sex-495140fa509f">
-      <div
-        class="text-node-html"
-        id="html-text-node-1a60e743-710c-8078-8005-495140fa509f"
-        data-x="919"
-        data-y="1315"
-      >
-        <div
-          class="root rich-text root-0"
-          style="
-            display: flex;
-            white-space: break-spaces;
-            align-items: flex-start;
-          "
-          xmlns="http://www.w3.org/1999/xhtml"
-        >
-          <div class="paragraph-set root-0-paragraph-set-0">
-            <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-              <input
-                type="text"
-                id="Sex"
-                name="Sex"
-                placeholder="Sex"
-                class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
-                style="
-                  color: rgba(0, 0, 0, 1);
-                  text-transform: none;
-                  line-break: auto;
-                  overflow-wrap: initial;
-                  white-space: break-spaces;
-                  font-size: 18px;
-                  text-rendering: geometricPrecision;
-                  caret-color: rgba(0, 0, 0, 1);
-                  text-decoration: none;
-                  --font-id: gfont-space-grotesk;
-                  --fills: [[ '^ ', '~:fill-color', '#000000', '~:fill-opacity',
-                    1]];
-                  letter-spacing: 0px;
-                  font-family: 'Space Grotesk';
-                  font-style: normal;
-                  font-weight: 600;
-                "
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- text: Height: -->
-    <div class="shape text height-495140fa50a0">
-      <div
-        class="text-node-html"
-        id="html-text-node-1a60e743-710c-8078-8005-495140fa50a0"
-        data-x="919"
-        data-y="1367"
-      >
-        <div
-          class="root rich-text root-0"
-          style="
-            display: flex;
-            white-space: break-spaces;
-            align-items: flex-start;
-          "
-          xmlns="http://www.w3.org/1999/xhtml"
-        >
-          <div class="paragraph-set root-0-paragraph-set-0">
-            <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-              <input
-                type="number"
-                id="Height"
-                name="Height"
-                placeholder="Height"
-                class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
-                style="
-                  color: rgba(0, 0, 0, 1);
-                  text-transform: none;
-                  line-break: auto;
-                  overflow-wrap: initial;
-                  white-space: break-spaces;
-                  font-size: 18px;
-                  text-rendering: geometricPrecision;
-                  caret-color: rgba(0, 0, 0, 1);
-                  text-decoration: none;
-                  --font-id: gfont-space-grotesk;
-                  --fills: [[ '^ ', '~:fill-color', '#000000', '~:fill-opacity',
-                    1]];
-                  letter-spacing: 0px;
-                  font-family: 'Space Grotesk';
-                  font-style: normal;
-                  font-weight: 600;
-                "
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- text: Weight: -->
-    <div class="shape text weight-495140fa50a1">
-      <div
-        class="text-node-html"
-        id="html-text-node-1a60e743-710c-8078-8005-495140fa50a1"
-        data-x="919"
-        data-y="1419"
-      >
-        <div
-          class="root rich-text root-0"
-          style="
-            display: flex;
-            white-space: break-spaces;
-            align-items: flex-start;
-          "
-          xmlns="http://www.w3.org/1999/xhtml"
-        >
-          <div class="paragraph-set root-0-paragraph-set-0">
-            <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-              <input
-                type="number"
-                id="Weight"
-                name="Weight"
-                placeholder="Weight"
-                class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
-                style="
-                  color: rgba(0, 0, 0, 1);
-                  text-transform: none;
-                  line-break: auto;
-                  overflow-wrap: initial;
-                  white-space: break-spaces;
-                  font-size: 18px;
-                  text-rendering: geometricPrecision;
-                  caret-color: rgba(0, 0, 0, 1);
-                  text-decoration: none;
-                  --font-id: gfont-space-grotesk;
-                  --fills: [[ '^ ', '~:fill-color', '#000000', '~:fill-opacity',
-                    1]];
-                  letter-spacing: 0px;
-                  font-family: 'Space Grotesk';
-                  font-style: normal;
-                  font-weight: 600;
-                "
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- text: Religion: -->
-    <div class="shape text religion-495140fa50a2">
-      <div
-        class="text-node-html"
-        id="html-text-node-1a60e743-710c-8078-8005-495140fa50a2"
-        data-x="919"
-        data-y="1471"
-      >
-        <div
-          class="root rich-text root-0"
-          style="
-            display: flex;
-            white-space: break-spaces;
-            align-items: flex-start;
-          "
-          xmlns="http://www.w3.org/1999/xhtml"
-        >
-          <div class="paragraph-set root-0-paragraph-set-0">
-            <p class="paragraph root-0-paragraph-set-0-paragraph-0" dir="ltr">
-              <input
-                type="text"
-                id="Religion"
-                name="Religion"
-                placeholder="Religion"
-                class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
-                style="
-                  color: rgba(0, 0, 0, 1);
-                  text-transform: none;
-                  line-break: auto;
-                  overflow-wrap: initial;
-                  white-space: break-spaces;
-                  font-size: 18px;
-                  text-rendering: geometricPrecision;
-                  caret-color: rgba(0, 0, 0, 1);
-                  text-decoration: none;
-                  --font-id: gfont-space-grotesk;
-                  --fills: [[ '^ ', '~:fill-color', '#000000', '~:fill-opacity',
-                    1]];
-                  letter-spacing: 0px;
-                  font-family: 'Space Grotesk';
-                  font-style: normal;
-                  font-weight: 600;
-                "
-              />
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    </form>
+  </body>
 </html>
