@@ -43,8 +43,8 @@
 
     Timestamp dateCreated = new Timestamp(System.currentTimeMillis());
 
-    String firstname = names[0];
-    String lastname = names[1];
+    String firstname = names[1];
+    String lastname = names[0];
     Patient patient = new Patient(lastname, firstname, birthDate, sex, height, weight, religion, dateCreated);
 
     boolean success = Transaction.createPatientRecord(patient);

@@ -21,8 +21,8 @@
 <%
     String complete_name = request.getParameter("Patient_Name");
     String[] names = WebTools.splitName(complete_name);
-    String firstName = names[0];
-    String lastName = names[1];
+    String firstName = names[1];
+    String lastName = names[0];
     
     Timestamp birthDate = null;
     try {
@@ -33,10 +33,12 @@
 
     Patient patient = null;
     try {
-        patient = PatientDAO.getFromNameBDay(firstName, lastName, birthDate);
+        int patient = PatientDAO.getFromNameBDay(firstName, lastName, birthDate);
     } catch (SQLException e) {
         e.printStackTrace();
     }
+
+        
 
     if (patient != null) {
 %>
