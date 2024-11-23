@@ -66,6 +66,22 @@ public class Transaction {
     }
 
     // Creating a Patient record
+    public static boolean createPatientRecord(Patient patient) throws SQLException {
+        try {
+            // Step 1: Verify that the Patient record does not exist
+            if (PatientDAO.getFromID(patient.getPatientId()) != null) {
+                System.out.println("Patient record already exists!");
+                return false;
+            }
+            // Step 2: Record the Patient’s information
+            PatientDAO.add(patient);
+            return true;
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    // Creating a Patient record
     public static boolean createPatientRecord(Patient patient, Doctors doctor, VitalSigns vitalSigns, Consultation consultation, List<Prescription> prescriptions, List<LabReport> labReports, List<ChiefComplaint> chiefComplaints, List<MedicalDiagnosis> medicalDiagnoses) throws SQLException {
         Connection conn = null;
         try {
