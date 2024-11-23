@@ -92,7 +92,7 @@ public class DoctorsDAO {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    return resultSet.getInt("patient_ID");
+                    return resultSet.getInt("doctor_ID");
                 } else {
                     return 0;
                 }

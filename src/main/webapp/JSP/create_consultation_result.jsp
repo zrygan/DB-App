@@ -6,15 +6,13 @@
 
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="java.util.*" %>
-<%@page import="com.source.HospitalDB.Classes.VitalSigns" %>
-<%@page import="com.source.HospitalDB.Classes.Prescription" %>
-<%@page import="com.source.HospitalDB.DAO.PrescriptionDAO" %>
-<%@page import="com.source.HospitalDB.DAO.VitalSignsDAO" %>
-<%@page import="com.source.HospitalDB.DAO.PatientDao" %>
-<%@page import="com.source.HospitalDB.Classes.Patient" %>
+<%@page import="java.sql.*" %>
+<%@page import="com.source.HospitalDB.DAO.*" %>
+<%@page import="com.source.HospitalDB.Classes.*" %>
 <%@ page import="java.math.BigDecimal" %>
 <%@ page import="com.source.HospitalDB.App" %>
 <%@ page import="com.source.HospitalDB.WebTools" %>
+<%@ page import="java.text.ParseException" %>
 
 <!DOCTYPE html>
 <html>
@@ -110,11 +108,11 @@
 
         String patient_name = request.getParameter("patient_name") != null ? request.getParameter("patient_name") : "Not Provided";
         String[] patient_parts = WebTools.splitName(patient_name);
-        int patient_id = PatientDao.getFromNameBDay(patient_parts[0], patient_parts[1], birthDate);
+        int patient_id = PatientDAO.getFromNameBDay(patient_parts[1], patient_parts[0], birthDate);
 
         String doctor_name = request.getParameter("doctor_name") != null ? request.getParameter("doctor_name") : "Not Provided";
         String[] doctor_parts = WebTools.splitName(doctor_name);
-        int doctor_id = DoctorsDAO.getFromName(doctor_parts[0], doctor_parts[1]);
+        int doctor_id = DoctorsDAO.getFromName(doctor_parts[1], doctor_parts[0]);
 
         String temperature = request.getParameter("temperature") != null ? request.getParameter("temperature") : "0";
         BigDecimal tempDecimal = BigDecimal.ZERO;
@@ -173,9 +171,14 @@
     %>
         <h1>Consultation Failed to Create</h1>
         <p>Missing or invalid data provided.</p>
-        <p>Name: <%= patient_name %></p>
+        <p>Firstname: <%= patient_parts[1] %></p>
+        <p>Lastname: <%= patient_parts[0] %></p>
+        <p>Patient ID: <%= patient_id %></p>
+        <p>Birth Date: <%= birthStr %></p>
         <p>Age: <%= age %></p>
-        <p>Attending Physician: <%= doctor_name %></p>
+        <p>Doctor Firstname: <%= doctor_parts[1] %></p>
+        <p>Doctor Lastname: <%= doctor_parts[0] %></p>
+        <p>Doctor ID: <%= doctor_id %></p>
         <p>Temperature: <%= tempDecimal %></p>
         <p>Pulse: <%= pulse_int %></p>
         <p>Respiratory Rate: <%= resp_int %></p>
@@ -184,9 +187,9 @@
     <%
         } else {
             VitalSigns vitalSigns = new VitalSigns(tempDecimal, pulse_int, resp_int, sys_int, dias_int, spo2_int);
-            VitalSignsDAO.create(vitalSigns);
+            VitalSignsDAO.add(vitalSigns);
             
-            Consultation consultation = new Consultation(null, doctor_id, patient_id, vitalSigns, null);
+            Consultation consultation = new Consultation(-1, doctor_id, patient_id, vitalSigns.getVitalSignsID(), -1);
             ConsultationDAO.add(consultation);
 
             int consult_id = consultation.getConsultationID();

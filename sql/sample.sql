@@ -28,10 +28,10 @@ VALUES
 ('Henry', 'Anderson', 'Neurology', '123-456-7813', 'henry.anderson@example.com'),
 ('Charlotte', 'Davis', 'Emergency Medicine', '123-456-7814', 'charlotte.davis@example.com');
 
-INSERT INTO patients_record (patient_firstname, patient_lastname, age, birth_date, sex, patient_height, patient_weight, religion)
+INSERT INTO patients_record (patient_firstname, patient_lastname, age, birth_date, sex, pati    ent_height, patient_weight, religion)
 VALUES
 ('Alice', 'Brown', 25, '1999-06-15', 'F', 165.5, 55.5, 'Christian'),
-('Bob', 'Clark', 40, '1984-02-20', ' ', 175.0, 80.0, 'Muslim'),
+('Bob', 'Clark', 40, '1984-02-20', 'M', 175.0, 80.0, 'Muslim'),
 ('Charlie', 'Evans', 30, '1994-11-05', 'M', 180.0, 70.0, 'Hindu'),
 ('Diana', 'Harris', 55, '1969-03-25', 'F', 160.0, 65.0, 'Jewish'),
 ('Eva', 'Morris', 23, '2001-01-10', 'F', 155.0, 50.0, 'Buddhist'),
