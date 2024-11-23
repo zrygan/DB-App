@@ -9,6 +9,8 @@
 <%@ page import="com.source.HospitalDB.DAO.PatientDAO" %>
 <%@ page import="com.source.HospitalDB.Classes.Patient" %>
 <%@ page import="com.source.HospitalDB.WebTools" %>
+<%@ page import="java.sql.Timestamp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
