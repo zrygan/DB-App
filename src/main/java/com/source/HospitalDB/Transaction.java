@@ -31,7 +31,16 @@ import com.source.HospitalDB.DAO.VitalSignsDAO;
 public class Transaction {
 
     // Deleting Doctor's Record
-    public static boolean deleteDoctor(int doctorId) throws SQLException {
+    public static boolean deleteDoctor(String firstname, String lastname) throws SQLException {
+        int doctorId = -1;
+        
+        for (Doctors d : App.getDoctorsMap().values()){
+            if (d.getFirstname().equals(firstname) && d.getLastname().equals(lastname)){
+                doctorId = d.getDoctorId();
+                break;
+            }
+        }
+        
         try (Connection conn = DBConnection.getConnection()) {
             // Verify the doctor exists in the database
             if (DoctorsDAO.getFromID(doctorId) == null) {

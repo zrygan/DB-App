@@ -8,7 +8,7 @@
   </head>
   <body>
     <!-- frame: Doctor Management -->
-    <form action="" method="post">
+    <form action="JSP/JSP_doctors_management.jsp" method="post">
       <div class="frame doctor-man-499e0962ca5b">
         <!-- group: btn_patients -->
         <div class="group btnpatien-499e0962ca5c">
@@ -43,9 +43,14 @@
                     class="paragraph root-0-paragraph-set-0-paragraph-0"
                     dir="ltr"
                   >
-                    <span
+                    <input
+                      type="submit"
+                      name="action"
+                      id="create"
+                      value="Create"
                       class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
                       style="
+                        background: none;
                         color: rgba(242, 235, 213, 1);
                         text-transform: none;
                         line-break: auto;
@@ -67,8 +72,7 @@
                         font-style: normal;
                         font-weight: 600;
                       "
-                      >Create</span
-                    >
+                    />
                   </p>
                 </div>
               </div>
@@ -108,9 +112,14 @@
                     class="paragraph root-0-paragraph-set-0-paragraph-0"
                     dir="ltr"
                   >
-                    <span
+                    <input
+                      type="submit"
+                      name="action"
+                      id="delete"
+                      value="Delete"
                       class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
                       style="
+                        background: none;
                         color: rgba(242, 235, 213, 1);
                         text-transform: none;
                         line-break: auto;
@@ -132,8 +141,7 @@
                         font-style: normal;
                         font-weight: 600;
                       "
-                      >Delete</span
-                    >
+                    />
                   </p>
                 </div>
               </div>
@@ -312,8 +320,7 @@
                       font-style: normal;
                       font-weight: 600;
                     "
-                    ></span
-                  >
+                  />
                 </p>
               </div>
             </div>
@@ -364,8 +371,7 @@
                       font-style: normal;
                       font-weight: 600;
                     "
-                    >
-                    
+                  />
                 </p>
               </div>
             </div>
@@ -395,9 +401,8 @@
                 >
                   <input
                     id="phoneNumber"
-                    name = "phoneNumber"
+                    name="phoneNumber"
                     placeholder="Phone Number"
-
                     class="text-node root-0-paragraph-set-0-paragraph-0-text-0"
                     style="
                       color: rgba(0, 0, 0, 1);
@@ -417,7 +422,7 @@
                       font-style: normal;
                       font-weight: 600;
                     "
-                    >
+                  />
                 </p>
               </div>
             </div>
@@ -468,7 +473,7 @@
                       font-style: normal;
                       font-weight: 600;
                     "
-                    >
+                  />
                 </p>
               </div>
             </div>
@@ -519,7 +524,7 @@
                       font-style: normal;
                       font-weight: 600;
                     "
-                    >
+                  />
                 </p>
               </div>
             </div>
