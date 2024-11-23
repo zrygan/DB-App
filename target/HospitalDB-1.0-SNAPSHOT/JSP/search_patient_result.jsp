@@ -45,6 +45,8 @@
         e.printStackTrace();
     }
 
+        
+
     if (patient != null) {
 %>
         <h1>Patient Found</h1>

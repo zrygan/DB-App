@@ -164,7 +164,10 @@
     %>
 
     <%
-        if (patient_id == 0 || doctor_id == 0 || birthDate == null || consultDate == null || "Not Provided".equals(temperature) || "Not Provided".equals(pulse) || "Not Provided".equals(respiratory_rate) || "Not Provided".equals(systolic) || "Not Provided".equals(diastolic) || "Not Provided".equals(spo2)) {
+        if (patient_id == 0 || doctor_id == 0 || birthDate == null 
+        || consultDate == null || tempDecimal.compareTo(BigDecimal.ZERO) == 0 || pulse_int == 0 
+        || resp_int == 0 || sys_int == 0 || dias_int == 0 
+        || spo2_int == 0) {
     %>
         <h1>Consultation Failed to Create</h1>
         <p>Missing or invalid data provided.</p>
