@@ -407,7 +407,15 @@
         </div>
     </form>
     <% 
-    int consult_id = Integer.parseInt(request.getParameter("consult_id"));
+        int consult_id = Integer.parseInt(request.getParameter("consult_id"));
+        request.setAttribute("consult_id", consult_id);
+
+        int patient_id = Integer.parseInt(request.getParameter("patient_id"));
+        request.setAttribute("patient_id", patient_id);
+
+        int doctor_id = Integer.parseInt(request.getParameter("doctor_id"));
+        request.setAttribute("doctor_id", doctor_id);
+
     %>
   </body>
 </html>

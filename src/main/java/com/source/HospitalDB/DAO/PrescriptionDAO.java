@@ -26,6 +26,22 @@ public class PrescriptionDAO {
         }
     }
 
+    // add function but manually places the prescription_ID too
+    public static void add(Prescription prescription, int prescriptionId) throws SQLException {
+        String query = "INSERT INTO prescription_record (prescription_ID, medication_ID, prescription_date, frequency, dosage, doctor_ID, patient_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, prescriptionId);
+            stmt.setInt(2, prescription.getMedicationID());
+            stmt.setTimestamp(3, prescription.getPrescriptionDate());
+            stmt.setInt(4, prescription.getFrequency());
+            stmt.setBigDecimal(5, prescription.getDosage());
+            stmt.setInt(6, prescription.getDoctorID());
+            stmt.setInt(7, prescription.getPatientID());
+            stmt.executeUpdate();
+        }
+    }
+
     public static Prescription get(int prescriptionId) throws SQLException {
         String query = "SELECT * FROM prescription_record WHERE prescription_ID = ?";
         try (Connection conn = DBConnection.getConnection();

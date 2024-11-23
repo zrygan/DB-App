@@ -72,4 +72,34 @@ public class MedicationDAO {
         }
         return meds;
     }
+
+    // Get medication id through generic name
+    public static int getFromGenericName(String generic_name) throws SQLException {
+        String query = "SELECT medication_ID FROM medication_record WHERE generic_name = ?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, generic_name);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("medication_ID");
+                } 
+            }
+        }
+        return -1;
+    }
+
+    // Get medication id through brand name
+    public static int getFromBrandName(String brand_name) throws SQLException {
+        String query = "SELECT medication_ID FROM medication_record WHERE brand_name = ?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, brand_name);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("medication_ID");
+                } 
+            }
+        }
+        return -1;
+    }
 }

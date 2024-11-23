@@ -83,18 +83,21 @@ public class DoctorsDAO {
         return spec;
     }
 
-    public static int getFromName(String doctorName) throws SQLException {
-        String query = "SELECT doctor_ID FROM doctors_record WHERE doctor_name = ?";
+    public static int getFromName(String firstname, String lastname) throws SQLException {
+        String query = "SELECT doctor_ID FROM doctors_record WHERE doctor_firstname = ? AND doctor_lastname = ?";
         try (Connection conn = DBConnection.getConnection();
-                PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setString(1, doctorName);
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt("doctor_ID");
+                PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+            preparedStatement.setString(1, firstname);
+            preparedStatement.setString(2, lastname);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt("patient_ID");
+                } else {
+                    return 0;
                 }
             }
-        }
-        return 0;
+        { 
     }
 
 }

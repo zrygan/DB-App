@@ -26,6 +26,16 @@ public class Prescription {
         this.patientID = patientID;
     }
 
+    public Prescription(int prescription_ID, int medicationID, int frequency, BigDecimal dosage, int doctorID, int patientID) {
+        prescriptionID = prescription_ID; 
+        prescriptionDate = App.time_now();
+        this.medicationID = medicationID;
+        this.frequency = frequency;
+        this.dosage = dosage;
+        this.doctorID = doctorID;
+        this.patientID = patientID;
+    }
+
     // Getters and Setters
     public int getPrescriptionID() { return prescriptionID; }
 
