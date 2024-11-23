@@ -12,6 +12,7 @@
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="java.util.Date" %>
 <%@page import="java.text.ParseException" %>
+<%@page import="com.source.HospitalDB.WebTools" %>
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +23,8 @@
 <body>
 <%
     String complete_name = request.getParameter("Patient_Name");
-    String lastname = request.getParameter("Patient_Lastname");
+    String[] names = WebTools.splitName(complete_name);
+
     int age = Integer.parseInt(request.getParameter("Age"));
     String birthDateStr = request.getParameter("Birth_Date");
     String sex = request.getParameter("Sex");
@@ -41,13 +43,24 @@
 
     Timestamp dateCreated = new Timestamp(System.currentTimeMillis());
 
-    Patient patient = new Patient(0, lastname, firstname, birthDate, sex, height, weight, religion, dateCreated);
+    String firstname = names[0];
+    String lastname = names[1];
+    Patient patient = new Patient(lastname, firstname, birthDate, sex, height, weight, religion, dateCreated);
 
     boolean success = Transaction.createPatientRecord(patient);
 
     if (success) {
 %>
         <h1>Patient Successfully Created</h1>
+        <p>Complete Name: <%= complete_name %></p>
+        <p>Age: <%= age %></p>
+        <p>Birth Date: <%= birthDateStr %></p>
+        <p>Sex: <%= sex %></p>
+        <p>Height: <%= height %></p>
+        <p>Weight: <%= weight %></p>
+        <p>Religion: <%= religion %></p>
+        <p>Date Created: <%= dateCreated %></p>
+        <p><a href="index.jsp">Back to Home</a></p>
 <%
     } else {
 %>

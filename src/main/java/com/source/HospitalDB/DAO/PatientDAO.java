@@ -125,19 +125,19 @@ public class PatientDAO {
 
     public static int getFromNameBDay(String firstname, String lastname, Timestamp birthDate) throws SQLException {
         String query = "SELECT patient_ID FROM patients_record WHERE patient_firstname = ? AND patient_lastname = ? AND birth_date = ?";
-        try (Connection conn = DBConnection.getConnection();
-                PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-            preparedStatement.setString(1, firstname);
-            preparedStatement.setString(2, lastname);
-            preparedStatement.setTimestamp(3, birthDate);
+            try (Connection conn = DBConnection.getConnection();
+                    PreparedStatement preparedStatement = conn.prepareStatement(query)) {
+                preparedStatement.setString(1, firstname);
+                preparedStatement.setString(2, lastname);
+                preparedStatement.setTimestamp(3, birthDate);
 
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getInt("patient_ID");
-                } else {
-                    return 0;
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        return resultSet.getInt("patient_ID");
+                    } else {
+                        return 0;
+                    }
                 }
-            }
         }
     }
 }

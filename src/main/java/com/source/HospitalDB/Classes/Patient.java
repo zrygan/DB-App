@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.Period;
 
+import com.source.HospitalDB.App;
+
 public final class Patient {
     private final int patientId;
     private final String lastname;
@@ -22,6 +24,21 @@ public final class Patient {
     public Patient(int patientId, String lastname, String firstname, Timestamp birthDate, String sex, 
                    BigDecimal height, BigDecimal weight, String religion, Timestamp dateCreated) {
         this.patientId = patientId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.birthDate = birthDate;
+        this.age = calculate_age();
+        this.sex = sex;
+        this.height = height;
+        this.weight = weight;
+        this.religion = religion;
+        this.dateCreated = dateCreated;
+    }
+
+    // Constructor for creating a new patient
+    public Patient(String lastname, String firstname, Timestamp birthDate, String sex, BigDecimal height, BigDecimal weight, String religion, Timestamp dateCreated) {
+        App.inc_count_patient();
+        this.patientId = App.get_count_patient();
         this.firstname = firstname;
         this.lastname = lastname;
         this.birthDate = birthDate;
