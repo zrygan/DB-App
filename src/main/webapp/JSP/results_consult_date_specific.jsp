@@ -3,6 +3,7 @@
 <%@page import="java.sql.*" %>
 <%@page import="com.source.HospitalDB.DAO.ConsultationDAO" %>
 <%@page import="com.source.HospitalDB.Classes.Consultation" %>
+<%@page import="com.source.HospitalDB.WebTools" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,14 +12,14 @@
 </head>
 <body>
     <h1>Consultation Records</h1>
-    <%
+    <% 
         String date = request.getParameter("date");
         String doctor = request.getParameter("doctor");
         
         if (date != null && doctor != null) {
-            String[] doctorName = doctor.split(" ");
-            String firstName = doctorName[0];
-            String lastName = doctorName[1];
+            String[] doctorName = WebTools.splitName(doctor);
+            String firstName = doctorName[1];
+            String lastName = doctorName[0];
             
             List<Consultation> consultations = ConsultationDAO.getConsultationsByDateAndDoctor(date, firstName, lastName);
             

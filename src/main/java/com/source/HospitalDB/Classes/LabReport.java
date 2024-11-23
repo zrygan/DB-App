@@ -13,6 +13,11 @@ public class LabReport {
         this.testID = testID;
     }
 
+    public LabReport(int labReport_ID, int testID) {
+        labReportID = labReport_ID;
+        this.testID = testID;
+    }
+
     // Getters and Setters
     public int getLabReportID() { return labReportID; }
 
