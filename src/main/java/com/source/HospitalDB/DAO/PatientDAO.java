@@ -123,12 +123,13 @@ public class PatientDAO {
         return summary.toString();
     }
 
-    public static int getFromNameBDay(String name, Timestamp birthDate) throws SQLException {
-        String query = "SELECT patient_ID FROM patients_record WHERE patient_name = ? AND birth_date = ?";
+    public static int getFromNameBDay(String firstname, String lastname, Timestamp birthDate) throws SQLException {
+        String query = "SELECT patient_ID FROM patients_record WHERE patient_firstname = ? AND patient_lastname = ? AND birth_date = ?";
         try (Connection conn = DBConnection.getConnection();
                 PreparedStatement preparedStatement = conn.prepareStatement(query)) {
-            preparedStatement.setString(1, name);
-            preparedStatement.setTimestamp(2, birthDate);
+            preparedStatement.setString(1, firstname);
+            preparedStatement.setString(2, lastname);
+            preparedStatement.setTimestamp(3, birthDate);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
