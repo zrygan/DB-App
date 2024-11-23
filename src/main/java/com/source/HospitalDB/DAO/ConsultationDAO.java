@@ -90,6 +90,51 @@ public class ConsultationDAO {
             stmt.executeUpdate();
         }
     }
+
+    // return list of consultations from the date of consultation
+    public static List<Consultation> getConsultationByDate(String consultationDate) throws SQLException {
+        String query = "SELECT * FROM consultation_record WHERE consultation_date = ?";
+        List<Consultation> consultations = new ArrayList<>();
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, consultationDate);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    consultations.add(new Consultation(
+                        rs.getInt("prescription_ID"),
+                        rs.getInt("doctor_ID"),
+                        rs.getInt("patient_ID"),
+                        rs.getInt("vital_signs_ID"),
+                        rs.getInt("lab_report_ID")
+                    ));
+                }
+            }
+        }
+        return consultations;
+    }
+
+    // return list of consultations from the patient ID and their birth date
+    public static List<Consultation> getConsultationByPatient(int patientId, String birthDate) throws SQLException {
+        String query = "SELECT * FROM consultation_record WHERE patient_ID = ? AND birth_date = ?";
+        List<Consultation> consultations = new ArrayList<>();
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, patientId);
+            stmt.setString(2, birthDate);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    consultations.add(new Consultation(
+                        rs.getInt("prescription_ID"),
+                        rs.getInt("doctor_ID"),
+                        rs.getInt("patient_ID"),
+                        rs.getInt("vital_signs_ID"),
+                        rs.getInt("lab_report_ID")
+                    ));
+                }
+            }
+        }
+        return consultations;
+    }
 }
     
 

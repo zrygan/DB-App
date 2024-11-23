@@ -88,6 +88,28 @@ public class PrescriptionDAO {
             stmt.setInt(1, prescriptionId);
             stmt.executeUpdate();
         }
-    }   
+    } 
+
+    // return list of prescriptions from a doctor ID
+    public static List<Prescription> getPrescriptionsByDoctor(int doctorId) throws SQLException {
+        String query = "SELECT * FROM prescription_record WHERE doctor_ID = ?";
+        List<Prescription> prescriptions = new ArrayList<>();
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, doctorId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    prescriptions.add(new Prescription(
+                        rs.getInt("medication_ID"),
+                        rs.getInt("frequency"),
+                        rs.getBigDecimal("dosage"),
+                        rs.getInt("doctor_ID"),
+                        rs.getInt("patient_ID")
+                    ));
+                }
+            }
+        }
+        return prescriptions;
+    }
 }
 

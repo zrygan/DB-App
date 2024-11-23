@@ -100,4 +100,26 @@ public class DoctorsDAO {
         
         }
     }
+
+    // return list of doctors with the same specialization
+    public static List<Doctors> getDoctorsBySpecialization(String specialization) throws SQLException {
+        String query = "SELECT * FROM doctors_record WHERE specialization = ?";
+        List<Doctors> doctors = new ArrayList<>();
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, specialization);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    doctors.add(new Doctors(
+                        rs.getString("doctor_firstname"),
+                        rs.getString("doctor_lastname"),
+                        rs.getString("specialization"),
+                        rs.getString("phoneNumber"),
+                        rs.getString("email")
+                    ));
+                }
+            }
+        }
+        return doctors;
+    }
 }
