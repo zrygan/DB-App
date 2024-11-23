@@ -111,8 +111,11 @@
         int patient_id = PatientDAO.getFromNameBDay(patient_parts[1], patient_parts[0], birthDate);
 
         String doctor_name = request.getParameter("doctor_name") != null ? request.getParameter("doctor_name") : "Not Provided";
-        String[] doctor_parts = WebTools.splitName(doctor_name);
-        int doctor_id = DoctorsDAO.getFromName(doctor_parts[1], doctor_parts[0]);
+        int doctor_id = 0;
+        if (doctor_name != null && !doctor_name.isEmpty() && !"Not Provided".equals(doctor_name)) {
+            String[] doctor_parts = WebTools.splitName(doctor_name);
+            doctor_id = DoctorsDAO.getFromName(doctor_parts[1], doctor_parts[0]);
+        }
 
         String temperature = request.getParameter("temperature") != null ? request.getParameter("temperature") : "0";
         BigDecimal tempDecimal = BigDecimal.ZERO;
