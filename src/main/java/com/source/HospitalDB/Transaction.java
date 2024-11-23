@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.source.HospitalDB.Classes.ChiefComplaint;
@@ -23,6 +24,7 @@ import com.source.HospitalDB.DAO.Consult_MedDiagnosisDAO;
 import com.source.HospitalDB.DAO.ConsultationDAO;
 import com.source.HospitalDB.DAO.DoctorsDAO;
 import com.source.HospitalDB.DAO.LabReportDAO;
+import com.source.HospitalDB.DAO.LabTestDAO;
 import com.source.HospitalDB.DAO.MedicalDiagnosisDAO;
 import com.source.HospitalDB.DAO.PatientDAO;
 import com.source.HospitalDB.DAO.PrescriptionDAO;
@@ -285,5 +287,16 @@ public class Transaction {
         // Step 3: Create the Consultation record
         Consultation consultation = new Consultation(prescriptionID, doctorId, patientId, vitalSignsID, labReportID);
         ConsultationDAO.add(consultation);
+    }
+
+    // get all the lab test descriptions from a lab report ID
+    public static List<String> getLabTestDescriptions(int labReportID) throws SQLException {
+        List<Integer> labTestIDs = LabReportDAO.getLabTestID(labReportID);
+        List<String> labTestDescriptions = new ArrayList<>();
+
+        for (int labTestID : labTestIDs) {
+            labTestDescriptions.add(LabTestDAO.get(labTestID).getTestDescription());
+        }
+        return labTestDescriptions;
     }
 }

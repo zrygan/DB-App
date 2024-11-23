@@ -60,4 +60,20 @@ public class LabReportDAO {
             stmt.executeUpdate();
         }
     }
+
+    // get array of lab test ID with the same labreportID
+    public static List<Integer> getLabTestID(int labReportId) throws SQLException {
+        String query = "SELECT test_ID FROM lab_report_record WHERE lab_report_ID = ?";
+        List<Integer> labTestIDs = new ArrayList<>();
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, labReportId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    labTestIDs.add(rs.getInt("test_ID"));
+                }
+            }
+        }
+        return labTestIDs;
+    }
 }
