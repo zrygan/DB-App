@@ -2,7 +2,7 @@
     Document   : add_labreport
     Created on : Nov 18, 2024, 2:14:52 PM
     Author     : Windows User
---%>
+--%>    
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="com.source.HospitalDB.DAO.DoctorsDAO" %>
