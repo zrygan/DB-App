@@ -1,5 +1,7 @@
 package com.source.HospitalDB;
 
+import java.sql.Timestamp;
+
 public class WebTools {
     // verifies the name is valid and split's it
     // Surname, Firstname -> [Surname, Firstname]

@@ -60,4 +60,46 @@ public class ChiefComplaintDAO {
             stmt.executeUpdate();
         }
     }
+
+    // get highest id of complaint
+    public static int getHighestID() throws SQLException {
+        String query = "SELECT MAX(complaint_ID) FROM chief_complaint_record";
+        try (Connection conn = DBConnection.getConnection();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        }
+        return 0;
+    }
+    // return booleaan if the chief complain already exists
+    public static boolean exists(String complaint) throws SQLException {
+        String query = "SELECT * FROM chief_complaint_record WHERE complaint_description = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, complaint);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    // get by name
+    public static ChiefComplaint getByName(String complaint) throws SQLException {
+        String query = "SELECT * FROM chief_complaint_record WHERE complaint_description = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, complaint);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new ChiefComplaint(
+                        rs.getInt("complaint_ID"),
+                        rs.getString("complaint_description")
+                    );
+                }
+            }
+        }
+        return null;
+    }
 }

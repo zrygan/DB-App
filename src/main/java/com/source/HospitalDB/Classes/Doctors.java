@@ -22,6 +22,15 @@ public class Doctors {
         this.email = email;
     }
 
+    public Doctors(int doctorId, String firstname, String lastname, String specialization, String phoneNumber, String email) {
+        this.doctorId = doctorId;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.specialization = specialization;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
     // Getters for each attribute
     public String getFirstname() {
         return firstname;
@@ -29,6 +38,11 @@ public class Doctors {
 
     public String getLastname() {
         return lastname;
+    }
+
+    // get full name
+    public String getFullName() {
+        return firstname + " " + lastname;
     }
 
     public String getSpecialization() {

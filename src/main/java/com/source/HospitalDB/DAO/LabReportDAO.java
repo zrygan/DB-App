@@ -13,10 +13,11 @@ import com.source.HospitalDB.DBConnection;
 
 public class LabReportDAO {
     public static void add(LabReport labReport) throws SQLException {
-        String query = "INSERT INTO lab_report_record (test_ID) VALUES (?)";
+        String query = "INSERT INTO lab_report_record (test_ID, consultation_ID) VALUES (?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, labReport.getTestID());
+            stmt.setInt(2, labReport.getConsultationID());
             stmt.executeUpdate();
         }
     }
@@ -29,7 +30,9 @@ public class LabReportDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new LabReport(
-                        rs.getInt("test_ID")
+                        rs.getInt("lab_report_ID"),
+                        rs.getInt("test_ID"),
+                        rs.getByte("consultation_ID")
                     );
                 }
             }
@@ -45,7 +48,9 @@ public class LabReportDAO {
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 labReports.add(new LabReport(
-                    rs.getInt("test_ID")
+                    rs.getInt("lab_report_ID"),
+                    rs.getInt("test_ID"),
+                    rs.getInt("consultation_ID")
                 ));
             }
         }
@@ -76,4 +81,20 @@ public class LabReportDAO {
         }
         return labTestIDs;
     }
+
+    // get lab report_id by consultation id
+    public static int getLabReportID(int consultationId) throws SQLException {
+        String query = "SELECT lab_report_ID FROM lab_report_record WHERE consultation_ID = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, consultationId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("lab_report_ID");
+                }
+            }
+        }
+        return -1;
+    }
+    
 }

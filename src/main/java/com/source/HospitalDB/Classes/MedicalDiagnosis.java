@@ -12,6 +12,11 @@ public class MedicalDiagnosis {
         this.diagnosisDescription = diagnosisDescription;
     }
 
+    public MedicalDiagnosis(int diagnosisID, String diagnosisDescription) {
+        this.diagnosisID = diagnosisID;
+        this.diagnosisDescription = diagnosisDescription;
+    }
+
     // Getters and Setters
     public int getDiagnosisID() { return diagnosisID; }
 

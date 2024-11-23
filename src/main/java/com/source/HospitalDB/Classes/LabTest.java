@@ -12,6 +12,11 @@ public class LabTest {
         this.testDescription = testDescription;
     }
 
+    public LabTest(int testID, String testDescription) {
+        this.testID = testID;
+        this.testDescription = testDescription;
+    }
+
     // Getters and Setters
     public int getTestID() { return testID; }
 

@@ -13,7 +13,7 @@ import com.source.HospitalDB.DBConnection;
 
 public class PrescriptionDAO {
     public static void add(Prescription prescription) throws SQLException {
-        String query = "INSERT INTO prescription_record (medication_ID, prescription_date, frequency, dosage, doctor_ID, patient_ID) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO prescription_record (medication_ID, prescription_date, frequency, dosage, doctor_ID, patient_ID, consultation_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, prescription.getMedicationID());
@@ -22,13 +22,14 @@ public class PrescriptionDAO {
             stmt.setBigDecimal(4, prescription.getDosage());
             stmt.setInt(5, prescription.getDoctorID());
             stmt.setInt(6, prescription.getPatientID());
+            stmt.setInt(7, prescription.getConsultationID());
             stmt.executeUpdate();
         }
     }
 
     // add function but manually places the prescription_ID too
     public static void add(Prescription prescription, int prescriptionId) throws SQLException {
-        String query = "INSERT INTO prescription_record (prescription_ID, medication_ID, prescription_date, frequency, dosage, doctor_ID, patient_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO prescription_record (prescription_ID, medication_ID, prescription_date, frequency, dosage, doctor_ID, patient_ID, consultation_ID) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, prescriptionId);
@@ -38,6 +39,7 @@ public class PrescriptionDAO {
             stmt.setBigDecimal(5, prescription.getDosage());
             stmt.setInt(6, prescription.getDoctorID());
             stmt.setInt(7, prescription.getPatientID());
+            stmt.setInt(8, prescription.getPatientID());
             stmt.executeUpdate();
         }
     }
@@ -54,7 +56,8 @@ public class PrescriptionDAO {
                         rs.getInt("frequency"),
                         rs.getBigDecimal("dosage"),
                         rs.getInt("doctor_ID"),
-                        rs.getInt("patient_ID")
+                        rs.getInt("patient_ID"),
+                        rs.getInt("consultation_ID")
                     );
                 }
             }
@@ -74,7 +77,8 @@ public class PrescriptionDAO {
                     rs.getInt("frequency"),
                     rs.getBigDecimal("dosage"),
                     rs.getInt("doctor_ID"),
-                    rs.getInt("patient_ID")
+                    rs.getInt("patient_ID"),
+                    rs.getInt("consultation_ID")
                 ));
             }
         }
@@ -104,12 +108,31 @@ public class PrescriptionDAO {
                         rs.getInt("frequency"),
                         rs.getBigDecimal("dosage"),
                         rs.getInt("doctor_ID"),
-                        rs.getInt("patient_ID")
+                        rs.getInt("patient_ID"),
+                        rs.getInt("consultation_ID")
                     ));
                 }
             }
         }
         return prescriptions;
     }
-}
 
+    // get id by consultation id
+    public static int getIdByConsultation(int consultationId) throws SQLException {
+        String query = "SELECT prescription_ID FROM prescription_record WHERE consultation_ID = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, consultationId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("prescription_ID");
+                }
+            }
+        }
+        return -1;
+    }
+
+    
+
+    
+}

@@ -12,6 +12,11 @@ public class ChiefComplaint {
         this.complaintDescription = complaintDescription;
     }
 
+    public ChiefComplaint(int complaintID, String complaintDescription) {
+        this.complaintID = complaintID;
+        this.complaintDescription = complaintDescription;
+    }
+
     // Getters and Setters
     public int getComplaintID() { return complaintID; }
     public void setComplaintID(int complaintID) { this.complaintID = complaintID; }

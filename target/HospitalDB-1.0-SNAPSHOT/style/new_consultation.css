@@ -1,0 +1,1434 @@
+/* cyrillic-ext */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAjBO9X6VLKzA.woff2)
+    format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
+
+/* cyrillic */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAjBO9e6VLKzA.woff2)
+    format("woff2");
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+
+/* devanagari */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAjBO9b6VLKzA.woff2)
+    format("woff2");
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0,
+    U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+
+/* greek-ext */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAjBO9W6VLKzA.woff2)
+    format("woff2");
+  unicode-range: U+1F00-1FFF;
+}
+
+/* greek */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAjBO9Z6VLKzA.woff2)
+    format("woff2");
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1,
+    U+03A3-03FF;
+}
+
+/* vietnamese */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAjBO9V6VLKzA.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAjBO9U6VLKzA.woff2)
+    format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: 100%;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/notosans/v37/o-0mIpQlx3QUlC5A4PNB6Ryti20_6n1iPHjcz6L1SoM-jCpoiyAjBO9a6VI.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* vietnamese */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj4PVnsrPMBTTA.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj4PVnsqPMBTTA.woff2)
+    format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 700;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj4PVnskPMA.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* vietnamese */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj42VnsrPMBTTA.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj42VnsqPMBTTA.woff2)
+    format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj42VnskPMA.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* vietnamese */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7oUXsrPMBTTA.woff2)
+    format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
+    U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329,
+    U+1EA0-1EF9, U+20AB;
+}
+
+/* latin-ext */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7oUXsqPMBTTA.woff2)
+    format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* latin */
+@font-face {
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url(https://design.penpot.app/internal/gfonts/font/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj7oUXskPMA.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  min-width: 100%;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.text-node {
+  background-clip: text !important;
+  -webkit-background-clip: text !important;
+}
+
+/* Creating Consultation */
+.creating-a-444dc77d9e05 {
+  position: relative;
+  width: 640px;
+  height: 800px;
+  background: #ffffff;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Group */
+.group-496cda29e6b7 {
+  position: absolute;
+  left: 339px;
+  top: 652px;
+  width: 235px;
+  height: 45px;
+}
+
+/* Group */
+.group-496cb926246f {
+  position: absolute;
+  left: 41px;
+  top: 0px;
+  width: 194px;
+  height: 45px;
+}
+
+/* Add Lab Report */
+.add-lab-re-49538d31cea8 {
+  position: absolute;
+  left: 0px;
+  top: 8px;
+  width: 153.68px;
+  height: 27px;
+}
+
+.add-lab-re-49538d31cea8 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.add-lab-re-49538d31cea8 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.add-lab-re-49538d31cea8 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+}
+
+.add-lab-re-49538d31cea8 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(64, 21, 32, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(64, 21, 32, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Ellipse */
+.ellipse-49538d31ceab {
+  position: absolute;
+  left: 149.24px;
+  top: 0px;
+  width: 44.76px;
+  height: 45px;
+  background: #4b93bf;
+  border-radius: 50%;
+}
+
+/* Ellipse */
+.ellipse-49538d31ceaa {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 44.76px;
+  height: 45px;
+  background: #4b93bf;
+  border-radius: 50%;
+}
+
+/* Rectangle */
+.rectangle-49538d31cea9 {
+  position: absolute;
+  left: 361.38px;
+  top: 652px;
+  width: 190.24px;
+  height: 45px;
+  background: #4b93bf;
+  border-radius: 0px;
+}
+
+/* btn_patients */
+.btnpatien-4953d79c36f8 {
+  position: absolute;
+  left: 204px;
+  top: 721px;
+  width: 235px;
+  height: 46px;
+}
+
+/* Create */
+.create-4953d79c36fa {
+  position: absolute;
+  left: 41px;
+  top: 8px;
+  width: 153.68px;
+  height: 27px;
+}
+
+.create-4953d79c36fa .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.create-4953d79c36fa .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.create-4953d79c36fa .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+}
+
+.create-4953d79c36fa .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(242, 235, 213, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(242, 235, 213, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Group */
+.group-4953d79c36f9 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 235px;
+  height: 46px;
+}
+
+/* Ellipse */
+.ellipse-4953d79c36fd {
+  position: absolute;
+  left: 195px;
+  top: 0px;
+  width: 40px;
+  height: 46px;
+  background: #d92525;
+  border-radius: 50%;
+}
+
+/* Ellipse */
+.ellipse-4953d79c36fc {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 44.76px;
+  height: 45px;
+  background: #d92525;
+  border-radius: 50%;
+}
+
+/* Rectangle */
+.rectangle-4953d79c36fb {
+  position: absolute;
+  left: 22.38px;
+  top: 0px;
+  width: 190.24px;
+  height: 45px;
+  background: #d92525;
+  border-radius: 0px;
+}
+
+/* Group */
+.group-496cc9a2bad0 {
+  position: absolute;
+  left: 54px;
+  top: 651px;
+  width: 235px;
+  height: 45px;
+}
+
+/* Group */
+.group-496cb6f8b0d7 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 194.68px;
+  height: 45px;
+}
+
+/* Add Prescription */
+.add-prescr-49538d31cea2 {
+  position: absolute;
+  left: 41px;
+  top: 8px;
+  width: 153.68px;
+  height: 27px;
+}
+
+.add-prescr-49538d31cea2 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.add-prescr-49538d31cea2 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.add-prescr-49538d31cea2 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+}
+
+.add-prescr-49538d31cea2 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(64, 21, 32, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(64, 21, 32, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Ellipse */
+.ellipse-49538d31cea4 {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 44.76px;
+  height: 45px;
+  background: #4b93bf;
+  border-radius: 50%;
+}
+
+/* Ellipse */
+.ellipse-49538d31cea5 {
+  position: absolute;
+  left: 190.24px;
+  top: 0px;
+  width: 44.76px;
+  height: 45px;
+  background: #4b93bf;
+  border-radius: 50%;
+}
+
+/* Rectangle */
+.rectangle-49538d31cea3 {
+  position: absolute;
+  left: 76.38px;
+  top: 651px;
+  width: 190.24px;
+  height: 45px;
+  background: #4b93bf;
+  border-radius: 0px;
+}
+
+/* Chief Complaint & Diagnosis */
+.chief-comp-495235c6e5ee {
+  position: absolute;
+  left: 40px;
+  top: 336px;
+  width: 324px;
+  height: 29px;
+}
+
+.chief-comp-495235c6e5ee .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.chief-comp-495235c6e5ee .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.chief-comp-495235c6e5ee .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.chief-comp-495235c6e5ee .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 24px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Patient-Doctor Information */
+.patient-do-49521751040e {
+  position: absolute;
+  left: 40px;
+  top: 131px;
+  width: 315px;
+  height: 29px;
+}
+
+.patient-do-49521751040e .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.patient-do-49521751040e .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.patient-do-49521751040e .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.patient-do-49521751040e .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 24px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Sex: */
+.sex-494e2f66581e {
+  position: absolute;
+  left: 40px;
+  top: 300px;
+  width: 121px;
+  height: 22px;
+}
+
+.sex-494e2f66581e .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.sex-494e2f66581e .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.sex-494e2f66581e .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.sex-494e2f66581e .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Diagnosis: */
+.diagnosis-495235c6e5eb {
+  position: absolute;
+  left: 290px;
+  top: 383px;
+  width: 121px;
+  height: 21px;
+}
+
+.diagnosis-495235c6e5eb .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.diagnosis-495235c6e5eb .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.diagnosis-495235c6e5eb .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.diagnosis-495235c6e5eb .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Birth Date: */
+.birth-date-494e18c6a6c5 {
+  position: absolute;
+  left: 40px;
+  top: 232px;
+  width: 121px;
+  height: 22px;
+}
+
+.birth-date-494e18c6a6c5 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.birth-date-494e18c6a6c5 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.birth-date-494e18c6a6c5 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.birth-date-494e18c6a6c5 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Date: */
+.date-495256ead056 {
+  position: absolute;
+  left: 280px; /* Increased by 100px */
+  top: 232px;
+  width: 100px;
+  height: 22px;
+}
+
+.date-495256ead056 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.date-495256ead056 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.date-495256ead056 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.date-495256ead056 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Doctor Name: */
+.doctor-nam-4951d8c40582 {
+  position: absolute;
+  left: 280px;
+  top: 180px;
+  width: 121px;
+  height: 22px;
+}
+
+.doctor-nam-4951d8c40582 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.doctor-nam-4951d8c40582 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.doctor-nam-4951d8c40582 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.doctor-nam-4951d8c40582 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Chief Complaint: */
+.chief-comp-495235c6e5ec {
+  position: absolute;
+  left: 40px;
+  top: 383px;
+  width: 144px;
+  height: 22px;
+}
+
+.chief-comp-495235c6e5ec .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.chief-comp-495235c6e5ec .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.chief-comp-495235c6e5ec .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.chief-comp-495235c6e5ec .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Patient Name: */
+.patient-na-494de6a5353f {
+  position: absolute;
+  left: 40px;
+  top: 180px;
+  width: 121px;
+  height: 22px;
+}
+
+.patient-na-494de6a5353f .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.patient-na-494de6a5353f .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.patient-na-494de6a5353f .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.patient-na-494de6a5353f .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* New Consultation */
+.new-appoin-494d4c48d960 {
+  position: absolute;
+  left: 350px;
+  top: 78px;
+  width: 263px;
+  height: 29px;
+}
+
+.new-appoin-494d4c48d960 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.new-appoin-494d4c48d960 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.new-appoin-494d4c48d960 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: right;
+}
+
+.new-appoin-494d4c48d960 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 24px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* MediBASE */
+.medi-base-444df1cb6c00 {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  width: 296px;
+  height: 77px;
+}
+
+.medi-base-444df1cb6c00 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.medi-base-444df1cb6c00 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.medi-base-444df1cb6c00 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.medi-base-444df1cb6c00 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(64, 21, 32, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 64px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(64, 21, 32, 1);
+  text-decoration: none;
+  letter-spacing: -1.5px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400;
+}
+
+.medi-base-444df1cb6c00 .root-0-paragraph-set-0-paragraph-0-text-1 {
+  color: rgba(75, 147, 191, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 64px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(75, 147, 191, 1);
+  text-decoration: none;
+  letter-spacing: -1.5px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* SPO2: */
+.spo2-49536410dd2b {
+  position: absolute;
+  left: 289px;
+  top: 586px;
+  width: 121px;
+  height: 22px;
+}
+
+.spo2-49536410dd2b .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.spo2-49536410dd2b .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.spo2-49536410dd2b .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.spo2-49536410dd2b .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Vital Signs */
+.vital-sign-4952cdc3a4a7 {
+  position: absolute;
+  left: 40px;
+  top: 435px;
+  width: 123px;
+  height: 29px;
+}
+
+.vital-sign-4952cdc3a4a7 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.vital-sign-4952cdc3a4a7 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.vital-sign-4952cdc3a4a7 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.vital-sign-4952cdc3a4a7 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 24px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* Systolic BP: */
+.systolic-b-49530d7a15a4 {
+  position: absolute;
+  left: 289px;
+  top: 536px;
+  width: 121px;
+  height: 22px;
+}
+
+.systolic-b-49530d7a15a4 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.systolic-b-49530d7a15a4 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.systolic-b-49530d7a15a4 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.systolic-b-49530d7a15a4 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Pulse (Bpm): */
+.pulse-bpm-4952cdc3a4a6 {
+  position: absolute;
+  left: 290px;
+  top: 484px;
+  width: 121px;
+  height: 22px;
+}
+
+.pulse-bpm-4952cdc3a4a6 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.pulse-bpm-4952cdc3a4a6 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+  min-width: 100%;
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.pulse-bpm-4952cdc3a4a6 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.pulse-bpm-4952cdc3a4a6 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: break-spaces;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Diastolic BP: */
+.diastolic-49536410dd2c {
+  position: absolute;
+  left: 39px;
+  top: 586px;
+  width: 108px;
+  height: 22px;
+}
+
+.diastolic-49536410dd2c .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.diastolic-49536410dd2c .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.diastolic-49536410dd2c .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.diastolic-49536410dd2c .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Respiratory Rate: */
+.respirator-49530d7a15a3 {
+  position: absolute;
+  left: 39px;
+  top: 536px;
+  width: 151px;
+  height: 22px;
+}
+
+.respirator-49530d7a15a3 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.respirator-49530d7a15a3 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.respirator-49530d7a15a3 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.respirator-49530d7a15a3 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Temperature (C): */
+.temperatur-4952cdc3a4a5 {
+  position: absolute;
+  left: 40px;
+  top: 484px;
+  width: 145px;
+  height: 22px;
+}
+
+.temperatur-4952cdc3a4a5 .root-0 {
+  display: flex;
+  white-space: break-spaces;
+  align-items: flex-start;
+}
+
+.temperatur-4952cdc3a4a5 .root-0-paragraph-set-0 {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: inherit;
+
+  margin-right: 1px;
+  vertical-align: top;
+}
+
+.temperatur-4952cdc3a4a5 .root-0-paragraph-set-0-paragraph-0 {
+  font-size: 0;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+}
+
+.temperatur-4952cdc3a4a5 .root-0-paragraph-set-0-paragraph-0-text-0 {
+  color: rgba(0, 0, 0, 1);
+  text-transform: none;
+
+  line-break: auto;
+  overflow-wrap: initial;
+  white-space: pre;
+  font-size: 18px;
+  text-rendering: geometricPrecision;
+  caret-color: rgba(0, 0, 0, 1);
+  text-decoration: none;
+  letter-spacing: 0px;
+  font-family: "Space Grotesk";
+  font-style: normal;
+  font-weight: 600;
+}

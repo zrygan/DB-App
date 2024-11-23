@@ -1,16 +1,39 @@
 package com.source.HospitalDB;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.HashMap;
 
-import com.source.HospitalDB.Classes.*;
-import com.source.HospitalDB.DAO.*;
+import com.source.HospitalDB.Classes.ChiefComplaint;
+import com.source.HospitalDB.Classes.Consult_ChiefComplaint;
+import com.source.HospitalDB.Classes.Consult_MedDiagnosis;
+import com.source.HospitalDB.Classes.Consultation;
+import com.source.HospitalDB.Classes.Doctors;
+import com.source.HospitalDB.Classes.LabReport;
+import com.source.HospitalDB.Classes.LabTest;
+import com.source.HospitalDB.Classes.MedicalDiagnosis;
+import com.source.HospitalDB.Classes.Medication;
+import com.source.HospitalDB.Classes.Patient;
+import com.source.HospitalDB.Classes.Prescription;
+import com.source.HospitalDB.Classes.VitalSigns;
+import com.source.HospitalDB.DAO.ChiefComplaintDAO;
+import com.source.HospitalDB.DAO.Consult_ChiefComplaintDAO;
+import com.source.HospitalDB.DAO.Consult_MedDiagnosisDAO;
+import com.source.HospitalDB.DAO.ConsultationDAO;
+import com.source.HospitalDB.DAO.DoctorsDAO;
+import com.source.HospitalDB.DAO.LabReportDAO;
+import com.source.HospitalDB.DAO.LabTestDAO;
+import com.source.HospitalDB.DAO.MedicalDiagnosisDAO;
+import com.source.HospitalDB.DAO.MedicationDAO;
+import com.source.HospitalDB.DAO.PatientDAO;
+import com.source.HospitalDB.DAO.PrescriptionDAO;
+import com.source.HospitalDB.DAO.VitalSignsDAO;
 
 public class App {
     public static void main(String[] args) throws SQLException{
-        System.out.println(PatientDAO.getFromNameBDay("Alice", "Brown", Timestamp.valueOf("1999-06-15 00:00:00")));
+        make_sample_data();
     }
     
     /************
@@ -112,13 +135,10 @@ public class App {
     // FIXME: create a function in App that will create the HospitalDB
     // without running it on SQL Workbench
     // also do the same for the sample data (see make_sample_data())
-    public static void make_sql(){  
-        // create the database and tables
-        
-    }
 
-    public static void make_sample_data(){
+    public static void make_sample_data() throws SQLException{
         // create the INSERT INTO ___
+        
     }
     
     /************

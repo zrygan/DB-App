@@ -60,5 +60,34 @@ public class MedicalDiagnosisDAO {
             stmt.executeUpdate();
         }
     }
+
+    // check if it exists boolean by diagnosis string
+    public static boolean exists(String diagnosis) throws SQLException {
+        String query = "SELECT * FROM medical_diagnosis_record WHERE diagnosis_description = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, diagnosis);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
+        }
+    }
+
+    // get medical diagnosis by name
+    public static MedicalDiagnosis getByName(String diagnosis) throws SQLException {
+        String query = "SELECT * FROM medical_diagnosis_record WHERE diagnosis_description = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, diagnosis);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return new MedicalDiagnosis(
+                        rs.getInt("diagnosis_ID"),
+                        rs.getString("diagnosis_description"));
+                }
+            }
+        }
+        return null;
+    }
 }
 

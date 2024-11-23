@@ -102,4 +102,19 @@ public class MedicationDAO {
         }
         return -1;
     }
+
+    // return boolean if brand name exists
+    public static boolean brandNameExists(String brand_name) throws SQLException {
+        String query = "SELECT * FROM medication_record WHERE brand_name = ?";
+        try (Connection conn = DBConnection.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, brand_name);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

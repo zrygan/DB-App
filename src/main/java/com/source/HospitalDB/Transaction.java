@@ -70,19 +70,22 @@ public class Transaction {
     // Creating a Patient record
     public static boolean createPatientRecord(Patient patient) throws SQLException {
         try {
-            // Step 1: Verify that the Patient record does not exist
-            if (PatientDAO.getFromID(patient.getPatientId()) != null) {
-                System.out.println("Patient record already exists!");
+            // Step 1: Verify that a Patient with the same first name and last name already exists
+            if (PatientDAO.getByName(patient.getFirstname(), patient.getLastname()) != null) {
+                System.out.println("Patient with the same name already exists!");
                 return false;
             }
+
             // Step 2: Record the Patient’s information
             PatientDAO.add(patient);
             return true;
         } catch (SQLException e) {
+            System.out.println("Error creating patient record: " + e.getMessage());
             return false;
         }
     }
 
+    
     // Creating a Patient record
     public static boolean createPatientRecord(Patient patient, Doctors doctor, VitalSigns vitalSigns, Consultation consultation, List<Prescription> prescriptions, List<LabReport> labReports, List<ChiefComplaint> chiefComplaints, List<MedicalDiagnosis> medicalDiagnoses) throws SQLException {
         Connection conn = null;
@@ -163,17 +166,34 @@ public class Transaction {
         }
     }
 
-    // Deleting a patient record
     public static void deletePatientRecord(int patientID) throws SQLException {
-        // Step 1: Verify that the patient record exists
         if (PatientDAO.getFromID(patientID) == null) {
             throw new SQLException("Patient record not found for ID: " + patientID);
         }
     
-        try (Connection conn = DBConnection.getConnection()) {
+        Connection conn = null;
+        try {
+            conn = DBConnection.getConnection();
             conn.setAutoCommit(false); // Start transaction
     
-            // Step 2: Delete junction table records for consultations
+            // Step 1: Delete lab report records related to the patient
+            String deleteLabReportQuery = 
+                "DELETE FROM lab_report_record WHERE consultation_ID IN " +
+                "(SELECT consultation_ID FROM consultation_record WHERE patient_ID = ?)";
+            try (PreparedStatement stmt = conn.prepareStatement(deleteLabReportQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            // Step 2: Delete prescription records related to the patient
+            String deletePrescriptionQuery = 
+                "DELETE FROM prescription_record WHERE patient_ID = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(deletePrescriptionQuery)) {
+                stmt.setInt(1, patientID);
+                stmt.executeUpdate();
+            }
+    
+            // Step 3: Delete consultation chief complaint records
             String deleteConsultationChiefComplaintQuery = 
                 "DELETE FROM consultation_chief_complaint_record WHERE consultation_ID IN " +
                 "(SELECT consultation_ID FROM consultation_record WHERE patient_ID = ?)";
@@ -182,6 +202,7 @@ public class Transaction {
                 stmt.executeUpdate();
             }
     
+            // Step 4: Delete consultation medical diagnosis records
             String deleteConsultationMedicalDiagnosisQuery = 
                 "DELETE FROM consultation_medical_diagnosis_record WHERE consultation_ID IN " +
                 "(SELECT consultation_ID FROM consultation_record WHERE patient_ID = ?)";
@@ -190,57 +211,61 @@ public class Transaction {
                 stmt.executeUpdate();
             }
     
-            // Step 3: Delete consultations related to the patient
-            String deleteConsultationsQuery = "DELETE FROM consultation_record WHERE patient_ID = ?";
+            // Step 5: Delete consultation records
+            String deleteConsultationsQuery = 
+                "DELETE FROM consultation_record WHERE patient_ID = ?";
             try (PreparedStatement stmt = conn.prepareStatement(deleteConsultationsQuery)) {
                 stmt.setInt(1, patientID);
                 stmt.executeUpdate();
             }
     
-            // Step 4: Delete prescriptions related to the patient
-            String deletePrescriptionsQuery = "DELETE FROM prescription_record WHERE patient_ID = ?";
-            try (PreparedStatement stmt = conn.prepareStatement(deletePrescriptionsQuery)) {
-                stmt.setInt(1, patientID);
-                stmt.executeUpdate();
-            }
-    
-            // Step 5: Delete vital signs records related to the patient
-            String deleteVitalSignsQuery = "DELETE FROM vital_signs_record WHERE vital_signs_ID IN " +
-                                           "(SELECT vital_signs_ID FROM consultation_record WHERE patient_ID = ?)";
+            // Step 6: Delete vital signs records
+            String deleteVitalSignsQuery = 
+                "DELETE FROM vital_signs_record WHERE vital_signs_ID IN " +
+                "(SELECT vital_signs_ID FROM consultation_record WHERE patient_ID = ?)";
             try (PreparedStatement stmt = conn.prepareStatement(deleteVitalSignsQuery)) {
                 stmt.setInt(1, patientID);
                 stmt.executeUpdate();
             }
     
-            // Step 6: Delete the patient record
-            String deletePatientQuery = "DELETE FROM patients_record WHERE patient_ID = ?";
+            // Step 7: Delete patient record
+            String deletePatientQuery = 
+                "DELETE FROM patients_record WHERE patient_ID = ?";
             try (PreparedStatement stmt = conn.prepareStatement(deletePatientQuery)) {
                 stmt.setInt(1, patientID);
                 stmt.executeUpdate();
             }
     
-            conn.commit(); // Commit transaction if all operations succeed
+            conn.commit(); // Commit transaction
             System.out.println("Successfully deleted patient with ID: " + patientID);
     
         } catch (SQLException e) {
-            // Rollback transaction in case of failure
-            try (Connection conn = DBConnection.getConnection()) {
-                conn.rollback();
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Rollback transaction in case of error
+                } catch (SQLException rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
             }
-            throw e;
+            throw e; // Re-throw exception after rollback
     
         } finally {
-            // Restore default auto-commit behavior
-            try (Connection conn = DBConnection.getConnection()) {
-                conn.setAutoCommit(true);
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true); // Restore default auto-commit behavior
+                    conn.close(); // Close connection
+                } catch (SQLException closeEx) {
+                    closeEx.printStackTrace();
+                }
             }
         }
     }
     
     
+    
 
     // creating a prescription record
-    public static void createPrescriptionRecord(int patientId, int doctorId, int medicationID, int frequency, BigDecimal dosage) throws SQLException {
+    public static void createPrescriptionRecord(int patientId, int doctorId, int medicationID, int frequency, BigDecimal dosage, int consultationID) throws SQLException {
         // Step 1: Verify the Patient exists
         if (PatientDAO.getFromID(patientId) == null) {
             System.out.println("Patient does not exist!");
@@ -266,7 +291,7 @@ public class Transaction {
         }
 
         // Step 4: Create the Prescription record
-        Prescription prescription = new Prescription(medicationID, frequency, dosage, doctorId, patientId);
+        Prescription prescription = new Prescription(medicationID, frequency, dosage, doctorId, patientId, consultationID);
         PrescriptionDAO.add(prescription);
     }
 
@@ -285,7 +310,7 @@ public class Transaction {
         }
 
         // Step 3: Create the Consultation record
-        Consultation consultation = new Consultation(prescriptionID, doctorId, patientId, vitalSignsID, labReportID);
+        Consultation consultation = new Consultation(doctorId, patientId, vitalSignsID);
         ConsultationDAO.add(consultation);
     }
 
@@ -298,5 +323,106 @@ public class Transaction {
             labTestDescriptions.add(LabTestDAO.get(labTestID).getTestDescription());
         }
         return labTestDescriptions;
+    }
+
+    // return all the prescriptions with the same prescription id
+    public static List<Prescription> getPrescriptionsByPrescriptionID(int prescriptionID) throws SQLException {
+        List<Prescription> prescriptions = new ArrayList<>();
+        
+        String query = "SELECT * FROM prescription_record WHERE prescription_ID = ?";
+        
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, prescriptionID);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Prescription prescription = new Prescription(
+                        rs.getInt("medication_ID"),
+                        rs.getInt("frequency"),
+                        rs.getBigDecimal("dosage"),
+                        rs.getInt("doctor_ID"),
+                        rs.getInt("patient_ID"),
+                        rs.getInt("consultation_ID")
+                    );
+                    prescriptions.add(prescription);
+                }
+            }
+        }
+        
+        return prescriptions;
+    }
+
+    // return list of lab reports with the same lab report id
+    public static List<LabReport> getLabReportsByLabReportID(int labReportID) throws SQLException {
+        List<LabReport> labReports = new ArrayList<>();
+        
+        String query = "SELECT * FROM lab_report_record WHERE lab_report_ID = ?";
+        
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, labReportID);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    LabReport labReport = new LabReport(
+                        rs.getInt("lab_report_ID"),
+                        rs.getInt("lab_report_ID"),
+                        rs.getInt("test_ID"));
+                    labReports.add(labReport);
+                }
+            }
+        }
+        
+        return labReports;
+    }
+
+    // return list of prescriptions with the same consultation id
+    public static List<Prescription> getPrescriptionsByConsultationID(int consultationID) throws SQLException {
+        List<Prescription> prescriptions = new ArrayList<>();
+        
+        String query = "SELECT * FROM prescription_record WHERE consultation_ID = ?";
+        
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, consultationID);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Prescription prescription = new Prescription(
+                        rs.getInt("prescription_ID"),
+                        rs.getInt("medication_ID"),
+                        rs.getInt("frequency"),
+                        rs.getBigDecimal("dosage"),
+                        rs.getInt("doctor_ID"),
+                        rs.getInt("patient_ID"),
+                        rs.getInt("consultation_ID")
+                    );
+                    prescriptions.add(prescription);
+                }
+            }
+        }
+        
+        return prescriptions;
+    }
+
+    // get list of labreports by consultation id
+    public static List<LabReport> getLabReportsByConsultationID(int consultationID) throws SQLException {
+        List<LabReport> labReports = new ArrayList<>();
+        
+        String query = "SELECT * FROM lab_report_record WHERE consultation_ID = ?";
+        
+        try (Connection conn = DBConnection.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, consultationID);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    LabReport labReport = new LabReport(
+                        rs.getInt("lab_report_ID"),
+                        rs.getInt("test_ID"),
+                        rs.getInt("consultation_ID"));
+                    labReports.add(labReport);
+                }
+            }
+        }
+        
+        return labReports;
     }
 }

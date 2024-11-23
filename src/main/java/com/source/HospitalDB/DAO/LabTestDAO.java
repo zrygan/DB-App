@@ -27,6 +27,7 @@ public class LabTestDAO {
             try (java.sql.ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new LabTest(
+                        rs.getInt("test_ID"),
                         rs.getString("test_description")
                     );
                 }
@@ -72,5 +73,20 @@ public class LabTestDAO {
             }
         }
         return null;
+    }
+    
+    public static int getByDescription(String testDescription) throws SQLException {
+        String query = "SELECT test_ID FROM lab_test_record WHERE test_description = ?";
+        
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, testDescription);
+            try (java.sql.ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt("test_ID");
+                }
+            }
+        }
+        return -1; // Return -1 if no matching test description is found
     }
 }

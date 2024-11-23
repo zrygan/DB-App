@@ -35,6 +35,7 @@ public class VitalSignsDAO {
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
                     return new VitalSigns(
+                        rs.getInt("vital_signs_ID"),
                         rs.getBigDecimal("temperature"),
                         rs.getInt("pulse"),
                         rs.getInt("respiratory_rate"),
@@ -99,4 +100,19 @@ public class VitalSignsDAO {
             stmt.executeUpdate();
         }
     }
+
+    public static int getHighestVitalSignsID() throws SQLException {
+        String query = "SELECT MAX(vital_signs_ID) AS max_vital_signs_id FROM vital_signs_record";
+    
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query);
+             ResultSet rs = pstmt.executeQuery()) {
+            
+            if (rs.next()) {
+                return rs.getInt("max_vital_signs_id");
+            }
+        }
+    
+        return 0;
+        }
 }
